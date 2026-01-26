@@ -1,18 +1,12 @@
 [gd_scene format=3 uid="uid://cxwrtashubahe"]
 
+[ext_resource type="Script" uid="uid://cyd6qfwvk4nce" path="res://scripts/main_game.gd" id="1_72e8q"]
 [ext_resource type="Texture2D" uid="uid://5mmk720k2dre" path="res://icon.svg" id="1_s3esy"]
 
-[node name="Game" type="Node2D" unique_id=896492433]
+[node name="MainGame" type="Node2D" unique_id=896492433]
+script = ExtResource("1_72e8q")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1087153070]
+[node name="camera" type="Camera2D" parent="." unique_id=1087153070]
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=2035539771]
-texture = ExtResource("1_s3esy")
-
-[node name="Icon2" type="Sprite2D" parent="." unique_id=1427478184]
-position = Vector2(-343, -22)
-texture = ExtResource("1_s3esy")
-
-[node name="Icon3" type="Sprite2D" parent="." unique_id=437018131]
-position = Vector2(-380, 315)
+[node name="placeholder" type="Sprite2D" parent="." unique_id=2035539771]
 texture = ExtResource("1_s3esy")
