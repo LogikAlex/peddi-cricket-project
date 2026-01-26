@@ -1,14 +1,8 @@
 [gd_scene format=3 uid="uid://cxwrtashubahe"]
 
 [ext_resource type="Script" uid="uid://bgo0tmww4gpq7" path="res://scripts/main_game.gd" id="1_d2op2"]
+[ext_resource type="Texture2D" uid="uid://cky4a0mya750o" path="res://assets/sprites/placeholder_ball.png" id="1_s3esy"]
 [ext_resource type="Texture2D" uid="uid://nbclx4n1qq08" path="res://assets/sprites/placeholder_ground.png" id="2_72e8q"]
-[ext_resource type="PackedScene" uid="uid://bsrs6j8q7pbcd" path="res://scenes/ball.tscn" id="3_d2op2"]
-[ext_resource type="PackedScene" uid="uid://drap3eqhh60jc" path="res://scenes/player.tscn" id="4_0rdsr"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_0rdsr"]
-font_size = 84
-outline_size = 20
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_s3esy"]
 font_size = 57
@@ -19,36 +13,15 @@ shadow_size = 0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_72e8q"]
 size = Vector2(1284, 93)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rdsr"]
-size = Vector2(86, 126)
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_72e8q"]
+friction = 0.52
+bounce = 0.35
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ipu61"]
-size = Vector2(62, 88)
+[sub_resource type="CircleShape2D" id="CircleShape2D_s3esy"]
+radius = 15.0
 
 [node name="MainGame" type="Node2D" unique_id=556775433]
 script = ExtResource("1_d2op2")
-
-[node name="start_timer" type="Timer" parent="." unique_id=989620325]
-wait_time = 3.0
-one_shot = true
-
-[node name="countdown" type="Label" parent="." unique_id=1172257580]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -48.5
-offset_top = -57.5
-offset_right = 48.5
-offset_bottom = 57.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-text = "3"
-label_settings = SubResource("LabelSettings_0rdsr")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="camera" type="Camera2D" parent="." unique_id=1810722814]
 
@@ -119,28 +92,15 @@ texture = ExtResource("2_72e8q")
 position = Vector2(0, 11.5)
 shape = SubResource("RectangleShape2D_72e8q")
 
-[node name="ball" parent="." unique_id=971852414 instance=ExtResource("3_d2op2")]
-position = Vector2(1397, 141)
+[node name="ball" type="RigidBody2D" parent="." unique_id=334971440]
+position = Vector2(796, 72)
+mass = 0.16
+physics_material_override = SubResource("PhysicsMaterial_72e8q")
+gravity_scale = 0.8
 
-[node name="player" parent="." unique_id=798696560 instance=ExtResource("4_0rdsr")]
-position = Vector2(-412, 164)
+[node name="Sprite2D" type="Sprite2D" parent="ball" unique_id=1128684950]
+scale = Vector2(0.053914327, 0.053914327)
+texture = ExtResource("1_s3esy")
 
-[node name="hit_area" type="Area2D" parent="." unique_id=237449188]
-position = Vector2(-329, 187)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_area" unique_id=1646473859]
-shape = SubResource("RectangleShape2D_0rdsr")
-
-[node name="stumps" type="StaticBody2D" parent="." unique_id=1472792577]
-position = Vector2(-542, 236)
-
-[node name="Sprite2D" type="Sprite2D" parent="stumps" unique_id=2075673964]
-position = Vector2(0, -10.499997)
-scale = Vector2(0.032083333, 0.04458333)
-texture = ExtResource("2_72e8q")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="stumps" unique_id=455946596]
-position = Vector2(0, -10)
-shape = SubResource("RectangleShape2D_ipu61")
-
-[connection signal="timeout" from="start_timer" to="." method="_throw_ball"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ball" unique_id=1104577876]
+shape = SubResource("CircleShape2D_s3esy")
