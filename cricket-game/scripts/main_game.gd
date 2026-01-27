@@ -5,23 +5,27 @@ extends Node2D
 @onready var hit_timer: Timer = $hit_timer
 @onready var countdown_label: Label = $countdown
 
-var pressure = 0.0
-var ball_num = 0
+@onready var player: CharacterBody2D = $player
+@onready var camera: Camera2D = $camera
 
-var current_state = null
+var can_hit = false
 
-enum states {IDLE, SWINGING, HIT, GAME_OVER}
+var perfect_min = Globals.perfect_min
+var perfect_max = Globals.perfect_max
 
 func _ready() -> void:
 	countdown()
-	
+	Globals.miss_chance = randi_range(0, 1)
 	ball.freeze = true
-	current_state = states.IDLE
 
 func _process(_delta: float) -> void:
+	_check_miss()
 	$hit_timer_value.text = str(hit_timer.time_left)
-	if Input.is_action_just_pressed("swing"):
-		current_state = states.SWINGING
+	
+	if Input.is_action_just_released("ui_accept"):
+		reset_level()
+
+	if can_hit:
 		hit_ball()
 
 func countdown():
@@ -35,16 +39,48 @@ func countdown():
 func launch_ball():
 	ball.freeze = false
 	ball.apply_force(Vector2(-12000.0, -4500.0))
+	Globals.ball_num += 1
 
 func hit_ball():
-	ball.apply_force(Vector2(18000.0, -9300.0))
-
-func _throw_ball() -> void:
-	launch_ball()
-
-func _missed() -> void:
-	pass # Replace with function body.
+	if player.impacted == true and hit_timer.time_left > 0:
+		if hit_timer.time_left > perfect_min and hit_timer.time_left < perfect_max:
+			camera_shake()
+			ball.apply_force(Vector2(19600.0, -11000.0))
+		if hit_timer.time_left > perfect_max:
+			if Globals.miss_chance == 1:
+				ball.apply_force(Vector2(9000.0, -4300.0))
+			else:
+				ball.apply_force(Vector2(12000.0, -3700.0))
+		if hit_timer.time_left < perfect_min:
+			if Globals.miss_chance == 0:
+				ball.apply_force(Vector2(23000.0, -6000.0))
+			else:
+				pass
+		can_hit = false
 
 func _ball_entered_range(body: Node2D) -> void:
 	if body.is_in_group("ball"):
 		hit_timer.start()
+		can_hit = true
+
+func _throw_ball() -> void:
+	launch_ball()
+	player.can_swing = true
+
+func _check_miss() -> void:
+	if hit_timer.time_left == 0 and can_hit:
+		can_hit = false
+		$reset_timer.start()
+
+func reset_level():
+	get_tree().reload_current_scene()
+
+func camera_shake():
+	var shake = create_tween()
+	shake.tween_property(camera, "offset", Vector2(20.0, 0.0), 0.09)
+	shake.tween_property(camera, "offset", Vector2(-20.0, 0.0), 0.05)
+	shake.tween_property(camera, "offset", Vector2(10.0, 0.0), 0.09)
+	shake.tween_property(camera, "offset", Vector2(0.0, 0.0), 0.09)
+
+func _on_reset_timer_timeout() -> void:
+	reset_level()

@@ -20,10 +20,10 @@ shadow_size = 0
 size = Vector2(1998, 93)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0rdsr"]
-size = Vector2(11, 140)
+size = Vector2(84, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipu61"]
-size = Vector2(62, 113)
+size = Vector2(62, 88)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ipu61"]
 font_size = 52
@@ -32,7 +32,7 @@ font_size = 52
 script = ExtResource("1_d2op2")
 
 [node name="hit_timer" type="Timer" parent="." unique_id=682007490]
-wait_time = 0.5
+wait_time = 0.2
 one_shot = true
 
 [node name="start_timer" type="Timer" parent="." unique_id=989620325]
@@ -147,28 +147,34 @@ position = Vector2(-566, 353.00003)
 scale = Vector2(7.86, 7.86)
 
 [node name="hit_area" type="Area2D" parent="." unique_id=237449188]
-position = Vector2(-437, 237)
+position = Vector2(-446, 237)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hit_area" unique_id=1646473859]
-position = Vector2(6.5, 9)
+position = Vector2(-12, 9)
 shape = SubResource("RectangleShape2D_0rdsr")
 
 [node name="Sprite2D" type="Sprite2D" parent="hit_area" unique_id=649841519]
 modulate = Color(1, 1, 1, 0.36078432)
-position = Vector2(5.9999847, 9.00001)
-scale = Vector2(0.0049999985, 0.06750001)
+position = Vector2(-12.500002, 9.00001)
+scale = Vector2(0.041249994, 0.06750001)
+texture = ExtResource("2_72e8q")
+
+[node name="Sprite2D2" type="Sprite2D" parent="hit_area" unique_id=506654484]
+modulate = Color(1, 1, 1, 0.36078432)
+position = Vector2(-12.500002, 9.00001)
+scale = Vector2(0.041249994, 0.06750001)
 texture = ExtResource("2_72e8q")
 
 [node name="stumps" type="StaticBody2D" parent="." unique_id=1472792577]
-position = Vector2(-842, 305)
+position = Vector2(-772, 305)
 
 [node name="Sprite2D" type="Sprite2D" parent="stumps" unique_id=2075673964]
-position = Vector2(0, -23.499994)
-scale = Vector2(0.032083333, 0.055416662)
+position = Vector2(0, -10.499997)
+scale = Vector2(0.032083333, 0.04458333)
 texture = ExtResource("2_72e8q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stumps" unique_id=455946596]
-position = Vector2(0, -22.5)
+position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_ipu61")
 
 [node name="hit_timer_value" type="Label" parent="." unique_id=222838766]
@@ -179,11 +185,7 @@ offset_bottom = -283.0
 text = "0"
 label_settings = SubResource("LabelSettings_ipu61")
 
-[node name="reset_timer" type="Timer" parent="." unique_id=4473954]
-wait_time = 3.0
-one_shot = true
-
 [connection signal="timeout" from="hit_timer" to="." method="_missed"]
 [connection signal="timeout" from="start_timer" to="." method="_throw_ball"]
 [connection signal="body_entered" from="hit_area" to="." method="_ball_entered_range"]
-[connection signal="timeout" from="reset_timer" to="." method="_on_reset_timer_timeout"]
+[connection signal="body_exited" from="hit_area" to="." method="_ball_exited_range"]
