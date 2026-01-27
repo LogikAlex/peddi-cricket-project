@@ -17,7 +17,7 @@ outline_size = 18
 shadow_size = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_72e8q"]
-size = Vector2(1284, 93)
+size = Vector2(1998, 93)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0rdsr"]
 size = Vector2(86, 126)
@@ -25,8 +25,15 @@ size = Vector2(86, 126)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipu61"]
 size = Vector2(62, 88)
 
+[sub_resource type="LabelSettings" id="LabelSettings_ipu61"]
+font_size = 52
+
 [node name="MainGame" type="Node2D" unique_id=556775433]
 script = ExtResource("1_d2op2")
+
+[node name="hit_timer" type="Timer" parent="." unique_id=682007490]
+wait_time = 0.2
+one_shot = true
 
 [node name="start_timer" type="Timer" parent="." unique_id=989620325]
 wait_time = 3.0
@@ -53,10 +60,10 @@ vertical_alignment = 1
 [node name="camera" type="Camera2D" parent="." unique_id=1810722814]
 
 [node name="max_indicator" type="Label" parent="." unique_id=1137497760]
-offset_left = 259.0
-offset_top = -336.0
-offset_right = 356.0
-offset_bottom = -223.0
+offset_left = 423.0
+offset_top = -484.0
+offset_right = 520.0
+offset_bottom = -371.0
 text = "6"
 label_settings = SubResource("LabelSettings_s3esy")
 horizontal_alignment = 1
@@ -64,10 +71,10 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="boundary_indicator" type="Label" parent="." unique_id=291985227]
-offset_left = 337.0
-offset_top = -258.0
-offset_right = 434.0
-offset_bottom = -145.0
+offset_left = 543.0
+offset_top = -398.0
+offset_right = 640.0
+offset_bottom = -285.0
 text = "4"
 label_settings = SubResource("LabelSettings_s3esy")
 horizontal_alignment = 1
@@ -75,10 +82,10 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="deep_indicator" type="Label" parent="." unique_id=2137589955]
-offset_left = 411.0
-offset_top = -159.0
-offset_right = 508.0
-offset_bottom = -46.0
+offset_left = 646.0
+offset_top = -264.0
+offset_right = 743.0
+offset_bottom = -151.0
 text = "3"
 label_settings = SubResource("LabelSettings_s3esy")
 horizontal_alignment = 1
@@ -86,10 +93,10 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="medium_indicator" type="Label" parent="." unique_id=1711985105]
-offset_left = 462.0
-offset_top = -42.0
-offset_right = 559.0
-offset_bottom = 71.0
+offset_left = 713.0
+offset_top = -114.0
+offset_right = 810.0
+offset_bottom = -1.0
 text = "2"
 label_settings = SubResource("LabelSettings_s3esy")
 horizontal_alignment = 1
@@ -97,10 +104,10 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="short_indicator" type="Label" parent="." unique_id=2098838781]
-offset_left = 485.0
-offset_top = 88.0
-offset_right = 582.0
-offset_bottom = 201.0
+offset_left = 763.0
+offset_top = 52.0
+offset_right = 860.0
+offset_bottom = 165.0
 text = "1"
 label_settings = SubResource("LabelSettings_s3esy")
 horizontal_alignment = 1
@@ -108,31 +115,45 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ground" type="StaticBody2D" parent="." unique_id=1058606462]
-position = Vector2(0, 309)
+position = Vector2(0, 375)
 
 [node name="Sprite2D" type="Sprite2D" parent="ground" unique_id=610543855]
-position = Vector2(0, 11.500007)
-scale = Vector2(0.6741667, 0.052916672)
+position = Vector2(0, 107.000015)
+scale = Vector2(0.97583336, 0.14583333)
 texture = ExtResource("2_72e8q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ground" unique_id=1823782044]
 position = Vector2(0, 11.5)
 shape = SubResource("RectangleShape2D_72e8q")
 
+[node name="ground2" type="StaticBody2D" parent="." unique_id=1974425714]
+position = Vector2(-1006, 253)
+rotation = 1.5707964
+
+[node name="Sprite2D" type="Sprite2D" parent="ground2" unique_id=1334791472]
+position = Vector2(0, 11.500007)
+scale = Vector2(0.97583336, 0.052916672)
+texture = ExtResource("2_72e8q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground2" unique_id=492339321]
+position = Vector2(0, 11.5)
+shape = SubResource("RectangleShape2D_72e8q")
+
 [node name="ball" parent="." unique_id=971852414 instance=ExtResource("3_d2op2")]
-position = Vector2(1397, 141)
+position = Vector2(1597, 92)
 
 [node name="player" parent="." unique_id=798696560 instance=ExtResource("4_0rdsr")]
-position = Vector2(-412, 164)
+position = Vector2(-566, 353.00003)
+scale = Vector2(7.86, 7.86)
 
 [node name="hit_area" type="Area2D" parent="." unique_id=237449188]
-position = Vector2(-329, 187)
+position = Vector2(-395, 209)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hit_area" unique_id=1646473859]
 shape = SubResource("RectangleShape2D_0rdsr")
 
 [node name="stumps" type="StaticBody2D" parent="." unique_id=1472792577]
-position = Vector2(-542, 236)
+position = Vector2(-772, 305)
 
 [node name="Sprite2D" type="Sprite2D" parent="stumps" unique_id=2075673964]
 position = Vector2(0, -10.499997)
@@ -143,4 +164,14 @@ texture = ExtResource("2_72e8q")
 position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_ipu61")
 
+[node name="hit_timer_value" type="Label" parent="." unique_id=222838766]
+offset_left = -744.0
+offset_top = -355.0
+offset_right = -704.0
+offset_bottom = -283.0
+text = "0"
+label_settings = SubResource("LabelSettings_ipu61")
+
+[connection signal="timeout" from="hit_timer" to="." method="_missed"]
 [connection signal="timeout" from="start_timer" to="." method="_throw_ball"]
+[connection signal="body_entered" from="hit_area" to="." method="_ball_entered_range"]

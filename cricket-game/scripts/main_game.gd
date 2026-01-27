@@ -2,7 +2,11 @@ extends Node2D
 
 @onready var ball: RigidBody2D = $ball
 @onready var start_timer: Timer = $start_timer
+@onready var hit_timer: Timer = $hit_timer
 @onready var countdown_label: Label = $countdown
+
+var pressure = 0.0
+var ball_num = 0
 
 var current_state = null
 
@@ -15,6 +19,7 @@ func _ready() -> void:
 	current_state = states.IDLE
 
 func _process(_delta: float) -> void:
+	$hit_timer_value.text = str(hit_timer.time_left)
 	if Input.is_action_just_pressed("swing"):
 		current_state = states.SWINGING
 		hit_ball()
@@ -29,10 +34,17 @@ func countdown():
 
 func launch_ball():
 	ball.freeze = false
-	ball.apply_force(Vector2(-11000.0, -4500.0))
+	ball.apply_force(Vector2(-12000.0, -4500.0))
 
 func hit_ball():
-	ball.apply_force(Vector2(16000.0, -9300.0))
+	ball.apply_force(Vector2(18000.0, -9300.0))
 
 func _throw_ball() -> void:
 	launch_ball()
+
+func _missed() -> void:
+	pass # Replace with function body.
+
+func _ball_entered_range(body: Node2D) -> void:
+	if body.is_in_group("ball"):
+		hit_timer.start()
