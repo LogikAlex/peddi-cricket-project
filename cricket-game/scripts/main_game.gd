@@ -45,14 +45,17 @@ func hit_ball():
 	if player.impacted == true and hit_timer.time_left > 0:
 		if hit_timer.time_left > perfect_min and hit_timer.time_left < perfect_max:
 			camera_shake()
+			#ball.position = Vector2(-458.0, 228.0)
 			ball.apply_force(Vector2(19600.0, -11000.0))
 		if hit_timer.time_left > perfect_max:
+			#ball.position = Vector2(-458.0, 228.0)
 			if Globals.miss_chance == 1:
-				ball.apply_force(Vector2(9000.0, -4300.0))
+				ball.apply_force(Vector2(16000.0, -4300.0))
 			else:
 				ball.apply_force(Vector2(12000.0, -3700.0))
 		if hit_timer.time_left < perfect_min:
 			if Globals.miss_chance == 0:
+				#ball.position = Vector2(-458.0, 228.0)
 				ball.apply_force(Vector2(23000.0, -6000.0))
 			else:
 				pass

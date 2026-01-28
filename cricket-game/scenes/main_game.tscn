@@ -39,6 +39,10 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[node name="reset_timer" type="Timer" parent="." unique_id=4473954]
+wait_time = 3.0
+one_shot = true
+
 [node name="countdown" type="Label" parent="." unique_id=1172257580]
 anchors_preset = 8
 anchor_left = 0.5
@@ -59,7 +63,9 @@ vertical_alignment = 1
 
 [node name="camera" type="Camera2D" parent="." unique_id=1810722814]
 
-[node name="max_indicator" type="Label" parent="." unique_id=1137497760]
+[node name="score_indicators" type="Node2D" parent="." unique_id=944244100]
+
+[node name="max_indicator" type="Label" parent="score_indicators" unique_id=1137497760]
 offset_left = 423.0
 offset_top = -484.0
 offset_right = 520.0
@@ -70,7 +76,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="boundary_indicator" type="Label" parent="." unique_id=291985227]
+[node name="boundary_indicator" type="Label" parent="score_indicators" unique_id=291985227]
 offset_left = 543.0
 offset_top = -398.0
 offset_right = 640.0
@@ -81,7 +87,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="deep_indicator" type="Label" parent="." unique_id=2137589955]
+[node name="deep_indicator" type="Label" parent="score_indicators" unique_id=2137589955]
 offset_left = 646.0
 offset_top = -264.0
 offset_right = 743.0
@@ -92,7 +98,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="medium_indicator" type="Label" parent="." unique_id=1711985105]
+[node name="medium_indicator" type="Label" parent="score_indicators" unique_id=1711985105]
 offset_left = 713.0
 offset_top = -114.0
 offset_right = 810.0
@@ -103,7 +109,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="short_indicator" type="Label" parent="." unique_id=2098838781]
+[node name="short_indicator" type="Label" parent="score_indicators" unique_id=2098838781]
 offset_left = 763.0
 offset_top = 52.0
 offset_right = 860.0
@@ -179,11 +185,7 @@ offset_bottom = -283.0
 text = "0"
 label_settings = SubResource("LabelSettings_ipu61")
 
-[node name="reset_timer" type="Timer" parent="." unique_id=4473954]
-wait_time = 3.0
-one_shot = true
-
 [connection signal="timeout" from="hit_timer" to="." method="_missed"]
 [connection signal="timeout" from="start_timer" to="." method="_throw_ball"]
-[connection signal="body_entered" from="hit_area" to="." method="_ball_entered_range"]
 [connection signal="timeout" from="reset_timer" to="." method="_on_reset_timer_timeout"]
+[connection signal="body_entered" from="hit_area" to="." method="_ball_entered_range"]
