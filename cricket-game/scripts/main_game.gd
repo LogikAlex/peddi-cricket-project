@@ -31,6 +31,9 @@ var three_cam = Vector2(2960.0, 0.0)
 var two_cam = Vector2(2060.0, 0.0)
 var one_cam = Vector2(2060.0, 0.0)
 
+#quick time event variables
+@onready var qte_circle: Node2D = $qte_circle
+
 func _ready() -> void:
 	countdown()
 	Globals.miss_chance = randi_range(0, 1)
@@ -102,6 +105,10 @@ func _ball_entered_range(body: Node2D) -> void:
 	if body.is_in_group("ball"):
 		hit_timer.start()
 		can_hit = true
+
+func _ball_entered_qte_range(body: Node2D) -> void:
+	if body.is_in_group("ball"):
+		qte_circle._start_qte()
 
 func _throw_ball() -> void:
 	launch_ball()

@@ -9,3 +9,4 @@ var miss_chance
 
 var perfect_min = 0.25
 var perfect_max = 0.4
+var hit_time = 0.5

@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://drap3eqhh60jc" path="res://scenes/player.tscn" id="4_0rdsr"]
 [ext_resource type="Texture2D" uid="uid://imi2rnhda0bn" path="res://assets/sprites/field_placeholder.png" id="5_ipu61"]
 [ext_resource type="Script" uid="uid://bjp0dr62cuisv" path="res://scenes/stumps.gd" id="6_ygxny"]
-[ext_resource type="Script" uid="uid://bbodawtb51pcr" path="res://scenes/quick_time_event.gd" id="7_2l77h"]
 [ext_resource type="Texture2D" uid="uid://5igdq7shbgrx" path="res://assets/sprites/qte_inner_circle.png" id="7_70vka"]
 [ext_resource type="Texture2D" uid="uid://di27biqg540cg" path="res://assets/sprites/qte_indicator.png" id="8_2l77h"]
 
@@ -35,9 +34,6 @@ size = Vector2(1748, 95)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0rdsr"]
 size = Vector2(11, 140)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2l77h"]
-size = Vector2(11, 242)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipu61"]
 size = Vector2(62, 113)
@@ -252,19 +248,6 @@ position = Vector2(5.9999847, 9.00001)
 scale = Vector2(0.0049999985, 0.06750001)
 texture = ExtResource("2_72e8q")
 
-[node name="qte_area" type="Area2D" parent="." unique_id=283305163]
-position = Vector2(-7, 234)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="qte_area" unique_id=1302851530]
-position = Vector2(6.5, -9)
-shape = SubResource("RectangleShape2D_2l77h")
-
-[node name="Sprite2D" type="Sprite2D" parent="qte_area" unique_id=314891137]
-modulate = Color(1, 1, 1, 0.36078432)
-position = Vector2(5.9999847, -15.499992)
-scale = Vector2(0.0049999985, 0.11458334)
-texture = ExtResource("2_72e8q")
-
 [node name="stumps_area" type="Area2D" parent="." unique_id=669769607]
 position = Vector2(-842, 305)
 script = ExtResource("6_ygxny")
@@ -287,7 +270,6 @@ shape = SubResource("RectangleShape2D_wi4c7")
 
 [node name="qte_circle" type="Node2D" parent="." unique_id=857660714]
 position = Vector2(-424, 13)
-script = ExtResource("7_2l77h")
 
 [node name="QteInnerCircle" type="Sprite2D" parent="qte_circle" unique_id=643164604]
 scale = Vector2(0.044067383, 0.044067383)
@@ -302,5 +284,4 @@ texture = ExtResource("8_2l77h")
 [connection signal="timeout" from="start_timer" to="." method="_throw_ball"]
 [connection signal="timeout" from="reset_timer" to="." method="_on_reset_timer_timeout"]
 [connection signal="body_entered" from="hit_area" to="." method="_ball_entered_range"]
-[connection signal="body_entered" from="qte_area" to="." method="_ball_entered_qte_range"]
 [connection signal="body_entered" from="stumps_area" to="stumps_area" method="_on_body_entered"]
