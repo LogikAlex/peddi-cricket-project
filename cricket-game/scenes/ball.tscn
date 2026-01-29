@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cky4a0mya750o" path="res://assets/sprites/placeholder_ball.png" id="1_7s4qf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_72e8q"]
-friction = 0.28
-bounce = 0.6
+rough = true
+bounce = 0.56
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s3esy"]
 radius = 8.0
