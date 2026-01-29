@@ -5,11 +5,18 @@
 [ext_resource type="PackedScene" uid="uid://bsrs6j8q7pbcd" path="res://scenes/ball.tscn" id="3_d2op2"]
 [ext_resource type="PackedScene" uid="uid://drap3eqhh60jc" path="res://scenes/player.tscn" id="4_0rdsr"]
 [ext_resource type="Texture2D" uid="uid://imi2rnhda0bn" path="res://assets/sprites/field_placeholder.png" id="5_ipu61"]
+[ext_resource type="Script" uid="uid://bjp0dr62cuisv" path="res://scenes/stumps.gd" id="6_ygxny"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0rdsr"]
 font_size = 84
 outline_size = 20
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ipu61"]
+font_size = 52
+
+[sub_resource type="LabelSettings" id="LabelSettings_ygxny"]
+font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_s3esy"]
 font_size = 57
@@ -29,8 +36,8 @@ size = Vector2(11, 140)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipu61"]
 size = Vector2(62, 113)
 
-[sub_resource type="LabelSettings" id="LabelSettings_ipu61"]
-font_size = 52
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wi4c7"]
+size = Vector2(56, 111)
 
 [node name="MainGame" type="Node2D" unique_id=556775433]
 script = ExtResource("1_d2op2")
@@ -51,6 +58,15 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[node name="pressureBar" type="ProgressBar" parent="." unique_id=108520598]
+offset_left = -857.0
+offset_top = -180.0
+offset_right = -830.0
+offset_bottom = 121.0
+max_value = 0.12
+fill_mode = 3
+show_percentage = false
+
 [node name="countdown" type="Label" parent="." unique_id=1172257580]
 anchors_preset = 8
 anchor_left = 0.5
@@ -66,6 +82,40 @@ grow_vertical = 2
 size_flags_horizontal = 4
 text = "3"
 label_settings = SubResource("LabelSettings_0rdsr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hit_timer_value" type="Label" parent="." unique_id=222838766]
+offset_left = -944.0
+offset_top = -370.0
+offset_right = -904.0
+offset_bottom = -298.0
+text = "0"
+label_settings = SubResource("LabelSettings_ipu61")
+
+[node name="ball_count" type="Label" parent="." unique_id=678605050]
+offset_left = -946.0
+offset_top = -531.0
+offset_right = -612.0
+offset_bottom = -459.0
+text = "ball number: "
+label_settings = SubResource("LabelSettings_ipu61")
+
+[node name="runs" type="Label" parent="." unique_id=1390881207]
+offset_left = -946.0
+offset_top = -452.0
+offset_right = -612.0
+offset_bottom = -380.0
+text = "runs: "
+label_settings = SubResource("LabelSettings_ipu61")
+
+[node name="pressure_label" type="Label" parent="." unique_id=262291526]
+offset_left = -1010.0
+offset_top = -248.0
+offset_right = -676.0
+offset_bottom = -176.0
+text = "pressure"
+label_settings = SubResource("LabelSettings_ygxny")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -175,7 +225,7 @@ texture = ExtResource("5_ipu61")
 position = Vector2(1597, 92)
 
 [node name="score_ball" parent="." unique_id=1923779442 instance=ExtResource("3_d2op2")]
-position = Vector2(3522, 44)
+position = Vector2(2781, 44)
 mass = 0.18
 freeze = true
 
@@ -184,7 +234,7 @@ position = Vector2(-566, 353.00003)
 scale = Vector2(7.86, 7.86)
 
 [node name="hit_area" type="Area2D" parent="." unique_id=237449188]
-position = Vector2(-437, 237)
+position = Vector2(-417, 237)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hit_area" unique_id=1646473859]
 position = Vector2(6.5, 9)
@@ -196,27 +246,28 @@ position = Vector2(5.9999847, 9.00001)
 scale = Vector2(0.0049999985, 0.06750001)
 texture = ExtResource("2_72e8q")
 
-[node name="stumps" type="StaticBody2D" parent="." unique_id=1472792577]
+[node name="stumps_area" type="Area2D" parent="." unique_id=669769607]
 position = Vector2(-842, 305)
+script = ExtResource("6_ygxny")
 
-[node name="Sprite2D" type="Sprite2D" parent="stumps" unique_id=2075673964]
+[node name="Sprite2D" type="Sprite2D" parent="stumps_area" unique_id=2075673964]
 position = Vector2(0, -23.499994)
 scale = Vector2(0.032083333, 0.055416662)
 texture = ExtResource("2_72e8q")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="stumps" unique_id=455946596]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stumps_area" unique_id=455946596]
 position = Vector2(0, -22.5)
 shape = SubResource("RectangleShape2D_ipu61")
 
-[node name="hit_timer_value" type="Label" parent="." unique_id=222838766]
-offset_left = -744.0
-offset_top = -355.0
-offset_right = -704.0
-offset_bottom = -283.0
-text = "0"
-label_settings = SubResource("LabelSettings_ipu61")
+[node name="stumps_collider" type="StaticBody2D" parent="." unique_id=1618736084]
+position = Vector2(-842, 305)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stumps_collider" unique_id=417811222]
+position = Vector2(0, -22.5)
+shape = SubResource("RectangleShape2D_wi4c7")
 
 [connection signal="timeout" from="hit_timer" to="." method="_missed"]
 [connection signal="timeout" from="start_timer" to="." method="_throw_ball"]
 [connection signal="timeout" from="reset_timer" to="." method="_on_reset_timer_timeout"]
 [connection signal="body_entered" from="hit_area" to="." method="_ball_entered_range"]
+[connection signal="body_entered" from="stumps_area" to="stumps_area" method="_on_body_entered"]
