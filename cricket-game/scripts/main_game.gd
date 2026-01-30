@@ -4,6 +4,8 @@ extends Node2D
 @onready var score_ball: RigidBody2D = $score_ball
 @onready var start_timer: Timer = $start_timer
 @onready var hit_timer: Timer = $hit_timer
+@onready var hit_area: Area2D = $hit_area
+@onready var reset_timer: Timer = $reset_timer
 @onready var countdown_label: Label = $countdown
 @onready var score_indicators: Node2D = $score_indicators
 
@@ -13,6 +15,7 @@ extends Node2D
 @onready var camera: Camera2D = $camera
 
 var can_hit = false
+var missed = false
 
 var perfect_min = Globals.perfect_min + Globals.pressure / 2
 var perfect_max = Globals.perfect_max - Globals.pressure / 2
@@ -33,6 +36,7 @@ var one_cam = Vector2(2060.0, 0.0)
 
 #quick time event variables
 @onready var qte_circle: Node2D = $ball/qte_circle
+@onready var qte_area: Area2D = $qte_area
 
 func _ready() -> void:
 	countdown()
@@ -61,7 +65,7 @@ func countdown():
 	countdown_tween.tween_property(countdown_label, "text", "2", 0).set_delay(1)
 	countdown_tween.tween_property(countdown_label, "text", "1", 0).set_delay(1)
 	countdown_tween.tween_property(countdown_label, "visible", false, 0).set_delay(1)
-	countdown_tween.tween_property(camera, "position", Vector2(0.0, 0.0), 2)
+	countdown_tween.tween_property(camera, "position", Vector2(-15.0, 0.0), 2)
 	countdown_tween.tween_property(score_indicators, "modulate:a", 1, 0.25)
 
 func launch_ball():
@@ -71,33 +75,34 @@ func launch_ball():
 
 func hit_ball():
 	if player.impacted == true and hit_timer.time_left > 0.0:
+		reset_timer.start()
 		if hit_timer.time_left > perfect_min and hit_timer.time_left < perfect_max:
 			#PERFECT SHOT
 			camera_shake_perfect()
 			if Globals.miss_chance == 1:
 				ball.apply_impulse(Vector2(345.0, -185.0), Vector2.ZERO)
-				tween_cam(six_cam, six_ball_pos, Vector2(30.0, 15.0))
+				#tween_cam(six_cam, six_ball_pos, Vector2(30.0, 15.0))
 				Globals.runs += 6
 			else:
 				ball.apply_impulse(Vector2(340.0, -160.0), Vector2.ZERO)
-				tween_cam(four_cam, four_ball_pos, Vector2(60.0, 0.0))
+				#tween_cam(four_cam, four_ball_pos, Vector2(60.0, 0.0))
 				Globals.runs += 4
 		if hit_timer.time_left > perfect_max and hit_timer.time_left < 0.48:
 			#EARLY SHOT
 			camera_shake()
 			if Globals.miss_chance == 1:
 				ball.apply_impulse(Vector2(315.0, -68.0), Vector2.ZERO)
-				tween_cam(one_cam, one_ball_pos, Vector2(35.0, 0.0))
+				#tween_cam(one_cam, one_ball_pos, Vector2(35.0, 0.0))
 				Globals.runs += 1
 			else:
 				ball.apply_impulse(Vector2(332.0, -88.0), Vector2.ZERO)
-				tween_cam(two_cam, two_ball_pos, Vector2(30.0, 10.0))
+				#tween_cam(two_cam, two_ball_pos, Vector2(30.0, 10.0))
 				Globals.runs += 2
 		if hit_timer.time_left < perfect_min:
 			#LATE SHOT
 			if Globals.miss_chance == 0:
 				camera_shake()
-				tween_cam(three_cam, three_ball_pos, Vector2(30.0, 10.0))
+				#tween_cam(three_cam, three_ball_pos, Vector2(30.0, 10.0))
 				ball.apply_impulse(Vector2(375.0, -150.0), Vector2.ZERO)
 				Globals.runs += 3
 			else:
@@ -152,3 +157,13 @@ func tween_cam(cam_pos: Vector2, ball_pos: Vector2, force: Vector2):
 
 func _on_reset_timer_timeout() -> void:
 	reset_level()
+
+
+func _on_stumps_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("ball"):
+		qte_area.free()
+		hit_area.free()
+		missed = true
+		can_hit = false
+		player.can_swing = false
+		reset_timer.start()

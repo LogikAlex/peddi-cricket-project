@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bjp0dr62cuisv" path="res://scenes/stumps.gd" id="6_ygxny"]
 [ext_resource type="Script" uid="uid://bbodawtb51pcr" path="res://scenes/quick_time_event.gd" id="7_2l77h"]
 [ext_resource type="Texture2D" uid="uid://di27biqg540cg" path="res://assets/sprites/qte_indicator.png" id="8_2l77h"]
+[ext_resource type="Texture2D" uid="uid://q5uj0w6geqby" path="res://assets/sprites/Pitch.png" id="9_2l77h"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0rdsr"]
 font_size = 84
@@ -27,7 +28,7 @@ outline_size = 18
 shadow_size = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_72e8q"]
-size = Vector2(5820, 93)
+size = Vector2(5920, 93)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ygxny"]
 size = Vector2(1748, 95)
@@ -48,8 +49,8 @@ size = Vector2(56, 111)
 script = ExtResource("1_d2op2")
 
 [node name="camera" type="Camera2D" parent="." unique_id=1810722814]
-position = Vector2(541, 0)
-limit_left = -963
+position = Vector2(541, -10)
+limit_left = -1080
 
 [node name="hit_timer" type="Timer" parent="." unique_id=682007490]
 wait_time = 0.5
@@ -60,7 +61,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="reset_timer" type="Timer" parent="." unique_id=4473954]
-wait_time = 3.0
+wait_time = 3.5
 one_shot = true
 
 [node name="pressureBar" type="ProgressBar" parent="." unique_id=108520598]
@@ -191,11 +192,11 @@ scale = Vector2(0.97583336, 0.14583333)
 texture = ExtResource("2_72e8q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ground" unique_id=1823782044]
-position = Vector2(1911, 11.5)
+position = Vector2(1861, 11.5)
 shape = SubResource("RectangleShape2D_72e8q")
 
 [node name="ground2" type="StaticBody2D" parent="." unique_id=1974425714]
-position = Vector2(-1006, 253)
+position = Vector2(-1085, 253)
 rotation = 1.5707964
 
 [node name="Sprite2D" type="Sprite2D" parent="ground2" unique_id=1334791472]
@@ -223,6 +224,7 @@ position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_ygxny")
 
 [node name="FieldPlaceholder" type="Sprite2D" parent="." unique_id=967962475]
+visible = false
 position = Vector2(1892, 328)
 texture = ExtResource("5_ipu61")
 
@@ -276,7 +278,7 @@ scale = Vector2(0.0049999985, 0.11458334)
 texture = ExtResource("2_72e8q")
 
 [node name="stumps_area" type="Area2D" parent="." unique_id=669769607]
-position = Vector2(-842, 305)
+position = Vector2(-884, 305)
 script = ExtResource("6_ygxny")
 
 [node name="Sprite2D" type="Sprite2D" parent="stumps_area" unique_id=2075673964]
@@ -289,15 +291,23 @@ position = Vector2(0, -22.5)
 shape = SubResource("RectangleShape2D_ipu61")
 
 [node name="stumps_collider" type="StaticBody2D" parent="." unique_id=1618736084]
-position = Vector2(-842, 305)
+position = Vector2(-884, 305)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stumps_collider" unique_id=417811222]
 position = Vector2(0, -22.5)
 shape = SubResource("RectangleShape2D_wi4c7")
+
+[node name="Pitch" type="Sprite2D" parent="." unique_id=389153996]
+modulate = Color(0.74138474, 0.7413847, 0.74138457, 1)
+z_index = -1
+position = Vector2(844, -105.00001)
+scale = Vector2(0.98111975, 1.4305555)
+texture = ExtResource("9_2l77h")
 
 [connection signal="timeout" from="hit_timer" to="." method="_missed"]
 [connection signal="timeout" from="start_timer" to="." method="_throw_ball"]
 [connection signal="timeout" from="reset_timer" to="." method="_on_reset_timer_timeout"]
 [connection signal="body_entered" from="hit_area" to="." method="_ball_entered_range"]
 [connection signal="body_entered" from="qte_area" to="." method="_ball_entered_qte_range"]
+[connection signal="body_entered" from="stumps_area" to="." method="_on_stumps_area_body_entered"]
 [connection signal="body_entered" from="stumps_area" to="stumps_area" method="_on_body_entered"]

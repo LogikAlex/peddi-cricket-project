@@ -37,7 +37,7 @@ func _start_qte():
 	tween.tween_callback(
 	func finished():
 		tween_done = true
-	).set_delay(qte_perfect_time + 0.3)
+	).set_delay(qte_perfect_time + 0.6)
 
 func missed():
 	var tween = create_tween()
