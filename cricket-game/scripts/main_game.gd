@@ -32,10 +32,11 @@ var two_cam = Vector2(2060.0, 0.0)
 var one_cam = Vector2(2060.0, 0.0)
 
 #quick time event variables
-@onready var qte_circle: Node2D = $qte_circle
+@onready var qte_circle: Node2D = $ball/qte_circle
 
 func _ready() -> void:
 	countdown()
+	score_indicators.modulate.a = 0
 	Globals.miss_chance = randi_range(0, 1)
 	ball.freeze = true
 	Globals.pressure += 0.01
@@ -60,6 +61,8 @@ func countdown():
 	countdown_tween.tween_property(countdown_label, "text", "2", 0).set_delay(1)
 	countdown_tween.tween_property(countdown_label, "text", "1", 0).set_delay(1)
 	countdown_tween.tween_property(countdown_label, "visible", false, 0).set_delay(1)
+	countdown_tween.tween_property(camera, "position", Vector2(0.0, 0.0), 2)
+	countdown_tween.tween_property(score_indicators, "modulate:a", 1, 0.25)
 
 func launch_ball():
 	ball.freeze = false
