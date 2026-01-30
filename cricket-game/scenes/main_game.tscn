@@ -40,10 +40,10 @@ size = Vector2(11, 140)
 size = Vector2(11, 242)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipu61"]
-size = Vector2(62, 113)
+size = Vector2(62, 423.91864)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wi4c7"]
-size = Vector2(56, 111)
+size = Vector2(55, 427)
 
 [node name="MainGame" type="Node2D" unique_id=556775433]
 script = ExtResource("1_d2op2")
@@ -65,10 +65,10 @@ wait_time = 3.5
 one_shot = true
 
 [node name="pressureBar" type="ProgressBar" parent="." unique_id=108520598]
-offset_left = -857.0
-offset_top = -180.0
-offset_right = -830.0
-offset_bottom = 121.0
+offset_left = -732.0
+offset_top = -244.0
+offset_right = -705.0
+offset_bottom = 57.0
 max_value = 0.12
 fill_mode = 3
 show_percentage = false
@@ -116,10 +116,10 @@ text = "runs: "
 label_settings = SubResource("LabelSettings_ipu61")
 
 [node name="pressure_label" type="Label" parent="." unique_id=262291526]
-offset_left = -1010.0
-offset_top = -248.0
-offset_right = -676.0
-offset_bottom = -176.0
+offset_left = -885.0
+offset_top = -312.0
+offset_right = -551.0
+offset_bottom = -240.0
 text = "pressure"
 label_settings = SubResource("LabelSettings_ygxny")
 horizontal_alignment = 1
@@ -264,7 +264,7 @@ scale = Vector2(0.0049999985, 0.06750001)
 texture = ExtResource("2_72e8q")
 
 [node name="qte_area" type="Area2D" parent="." unique_id=283305163]
-position = Vector2(118, 237)
+position = Vector2(80, 237)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="qte_area" unique_id=1302851530]
 position = Vector2(6.5, -9)
@@ -278,30 +278,34 @@ scale = Vector2(0.0049999985, 0.11458334)
 texture = ExtResource("2_72e8q")
 
 [node name="stumps_area" type="Area2D" parent="." unique_id=669769607]
-position = Vector2(-884, 305)
+z_index = -1
+position = Vector2(-876, 305)
+rotation = 0.094249025
 script = ExtResource("6_ygxny")
 
 [node name="Sprite2D" type="Sprite2D" parent="stumps_area" unique_id=2075673964]
-position = Vector2(0, -23.499994)
-scale = Vector2(0.032083333, 0.055416662)
+position = Vector2(0, -192.33533)
+scale = Vector2(0.032083333, 0.1961128)
 texture = ExtResource("2_72e8q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stumps_area" unique_id=455946596]
-position = Vector2(0, -22.5)
+position = Vector2(0.00012207031, -177.95934)
+scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("RectangleShape2D_ipu61")
 
 [node name="stumps_collider" type="StaticBody2D" parent="." unique_id=1618736084]
 position = Vector2(-884, 305)
+rotation = 0.10496761
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stumps_collider" unique_id=417811222]
-position = Vector2(0, -22.5)
+position = Vector2(-0.5, -180.5)
 shape = SubResource("RectangleShape2D_wi4c7")
 
 [node name="Pitch" type="Sprite2D" parent="." unique_id=389153996]
 modulate = Color(0.74138474, 0.7413847, 0.74138457, 1)
 z_index = -1
-position = Vector2(844, -105.00001)
-scale = Vector2(0.98111975, 1.4305555)
+position = Vector2(844, -59.75)
+scale = Vector2(0.98111975, 1.3467593)
 texture = ExtResource("9_2l77h")
 
 [connection signal="timeout" from="hit_timer" to="." method="_missed"]
