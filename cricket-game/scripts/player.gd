@@ -8,7 +8,7 @@ var swung = false
 var impacted = false
 
 var impact_frame = 10
-var finish_frame = 21
+var finish_frame = 12
 
 func _process(_delta: float) -> void:
 	check_impact()
@@ -27,4 +27,4 @@ func check_impact():
 			#impacted = false
 		
 		if playerSprite.frame == finish_frame:
-			playerSprite.play("idle")
+			playerSprite.pause()

@@ -5,8 +5,9 @@ extends Node2D
 @onready var start_timer: Timer = $start_timer
 @onready var hit_timer: Timer = $hit_timer
 @onready var reset_timer: Timer = $reset_timer
-@onready var countdown_label: Label = $countdown
+@onready var countdown_label: Label = $Countdown/countdown_label
 @onready var score_indicators: Node2D = $score_indicators
+@onready var ball_shadow: Sprite2D = $ball_shadow
 
 @onready var pressureBar: ProgressBar = $camera/pressureBar
 
@@ -47,10 +48,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	$camera/perfect.text = str(qte_circle.perfect_shot)
 	
-	$camera/hit_timer_value.text = str(hit_timer.time_left)
-	$camera/ball_count.text = "ball number: " + str(Globals.ball_num)
-	$camera/runs.text = "runs: " + str(Globals.runs)
+	$camera/ball_count.text = "BALL NUMBER: " + str(Globals.ball_num)
+	$camera/runs.text = "RUNS: " + str(Globals.runs)
 	
+	ball_shadow.position.x = ball.position.x
 	pressureBar.value = Globals.pressure
 	
 	if Input.is_action_just_released("ui_accept"):
@@ -61,16 +62,22 @@ func _process(_delta: float) -> void:
 func countdown():
 	start_timer.start()
 	var countdown_tween = create_tween()
+	countdown_tween.set_parallel()
 	countdown_tween.tween_property(countdown_label, "text", "3", 0)
+	countdown_tween.tween_property(countdown_label, "modulate:a", 0, 0.5).set_delay(0.5)
+	countdown_tween.tween_property(countdown_label, "modulate:a", 1, 0).set_delay(1)
 	countdown_tween.tween_property(countdown_label, "text", "2", 0).set_delay(1)
-	countdown_tween.tween_property(countdown_label, "text", "1", 0).set_delay(1)
-	countdown_tween.tween_property(countdown_label, "visible", false, 0).set_delay(1)
-	countdown_tween.tween_property(camera, "position", Vector2(-15.0, 0.0), 2)
-	countdown_tween.tween_property(score_indicators, "modulate:a", 1, 0.25)
+	countdown_tween.tween_property(countdown_label, "modulate:a", 0, 0.5).set_delay(1.5)
+	countdown_tween.tween_property(countdown_label, "text", "1", 0).set_delay(2)
+	countdown_tween.tween_property(countdown_label, "modulate:a", 1, 0).set_delay(2)
+	countdown_tween.tween_property(countdown_label, "modulate:a", 0, 0.5).set_delay(2.5)
+	countdown_tween.tween_property(countdown_label, "visible", false, 0).set_delay(3)
+	countdown_tween.tween_property(camera, "position", Vector2(-15.0, 0.0), 3).set_delay(3).set_trans(Tween.TRANS_CUBIC)
+	countdown_tween.tween_property(score_indicators, "modulate:a", 1, 0.25).set_delay(5)
 
 func launch_ball():
 	ball.freeze = false
-	ball.apply_force(Vector2(-12000.0, -4500.0))
+	ball.apply_force(Vector2(-18000.0, -3000.0))
 	Globals.ball_num += 1
 
 func hit_ball():
@@ -119,6 +126,7 @@ func _ball_entered_qte_range(body: Node2D) -> void:
 	if body.is_in_group("ball"):
 		Engine.time_scale = 0.3
 		qte_circle._start_qte()
+		qte_circle.can_click = true
 
 func _throw_ball() -> void:
 	launch_ball()

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bsrs6j8q7pbcd"]
 
-[ext_resource type="Texture2D" uid="uid://2s814ww7wgx3" path="res://assets/spritesheets/cricket-ball-3d-png.png" id="1_7s4qf"]
+[ext_resource type="Texture2D" uid="uid://jbt0c4kg738a" path="res://assets/sprites/ball.png" id="1_7s4qf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_72e8q"]
 rough = true
