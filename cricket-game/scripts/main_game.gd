@@ -4,17 +4,16 @@ extends Node2D
 @onready var score_ball: RigidBody2D = $score_ball
 @onready var start_timer: Timer = $start_timer
 @onready var hit_timer: Timer = $hit_timer
-@onready var hit_area: Area2D = $hit_area
 @onready var reset_timer: Timer = $reset_timer
 @onready var countdown_label: Label = $countdown
 @onready var score_indicators: Node2D = $score_indicators
 
-@onready var pressureBar: ProgressBar = $pressureBar
+@onready var pressureBar: ProgressBar = $camera/pressureBar
 
 @onready var player: CharacterBody2D = $player
 @onready var camera: Camera2D = $camera
 
-var can_hit = false
+var can_hit = true
 var missed = false
 
 var perfect_min = Globals.perfect_min + Globals.pressure / 2
@@ -46,17 +45,18 @@ func _ready() -> void:
 	Globals.pressure += 0.01
 
 func _process(_delta: float) -> void:
-	$hit_timer_value.text = str(hit_timer.time_left)
-	$ball_count.text = "ball number: " + str(Globals.ball_num)
-	$runs.text = "runs: " + str(Globals.runs)
+	$camera/perfect.text = str(qte_circle.perfect_shot)
+	
+	$camera/hit_timer_value.text = str(hit_timer.time_left)
+	$camera/ball_count.text = "ball number: " + str(Globals.ball_num)
+	$camera/runs.text = "runs: " + str(Globals.runs)
 	
 	pressureBar.value = Globals.pressure
 	
 	if Input.is_action_just_released("ui_accept"):
 		reset_level()
 
-	if can_hit:
-		hit_ball()
+	hit_ball()
 
 func countdown():
 	start_timer.start()
@@ -74,48 +74,50 @@ func launch_ball():
 	Globals.ball_num += 1
 
 func hit_ball():
-	if player.impacted == true and hit_timer.time_left > 0.0:
-		reset_timer.start()
-		if hit_timer.time_left > perfect_min and hit_timer.time_left < perfect_max:
-			#PERFECT SHOT
-			camera_shake_perfect()
-			if Globals.miss_chance == 1:
-				ball.apply_impulse(Vector2(345.0, -185.0), Vector2.ZERO)
-				#tween_cam(six_cam, six_ball_pos, Vector2(30.0, 15.0))
-				Globals.runs += 6
-			else:
-				ball.apply_impulse(Vector2(340.0, -160.0), Vector2.ZERO)
-				#tween_cam(four_cam, four_ball_pos, Vector2(60.0, 0.0))
-				Globals.runs += 4
-		if hit_timer.time_left > perfect_max and hit_timer.time_left < 0.48:
-			#EARLY SHOT
-			camera_shake()
-			if Globals.miss_chance == 1:
-				ball.apply_impulse(Vector2(315.0, -68.0), Vector2.ZERO)
-				#tween_cam(one_cam, one_ball_pos, Vector2(35.0, 0.0))
-				Globals.runs += 1
-			else:
-				ball.apply_impulse(Vector2(332.0, -88.0), Vector2.ZERO)
-				#tween_cam(two_cam, two_ball_pos, Vector2(30.0, 10.0))
-				Globals.runs += 2
-		if hit_timer.time_left < perfect_min:
-			#LATE SHOT
-			if Globals.miss_chance == 0:
-				camera_shake()
-				#tween_cam(three_cam, three_ball_pos, Vector2(30.0, 10.0))
-				ball.apply_impulse(Vector2(375.0, -150.0), Vector2.ZERO)
-				Globals.runs += 3
-			else:
-				pass
+	if player.impacted == true and can_hit:
+		qte_area.free()
 		can_hit = false
+		Engine.time_scale = 1.0
+		reset_timer.start()
+		if qte_circle.perfect_shot:
+			hit_perfect()
+		if qte_circle.early_shot:
+			hit_early()
+		if qte_circle.late_shot:
+			hit_late()
+		if qte_circle.missed:
+			pass
+
+func hit_perfect():
+	camera_shake_perfect()
+	if Globals.miss_chance == 1:
+		ball.apply_impulse(Vector2(395.0, -265.0), Vector2.ZERO)
+		Globals.runs += 6
+	else:
+		ball.apply_impulse(Vector2(380.0, -225.0), Vector2.ZERO)
+		Globals.runs += 4
+
+func hit_early():
+	camera_shake()
+	if Globals.miss_chance == 1:
+		ball.apply_impulse(Vector2(315.0, -68.0), Vector2.ZERO)
+		Globals.runs += 1
+	else:
+		ball.apply_impulse(Vector2(332.0, -88.0), Vector2.ZERO)
+		Globals.runs += 2
+
+func hit_late():
+	camera_shake()
+	ball.apply_impulse(Vector2(375.0, -150.0), Vector2.ZERO)
+	Globals.runs += 3
 
 func _ball_entered_range(body: Node2D) -> void:
 	if body.is_in_group("ball"):
 		hit_timer.start()
-		can_hit = true
 
 func _ball_entered_qte_range(body: Node2D) -> void:
 	if body.is_in_group("ball"):
+		Engine.time_scale = 0.3
 		qte_circle._start_qte()
 
 func _throw_ball() -> void:
@@ -158,12 +160,8 @@ func tween_cam(cam_pos: Vector2, ball_pos: Vector2, force: Vector2):
 func _on_reset_timer_timeout() -> void:
 	reset_level()
 
-
 func _on_stumps_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("ball"):
-		qte_area.free()
-		hit_area.free()
 		missed = true
-		can_hit = false
 		player.can_swing = false
 		reset_timer.start()

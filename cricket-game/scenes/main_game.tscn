@@ -33,11 +33,8 @@ size = Vector2(5920, 93)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ygxny"]
 size = Vector2(1748, 95)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rdsr"]
-size = Vector2(11, 140)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l77h"]
-size = Vector2(11, 242)
+size = Vector2(11, 399)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipu61"]
 size = Vector2(62, 423.91864)
@@ -47,31 +44,6 @@ size = Vector2(55, 427)
 
 [node name="MainGame" type="Node2D" unique_id=556775433]
 script = ExtResource("1_d2op2")
-
-[node name="camera" type="Camera2D" parent="." unique_id=1810722814]
-position = Vector2(541, -10)
-limit_left = -1080
-
-[node name="hit_timer" type="Timer" parent="." unique_id=682007490]
-wait_time = 0.5
-one_shot = true
-
-[node name="start_timer" type="Timer" parent="." unique_id=989620325]
-wait_time = 3.0
-one_shot = true
-
-[node name="reset_timer" type="Timer" parent="." unique_id=4473954]
-wait_time = 3.5
-one_shot = true
-
-[node name="pressureBar" type="ProgressBar" parent="." unique_id=108520598]
-offset_left = -732.0
-offset_top = -244.0
-offset_right = -705.0
-offset_bottom = 57.0
-max_value = 0.12
-fill_mode = 3
-show_percentage = false
 
 [node name="countdown" type="Label" parent="." unique_id=1172257580]
 anchors_preset = 8
@@ -91,39 +63,72 @@ label_settings = SubResource("LabelSettings_0rdsr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="hit_timer_value" type="Label" parent="." unique_id=222838766]
-offset_left = -944.0
-offset_top = -370.0
-offset_right = -904.0
-offset_bottom = -298.0
+[node name="camera" type="Camera2D" parent="." unique_id=1810722814]
+position = Vector2(541, -10)
+limit_left = -1080
+
+[node name="pressureBar" type="ProgressBar" parent="camera" unique_id=108520598]
+offset_left = -731.0
+offset_top = -234.0
+offset_right = -704.0
+offset_bottom = 67.0
+max_value = 0.12
+fill_mode = 3
+show_percentage = false
+
+[node name="hit_timer_value" type="Label" parent="camera" unique_id=222838766]
+offset_left = -943.0
+offset_top = -360.0
+offset_right = -903.0
+offset_bottom = -288.0
 text = "0"
 label_settings = SubResource("LabelSettings_ipu61")
 
-[node name="ball_count" type="Label" parent="." unique_id=678605050]
-offset_left = -946.0
-offset_top = -531.0
-offset_right = -612.0
-offset_bottom = -459.0
+[node name="perfect" type="Label" parent="camera" unique_id=187738258]
+offset_left = -506.0
+offset_top = -364.0
+offset_right = -312.0
+offset_bottom = -292.0
+text = "perfect:"
+label_settings = SubResource("LabelSettings_ipu61")
+
+[node name="ball_count" type="Label" parent="camera" unique_id=678605050]
+offset_left = -945.0
+offset_top = -521.0
+offset_right = -611.0
+offset_bottom = -449.0
 text = "ball number: "
 label_settings = SubResource("LabelSettings_ipu61")
 
-[node name="runs" type="Label" parent="." unique_id=1390881207]
-offset_left = -946.0
-offset_top = -452.0
-offset_right = -612.0
-offset_bottom = -380.0
+[node name="runs" type="Label" parent="camera" unique_id=1390881207]
+offset_left = -945.0
+offset_top = -442.0
+offset_right = -611.0
+offset_bottom = -370.0
 text = "runs: "
 label_settings = SubResource("LabelSettings_ipu61")
 
-[node name="pressure_label" type="Label" parent="." unique_id=262291526]
-offset_left = -885.0
-offset_top = -312.0
-offset_right = -551.0
-offset_bottom = -240.0
+[node name="pressure_label" type="Label" parent="camera" unique_id=262291526]
+offset_left = -884.0
+offset_top = -302.0
+offset_right = -550.0
+offset_bottom = -230.0
 text = "pressure"
 label_settings = SubResource("LabelSettings_ygxny")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="hit_timer" type="Timer" parent="." unique_id=682007490]
+wait_time = 0.5
+one_shot = true
+
+[node name="start_timer" type="Timer" parent="." unique_id=989620325]
+wait_time = 3.0
+one_shot = true
+
+[node name="reset_timer" type="Timer" parent="." unique_id=4473954]
+wait_time = 3.5
+one_shot = true
 
 [node name="score_indicators" type="Node2D" parent="." unique_id=944244100]
 
@@ -183,7 +188,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ground" type="StaticBody2D" parent="." unique_id=1058606462]
-position = Vector2(0, 375)
+position = Vector2(0, 425)
 
 [node name="Sprite2D" type="Sprite2D" parent="ground" unique_id=610543855]
 visible = false
@@ -228,46 +233,31 @@ visible = false
 position = Vector2(1892, 328)
 texture = ExtResource("5_ipu61")
 
-[node name="ball" parent="." unique_id=971852414 instance=ExtResource("3_d2op2")]
-position = Vector2(1597, 92)
-
-[node name="qte_circle" type="Node2D" parent="ball" unique_id=857660714]
-script = ExtResource("7_2l77h")
-
-[node name="QteIndicator" type="Sprite2D" parent="ball/qte_circle" unique_id=1974526032]
-position = Vector2(0, 1.9999999)
-rotation = 3.1415927
-scale = Vector2(0.053, 0.053)
-texture = ExtResource("8_2l77h")
-
 [node name="score_ball" parent="." unique_id=1923779442 instance=ExtResource("3_d2op2")]
 position = Vector2(2781, 44)
 mass = 0.18
 freeze = true
 
 [node name="player" parent="." unique_id=798696560 instance=ExtResource("4_0rdsr")]
-position = Vector2(-566, 353.00003)
-scale = Vector2(7.86, 7.86)
+position = Vector2(-534, 382)
+scale = Vector2(1.1, 1.1)
 
-[node name="hit_area" type="Area2D" parent="." unique_id=237449188]
-position = Vector2(-417, 237)
+[node name="ball" parent="." unique_id=971852414 instance=ExtResource("3_d2op2")]
+position = Vector2(1851, -68)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_area" unique_id=1646473859]
-position = Vector2(6.5, 9)
-shape = SubResource("RectangleShape2D_0rdsr")
+[node name="qte_circle" type="Node2D" parent="ball" unique_id=857660714]
+script = ExtResource("7_2l77h")
 
-[node name="Sprite2D" type="Sprite2D" parent="hit_area" unique_id=649841519]
-visible = false
-modulate = Color(1, 1, 1, 0.36078432)
-position = Vector2(5.9999847, 9.00001)
-scale = Vector2(0.0049999985, 0.06750001)
-texture = ExtResource("2_72e8q")
+[node name="QteIndicator" type="Sprite2D" parent="ball/qte_circle" unique_id=1974526032]
+rotation = 3.1415927
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("8_2l77h")
 
 [node name="qte_area" type="Area2D" parent="." unique_id=283305163]
-position = Vector2(80, 237)
+position = Vector2(537, 237)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="qte_area" unique_id=1302851530]
-position = Vector2(6.5, -9)
+position = Vector2(6.5, -45.5)
 shape = SubResource("RectangleShape2D_2l77h")
 
 [node name="Sprite2D" type="Sprite2D" parent="qte_area" unique_id=314891137]
@@ -279,7 +269,7 @@ texture = ExtResource("2_72e8q")
 
 [node name="stumps_area" type="Area2D" parent="." unique_id=669769607]
 z_index = -1
-position = Vector2(-876, 305)
+position = Vector2(-877, 361)
 rotation = 0.094249025
 script = ExtResource("6_ygxny")
 
@@ -294,7 +284,7 @@ scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("RectangleShape2D_ipu61")
 
 [node name="stumps_collider" type="StaticBody2D" parent="." unique_id=1618736084]
-position = Vector2(-884, 305)
+position = Vector2(-885, 361)
 rotation = 0.10496761
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stumps_collider" unique_id=417811222]
@@ -311,7 +301,6 @@ texture = ExtResource("9_2l77h")
 [connection signal="timeout" from="hit_timer" to="." method="_missed"]
 [connection signal="timeout" from="start_timer" to="." method="_throw_ball"]
 [connection signal="timeout" from="reset_timer" to="." method="_on_reset_timer_timeout"]
-[connection signal="body_entered" from="hit_area" to="." method="_ball_entered_range"]
 [connection signal="body_entered" from="qte_area" to="." method="_ball_entered_qte_range"]
 [connection signal="body_entered" from="stumps_area" to="." method="_on_stumps_area_body_entered"]
 [connection signal="body_entered" from="stumps_area" to="stumps_area" method="_on_body_entered"]
