@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://cajqxbn0nwjco"]
+
+[ext_resource type="Texture2D" uid="uid://bd833s7ii75b4" path="res://assets/sprites/hud-pressed-play.png" id="1_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://blpsia5lxakj" path="res://assets/sprites/hud_normal.png" id="2_6fi6k"]
+[ext_resource type="FontFile" uid="uid://bboyct0k3yax6" path="res://assets/fonts/mont/Mont-HeavyDEMO.otf" id="3_uo2fv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ipu61"]
+font = ExtResource("3_uo2fv")
+font_size = 64
+outline_color = Color(0, 0, 0, 0)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.3764706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ysmq"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+shadow_color = Color(1, 1, 1, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fi6k"]
+bg_color = Color(0.8072328, 0.52086836, 0.36508, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uo2fv"]
+font = ExtResource("3_uo2fv")
+font_size = 30
+
+[node name="HUD" type="CanvasLayer" unique_id=75069684]
+
+[node name="hud_pressed_play" type="Sprite2D" parent="." unique_id=1514299677]
+position = Vector2(960, 515.5)
+scale = Vector2(0.99999994, 1.0453702)
+texture = ExtResource("1_5ysmq")
+
+[node name="hud_normal" type="Sprite2D" parent="." unique_id=903886841]
+visible = false
+position = Vector2(960, 515.5)
+scale = Vector2(1, 1.0453703)
+texture = ExtResource("2_6fi6k")
+
+[node name="ball_count" type="Label" parent="." unique_id=154437804]
+z_index = 1
+offset_left = 1115.0
+offset_top = 971.0
+offset_right = 1504.0
+offset_bottom = 1043.0
+text = "BALL: 00"
+label_settings = SubResource("LabelSettings_ipu61")
+vertical_alignment = 1
+
+[node name="runs" type="Label" parent="." unique_id=961177653]
+z_index = 1
+offset_left = 605.0
+offset_top = 977.0
+offset_right = 975.0
+offset_bottom = 1049.0
+text = "RUNS: 0"
+label_settings = SubResource("LabelSettings_ipu61")
+
+[node name="score" type="Label" parent="." unique_id=1560553821]
+z_index = 1
+offset_left = 59.0
+offset_top = 977.0
+offset_right = 484.0
+offset_bottom = 1049.0
+text = "SCORE: 00"
+label_settings = SubResource("LabelSettings_ipu61")
+
+[node name="pressureBar" type="ProgressBar" parent="." unique_id=1270568908]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -246.0
+offset_top = 36.0
+offset_right = 325.0
+offset_bottom = 99.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_5ysmq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6fi6k")
+max_value = 0.12
+show_percentage = false
+
+[node name="pressure_label" type="Label" parent="pressureBar" unique_id=894671462]
+layout_mode = 0
+offset_left = 198.0
+offset_top = -3.0
+offset_right = 381.0
+offset_bottom = 69.0
+text = "PRESSURE"
+label_settings = SubResource("LabelSettings_uo2fv")
+horizontal_alignment = 1
+vertical_alignment = 1

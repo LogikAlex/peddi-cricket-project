@@ -1,14 +1,11 @@
 extends Node2D
 
 @onready var ball: RigidBody2D = $ball
-@onready var score_ball: RigidBody2D = $score_ball
 @onready var start_timer: Timer = $start_timer
 @onready var reset_timer: Timer = $reset_timer
 @onready var countdown_label: Label = $Countdown/countdown_label
 @onready var score_indicators: Node2D = $score_indicators
 @onready var ball_shadow: Sprite2D = $ball_shadow
-
-@onready var pressureBar: ProgressBar = $camera/pressureBar
 
 @onready var player: CharacterBody2D = $player
 @onready var camera: Camera2D = $camera
@@ -47,11 +44,11 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	$camera/perfect.text = str(qte_circle.perfect_shot)
 	
-	$CanvasLayer/ball_count.text = "BALL: " + str(Globals.ball_num)
-	$CanvasLayer/score.text = "SCORE: " + str(Globals.runs)
+	$HUD.get_node("ball_count").text = "BALL: " + str(Globals.ball_num)
+	$HUD.get_node("score").text = "SCORE: " + str(Globals.runs)
 	
 	ball_shadow.position.x = ball.position.x
-	pressureBar.value = Globals.pressure
+	$HUD.get_node("pressureBar").value = Globals.pressure
 	
 	if Input.is_action_just_released("ui_accept"):
 		reset_level()
@@ -95,7 +92,7 @@ func hit_ball():
 			pass
 
 func change_current_runs(run_count: int):
-	$CanvasLayer/runs.text = "RUNS: " + str(run_count)
+	$HUD.get_node("runs").text = "RUNS: " + str(run_count)
 
 func hit_perfect():
 	camera_shake_perfect()
@@ -151,22 +148,6 @@ func camera_shake_perfect():
 	shake.tween_property(camera, "offset", Vector2(-30.0, 0.0), 0.05)
 	shake.tween_property(camera, "offset", Vector2(15.0, 0.0), 0.09)
 	shake.tween_property(camera, "offset", Vector2(0.0, 0.0), 0.09)
-
-func tween_cam(cam_pos: Vector2, ball_pos: Vector2, force: Vector2):
-	var tween = create_tween()
-	tween.set_parallel()
-	tween.tween_property(score_ball, "position", ball_pos, 0)
-	tween.tween_property(score_indicators, "modulate:a", 0, 0.5).set_delay(1.5)
-	tween.tween_property(ball, "freeze", true, 0).set_delay(2)
-	tween.tween_property(ball, "visible", false, 0).set_delay(2)
-	tween.tween_property(ball.get_node("CollisionShape2D"), "disabled", true, 0).set_delay(2)
-	tween.tween_property(camera, "position", cam_pos, 2).set_delay(1.8).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(score_ball, "freeze", false, 0).set_delay(2.5)
-	tween.tween_property(score_ball, "visible", true, 0).set_delay(2.5)
-	tween.tween_callback(
-	func finish():
-		score_ball.apply_impulse(force, Vector2.ZERO)
-	).set_delay(2.5)
 
 func _on_reset_timer_timeout() -> void:
 	reset_level()
