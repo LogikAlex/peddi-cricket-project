@@ -94,11 +94,6 @@ label_settings = SubResource("LabelSettings_0rdsr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Black" type="Sprite2D" parent="." unique_id=1020663961]
-position = Vector2(410.50003, 436.99997)
-scale = Vector2(189.9375, 11.749999)
-texture = ExtResource("3_5luka")
-
 [node name="camera" type="Camera2D" parent="." unique_id=1810722814]
 position = Vector2(541, -10)
 limit_left = -1080
