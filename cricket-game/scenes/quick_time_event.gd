@@ -13,7 +13,7 @@ var in_tween: Tween
 var out_tween: Tween
 
 var qte_time = 0.4 - Globals.pressure
-var perfect_window = 0.13 - Globals.pressure/1.1
+var perfect_window = 0.11 - Globals.pressure/1.1
 var can_click = false
 
 var perfect_shot = false

@@ -3,7 +3,6 @@ extends Node2D
 @onready var ball: RigidBody2D = $ball
 @onready var score_ball: RigidBody2D = $score_ball
 @onready var start_timer: Timer = $start_timer
-@onready var hit_timer: Timer = $hit_timer
 @onready var reset_timer: Timer = $reset_timer
 @onready var countdown_label: Label = $Countdown/countdown_label
 @onready var score_indicators: Node2D = $score_indicators
@@ -48,8 +47,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	$camera/perfect.text = str(qte_circle.perfect_shot)
 	
-	$camera/ball_count.text = "BALL NUMBER: " + str(Globals.ball_num)
-	$camera/runs.text = "RUNS: " + str(Globals.runs)
+	$CanvasLayer/ball_count.text = "BALL: " + str(Globals.ball_num)
+	$CanvasLayer/score.text = "SCORE: " + str(Globals.runs)
 	
 	ball_shadow.position.x = ball.position.x
 	pressureBar.value = Globals.pressure
@@ -95,32 +94,36 @@ func hit_ball():
 		if qte_circle.missed:
 			pass
 
+func change_current_runs(run_count: int):
+	$CanvasLayer/runs.text = "RUNS: " + str(run_count)
+
 func hit_perfect():
 	camera_shake_perfect()
 	if Globals.miss_chance == 1:
-		ball.apply_impulse(Vector2(395.0, -265.0), Vector2.ZERO)
+		ball.apply_impulse(Vector2(380.0, -210.0), Vector2.ZERO)
 		Globals.runs += 6
+		change_current_runs(6)
 	else:
-		ball.apply_impulse(Vector2(380.0, -225.0), Vector2.ZERO)
+		ball.apply_impulse(Vector2(390.0, -180.0), Vector2.ZERO)
 		Globals.runs += 4
+		change_current_runs(4)
 
 func hit_early():
 	camera_shake()
 	if Globals.miss_chance == 1:
-		ball.apply_impulse(Vector2(315.0, -68.0), Vector2.ZERO)
+		ball.apply_impulse(Vector2(345.0, -100.0), Vector2.ZERO)
 		Globals.runs += 1
+		change_current_runs(1)
 	else:
-		ball.apply_impulse(Vector2(332.0, -88.0), Vector2.ZERO)
+		ball.apply_impulse(Vector2(370.0, -125.0), Vector2.ZERO)
 		Globals.runs += 2
+		change_current_runs(2)
 
 func hit_late():
 	camera_shake()
-	ball.apply_impulse(Vector2(375.0, -150.0), Vector2.ZERO)
+	ball.apply_impulse(Vector2(395.0, -150.0), Vector2.ZERO)
 	Globals.runs += 3
-
-func _ball_entered_range(body: Node2D) -> void:
-	if body.is_in_group("ball"):
-		hit_timer.start()
+	change_current_runs(3)
 
 func _ball_entered_qte_range(body: Node2D) -> void:
 	if body.is_in_group("ball"):

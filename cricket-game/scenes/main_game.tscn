@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://bw4u54vp8s7k7" path="res://assets/sprites/scores_default.png" id="10_nqdth"]
 [ext_resource type="Texture2D" uid="uid://bsisfjc4kaat1" path="res://assets/sprites/pitch_edited.png" id="18_ikqpi"]
 [ext_resource type="Texture2D" uid="uid://jbt0c4kg738a" path="res://assets/sprites/ball.png" id="20_yu8cv"]
+[ext_resource type="Texture2D" uid="uid://blpsia5lxakj" path="res://assets/sprites/hud_normal.png" id="21_ibnub"]
+[ext_resource type="Texture2D" uid="uid://bd833s7ii75b4" path="res://assets/sprites/hud-pressed-play.png" id="22_5wboo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0rdsr"]
 font = ExtResource("2_vnsdt")
@@ -51,10 +53,13 @@ font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_ipu61"]
 font = ExtResource("3_ikqpi")
-font_size = 52
+font_size = 64
+outline_color = Color(0, 0, 0, 0)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.3764706)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_72e8q"]
-size = Vector2(5920, 93)
+size = Vector2(3044, 93)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ygxny"]
 size = Vector2(1748, 95)
@@ -99,13 +104,14 @@ position = Vector2(541, -10)
 limit_left = -1080
 
 [node name="pressureBar" type="ProgressBar" parent="camera" unique_id=108520598]
+z_index = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -307.0
-offset_top = 411.0
-offset_right = 264.0
-offset_bottom = 474.0
+offset_left = -279.0
+offset_top = -487.0
+offset_right = 292.0
+offset_bottom = -424.0
 grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_ikqpi")
 theme_override_styles/fill = SubResource("StyleBoxFlat_5luka")
@@ -125,32 +131,13 @@ vertical_alignment = 1
 
 [node name="perfect" type="Label" parent="camera" unique_id=187738258]
 visible = false
+z_index = 1
 offset_left = -930.0
 offset_top = -514.0
 offset_right = -736.0
 offset_bottom = -442.0
 text = "perfect:"
 label_settings = SubResource("LabelSettings_ipu61")
-
-[node name="ball_count" type="Label" parent="camera" unique_id=678605050]
-offset_left = -919.0
-offset_top = 422.0
-offset_right = -530.0
-offset_bottom = 494.0
-text = "BALL NUMBER: "
-label_settings = SubResource("LabelSettings_ipu61")
-
-[node name="runs" type="Label" parent="camera" unique_id=1390881207]
-offset_left = 646.0
-offset_top = 421.0
-offset_right = 980.0
-offset_bottom = 493.0
-text = "RUNS: "
-label_settings = SubResource("LabelSettings_ipu61")
-
-[node name="hit_timer" type="Timer" parent="." unique_id=682007490]
-wait_time = 0.5
-one_shot = true
 
 [node name="start_timer" type="Timer" parent="." unique_id=989620325]
 wait_time = 3.0
@@ -209,7 +196,7 @@ scale = Vector2(0.97583336, 0.14583333)
 texture = ExtResource("2_72e8q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ground" unique_id=1823782044]
-position = Vector2(1861, 11.5)
+position = Vector2(423, 11.5)
 shape = SubResource("RectangleShape2D_72e8q")
 
 [node name="ground2" type="StaticBody2D" parent="." unique_id=1974425714]
@@ -223,20 +210,6 @@ scale = Vector2(0.97583336, 0.052916672)
 texture = ExtResource("2_72e8q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ground2" unique_id=492339321]
-position = Vector2(0, 6.5)
-shape = SubResource("RectangleShape2D_ygxny")
-
-[node name="ground3" type="StaticBody2D" parent="." unique_id=575677971]
-position = Vector2(4871, 253)
-rotation = 1.5707964
-
-[node name="Sprite2D" type="Sprite2D" parent="ground3" unique_id=7517198]
-visible = false
-position = Vector2(0, 11.500007)
-scale = Vector2(0.97583336, 0.052916672)
-texture = ExtResource("2_72e8q")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ground3" unique_id=2117312571]
 position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_ygxny")
 
@@ -305,8 +278,8 @@ shape = SubResource("RectangleShape2D_wi4c7")
 
 [node name="Pitch" type="Sprite2D" parent="." unique_id=389153996]
 z_index = -1
-position = Vector2(433.62518, -11.000025)
-scale = Vector2(0.76738286, 0.9000001)
+position = Vector2(433.62518, -4.500073)
+scale = Vector2(0.76738286, 0.912037)
 texture = ExtResource("18_ikqpi")
 
 [node name="Black2" type="Sprite2D" parent="." unique_id=233705155]
@@ -321,7 +294,47 @@ position = Vector2(-44, 308)
 scale = Vector2(0.10867971, 0.03857143)
 texture = ExtResource("20_yu8cv")
 
-[connection signal="timeout" from="hit_timer" to="." method="_missed"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=109587566]
+
+[node name="hud_pressed_play" type="Sprite2D" parent="CanvasLayer" unique_id=862079710]
+position = Vector2(960, 515.5)
+scale = Vector2(0.99999994, 1.0453702)
+texture = ExtResource("22_5wboo")
+
+[node name="hud_normal" type="Sprite2D" parent="CanvasLayer" unique_id=1011400435]
+visible = false
+position = Vector2(960, 515.5)
+scale = Vector2(1, 1.0453703)
+texture = ExtResource("21_ibnub")
+
+[node name="ball_count" type="Label" parent="CanvasLayer" unique_id=678605050]
+z_index = 1
+offset_left = 1115.0
+offset_top = 971.0
+offset_right = 1504.0
+offset_bottom = 1043.0
+text = "BALL: 00"
+label_settings = SubResource("LabelSettings_ipu61")
+vertical_alignment = 1
+
+[node name="runs" type="Label" parent="CanvasLayer" unique_id=1390881207]
+z_index = 1
+offset_left = 605.0
+offset_top = 977.0
+offset_right = 975.0
+offset_bottom = 1049.0
+text = "RUNS: 0"
+label_settings = SubResource("LabelSettings_ipu61")
+
+[node name="score" type="Label" parent="CanvasLayer" unique_id=1672054444]
+z_index = 1
+offset_left = 59.0
+offset_top = 977.0
+offset_right = 484.0
+offset_bottom = 1049.0
+text = "SCORE: 00"
+label_settings = SubResource("LabelSettings_ipu61")
+
 [connection signal="timeout" from="start_timer" to="." method="_throw_ball"]
 [connection signal="timeout" from="reset_timer" to="." method="_on_reset_timer_timeout"]
 [connection signal="body_entered" from="qte_area" to="." method="_ball_entered_qte_range"]
