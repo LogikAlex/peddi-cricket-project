@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bsrs6j8q7pbcd"]
 
 [ext_resource type="Texture2D" uid="uid://jbt0c4kg738a" path="res://assets/sprites/ball.png" id="1_7s4qf"]
-[ext_resource type="Script" uid="uid://bbodawtb51pcr" path="res://scenes/quick_time_event.gd" id="2_f7cbr"]
+[ext_resource type="Script" uid="uid://bbodawtb51pcr" path="res://scripts/quick_time_event.gd" id="2_f7cbr"]
 [ext_resource type="Texture2D" uid="uid://di27biqg540cg" path="res://assets/sprites/qte_indicator.png" id="3_4dx81"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_72e8q"]

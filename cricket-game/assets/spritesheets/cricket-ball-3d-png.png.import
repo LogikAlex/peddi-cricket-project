@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://2s814ww7wgx3"
-path="res://.godot/imported/cricket-ball-3d-png.png-435229cd3e6491cb0cb2f46c4f3d5540.ctex"
+path.s3tc="res://.godot/imported/cricket-ball-3d-png.png-435229cd3e6491cb0cb2f46c4f3d5540.s3tc.ctex"
+path.etc2="res://.godot/imported/cricket-ball-3d-png.png-435229cd3e6491cb0cb2f46c4f3d5540.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/spritesheets/cricket-ball-3d-png.png"
-dest_files=["res://.godot/imported/cricket-ball-3d-png.png-435229cd3e6491cb0cb2f46c4f3d5540.ctex"]
+dest_files=["res://.godot/imported/cricket-ball-3d-png.png-435229cd3e6491cb0cb2f46c4f3d5540.s3tc.ctex", "res://.godot/imported/cricket-ball-3d-png.png-435229cd3e6491cb0cb2f46c4f3d5540.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

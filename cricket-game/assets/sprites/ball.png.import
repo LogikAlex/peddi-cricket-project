@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jbt0c4kg738a"
-path="res://.godot/imported/ball.png-6d646625baca6299e5b8ec5b1e5166d6.ctex"
+path.s3tc="res://.godot/imported/ball.png-6d646625baca6299e5b8ec5b1e5166d6.s3tc.ctex"
+path.etc2="res://.godot/imported/ball.png-6d646625baca6299e5b8ec5b1e5166d6.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/sprites/ball.png"
-dest_files=["res://.godot/imported/ball.png-6d646625baca6299e5b8ec5b1e5166d6.ctex"]
+dest_files=["res://.godot/imported/ball.png-6d646625baca6299e5b8ec5b1e5166d6.s3tc.ctex", "res://.godot/imported/ball.png-6d646625baca6299e5b8ec5b1e5166d6.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

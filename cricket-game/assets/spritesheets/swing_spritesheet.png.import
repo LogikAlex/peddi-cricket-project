@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://3e641iqusbwa"
-path="res://.godot/imported/swing_spritesheet.png-80c8390945fa97c4962ae32debf517bb.ctex"
+path.s3tc="res://.godot/imported/swing_spritesheet.png-80c8390945fa97c4962ae32debf517bb.s3tc.ctex"
+path.etc2="res://.godot/imported/swing_spritesheet.png-80c8390945fa97c4962ae32debf517bb.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/spritesheets/swing_spritesheet.png"
-dest_files=["res://.godot/imported/swing_spritesheet.png-80c8390945fa97c4962ae32debf517bb.ctex"]
+dest_files=["res://.godot/imported/swing_spritesheet.png-80c8390945fa97c4962ae32debf517bb.s3tc.ctex", "res://.godot/imported/swing_spritesheet.png-80c8390945fa97c4962ae32debf517bb.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

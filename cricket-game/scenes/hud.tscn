@@ -6,7 +6,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_ipu61"]
 font = ExtResource("3_uo2fv")
-font_size = 64
+font_size = 42
 outline_color = Color(0, 0, 0, 0)
 shadow_size = 6
 shadow_color = Color(0, 0, 0, 0.3764706)
@@ -34,41 +34,41 @@ font_size = 30
 [node name="HUD" type="CanvasLayer" unique_id=75069684]
 
 [node name="hud_pressed_play" type="Sprite2D" parent="." unique_id=1514299677]
-position = Vector2(960, 515.5)
-scale = Vector2(0.99999994, 1.0453702)
+position = Vector2(640.28345, 343.50003)
+scale = Vector2(0.66696185, 0.6972221)
 texture = ExtResource("1_5ysmq")
 
 [node name="hud_normal" type="Sprite2D" parent="." unique_id=903886841]
 visible = false
-position = Vector2(960, 515.5)
-scale = Vector2(1, 1.0453703)
+position = Vector2(640.28345, 343.49997)
+scale = Vector2(0.6669619, 0.6972222)
 texture = ExtResource("2_6fi6k")
 
 [node name="ball_count" type="Label" parent="." unique_id=154437804]
 z_index = 1
-offset_left = 1115.0
-offset_top = 971.0
-offset_right = 1504.0
-offset_bottom = 1043.0
+offset_left = 748.0
+offset_top = 635.0
+offset_right = 1137.0
+offset_bottom = 707.0
 text = "BALL: 00"
 label_settings = SubResource("LabelSettings_ipu61")
 vertical_alignment = 1
 
 [node name="runs" type="Label" parent="." unique_id=961177653]
 z_index = 1
-offset_left = 605.0
-offset_top = 977.0
-offset_right = 975.0
-offset_bottom = 1049.0
+offset_left = 411.0
+offset_top = 650.0
+offset_right = 781.0
+offset_bottom = 722.0
 text = "RUNS: 0"
 label_settings = SubResource("LabelSettings_ipu61")
 
 [node name="score" type="Label" parent="." unique_id=1560553821]
 z_index = 1
-offset_left = 59.0
-offset_top = 977.0
-offset_right = 484.0
-offset_bottom = 1049.0
+offset_left = 39.0
+offset_top = 650.0
+offset_right = 464.0
+offset_bottom = 722.0
 text = "SCORE: 00"
 label_settings = SubResource("LabelSettings_ipu61")
 
@@ -77,10 +77,10 @@ z_index = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -246.0
-offset_top = 36.0
-offset_right = 325.0
-offset_bottom = 99.0
+offset_left = -226.0
+offset_top = 23.0
+offset_right = 227.17456
+offset_bottom = 73.0
 grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_5ysmq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6fi6k")
@@ -89,10 +89,10 @@ show_percentage = false
 
 [node name="pressure_label" type="Label" parent="pressureBar" unique_id=894671462]
 layout_mode = 0
-offset_left = 198.0
-offset_top = -3.0
-offset_right = 381.0
-offset_bottom = 69.0
+offset_left = 139.0
+offset_top = -9.0
+offset_right = 322.0
+offset_bottom = 63.0
 text = "PRESSURE"
 label_settings = SubResource("LabelSettings_uo2fv")
 horizontal_alignment = 1

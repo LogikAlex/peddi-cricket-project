@@ -10,6 +10,11 @@ extends Node2D
 @onready var player: CharacterBody2D = $player
 @onready var camera: Camera2D = $camera
 
+@onready var ballCount: Label = $HUD.get_node("ball_count")
+@onready var score: Label = $HUD.get_node("score")
+@onready var runs: Label = $HUD.get_node("runs")
+@onready var pressureBar: ProgressBar = $HUD.get_node("pressureBar")
+
 var can_hit = true
 var missed = false
 
@@ -42,13 +47,11 @@ func _ready() -> void:
 	Globals.pressure += 0.01
 
 func _process(_delta: float) -> void:
-	$camera/perfect.text = str(qte_circle.perfect_shot)
-	
-	$HUD.get_node("ball_count").text = "BALL: " + str(Globals.ball_num)
-	$HUD.get_node("score").text = "SCORE: " + str(Globals.runs)
+	ballCount.text = "BALL: " + str(Globals.ball_num)
+	score.text = "SCORE: " + str(Globals.runs)
 	
 	ball_shadow.position.x = ball.position.x
-	$HUD.get_node("pressureBar").value = Globals.pressure
+	pressureBar.value = Globals.pressure
 	
 	if Input.is_action_just_released("ui_accept"):
 		reset_level()
@@ -92,7 +95,7 @@ func hit_ball():
 			pass
 
 func change_current_runs(run_count: int):
-	$HUD.get_node("runs").text = "RUNS: " + str(run_count)
+	runs.text = "RUNS: " + str(run_count)
 
 func hit_perfect():
 	camera_shake_perfect()
@@ -151,9 +154,3 @@ func camera_shake_perfect():
 
 func _on_reset_timer_timeout() -> void:
 	reset_level()
-
-func _on_stumps_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("ball"):
-		missed = true
-		player.can_swing = false
-		reset_timer.start()
