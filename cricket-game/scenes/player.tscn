@@ -7,23 +7,23 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
 atlas = ExtResource("2_dqkch")
-region = Rect2(0, 0, 1160, 602)
+region = Rect2(0, 0, 556, 288)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
 atlas = ExtResource("2_dqkch")
-region = Rect2(1160, 0, 1160, 602)
+region = Rect2(556, 0, 556, 288)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ujl30"]
 atlas = ExtResource("2_dqkch")
-region = Rect2(2320, 0, 1160, 602)
+region = Rect2(1112, 0, 556, 288)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31cv2"]
 atlas = ExtResource("2_dqkch")
-region = Rect2(3480, 0, 1160, 602)
+region = Rect2(1668, 0, 556, 288)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pf23h"]
 atlas = ExtResource("2_dqkch")
-region = Rect2(4640, 0, 1160, 602)
+region = Rect2(2224, 0, 556, 288)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")

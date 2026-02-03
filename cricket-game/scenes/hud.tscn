@@ -25,23 +25,25 @@ expand_margin_bottom = 3.0
 shadow_color = Color(1, 1, 1, 0.6)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fi6k"]
-bg_color = Color(0.8072328, 0.52086836, 0.36508, 1)
+bg_color = Color(0.7203876, 0.9335018, 1.1551381e-06, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_uo2fv"]
 font = ExtResource("3_uo2fv")
-font_size = 30
+font_size = 23
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.3882353)
 
 [node name="HUD" type="CanvasLayer" unique_id=75069684]
 
 [node name="hud_pressed_play" type="Sprite2D" parent="." unique_id=1514299677]
-position = Vector2(640.28345, 343.50003)
-scale = Vector2(0.66696185, 0.6972221)
+position = Vector2(640.28345, 329.49997)
+scale = Vector2(0.66696185, 0.7231481)
 texture = ExtResource("1_5ysmq")
 
 [node name="hud_normal" type="Sprite2D" parent="." unique_id=903886841]
 visible = false
 position = Vector2(640.28345, 343.49997)
-scale = Vector2(0.6669619, 0.6972222)
+scale = Vector2(0.692, 0.723)
 texture = ExtResource("2_6fi6k")
 
 [node name="ball_count" type="Label" parent="." unique_id=154437804]
@@ -77,10 +79,10 @@ z_index = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -226.0
-offset_top = 23.0
-offset_right = 227.17456
-offset_bottom = 73.0
+offset_left = -192.0
+offset_top = 65.0
+offset_right = 193.17456
+offset_bottom = 81.0
 grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_5ysmq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6fi6k")
@@ -89,10 +91,10 @@ show_percentage = false
 
 [node name="pressure_label" type="Label" parent="pressureBar" unique_id=894671462]
 layout_mode = 0
-offset_left = 139.0
-offset_top = -9.0
-offset_right = 322.0
-offset_bottom = 63.0
+offset_left = 104.0
+offset_top = -56.0
+offset_right = 287.0
+offset_bottom = 16.0
 text = "PRESSURE"
 label_settings = SubResource("LabelSettings_uo2fv")
 horizontal_alignment = 1
