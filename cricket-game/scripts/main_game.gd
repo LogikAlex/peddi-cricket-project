@@ -3,7 +3,7 @@ extends Node2D
 @onready var ball: RigidBody2D = $ball
 @onready var start_timer: Timer = $start_timer
 @onready var reset_timer: Timer = $reset_timer
-@onready var countdown_label: Label = $Countdown/countdown_label
+@onready var countdown_label: Label = $Countdown.get_node("countdown_label")
 @onready var score_indicators: Node2D = $score_indicators
 @onready var ball_shadow: Sprite2D = $ball_shadow
 

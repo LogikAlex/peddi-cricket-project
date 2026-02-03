@@ -10,4 +10,4 @@ script = ExtResource("1_16n5k")
 position = Vector2(321.00003, -167)
 scale = Vector2(0.65, 0.65)
 texture = ExtResource("2_l7kgf")
-hframes = 6
+vframes = 6

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cxwrtashubahe"]
 
 [ext_resource type="Script" uid="uid://bgo0tmww4gpq7" path="res://scripts/main_game.gd" id="1_d2op2"]
-[ext_resource type="FontFile" uid="uid://cjrb1neid7al0" path="res://assets/fonts/coolvetica/Coolvetica Rg Cond.otf" id="2_vnsdt"]
+[ext_resource type="PackedScene" uid="uid://cc5nh6yjywhu0" path="res://scenes/countdown.tscn" id="2_nqdth"]
 [ext_resource type="Texture2D" uid="uid://d04p5yhq5l0e3" path="res://assets/sprites/black.png" id="3_5luka"]
 [ext_resource type="PackedScene" uid="uid://bsrs6j8q7pbcd" path="res://scenes/ball.tscn" id="3_d2op2"]
 [ext_resource type="PackedScene" uid="uid://cpdaqe6616d4o" path="res://scenes/score_indicators.tscn" id="3_nqdth"]
@@ -10,14 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://cajqxbn0nwjco" path="res://scenes/hud.tscn" id="12_o6v7o"]
 [ext_resource type="Texture2D" uid="uid://bsisfjc4kaat1" path="res://assets/sprites/pitch_edited.png" id="18_ikqpi"]
 [ext_resource type="Texture2D" uid="uid://jbt0c4kg738a" path="res://assets/sprites/ball.png" id="20_yu8cv"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_0rdsr"]
-font = ExtResource("2_vnsdt")
-font_size = 84
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 5
-shadow_color = Color(0, 0, 0, 0.36862746)
-shadow_offset = Vector2(2.365, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l77h"]
 size = Vector2(11, 670)
@@ -29,26 +21,8 @@ size = Vector2(11, 670)
 [node name="MainGame" type="Node2D" unique_id=556775433]
 script = ExtResource("1_d2op2")
 
-[node name="Countdown" type="Node2D" parent="." unique_id=437291145]
+[node name="Countdown" parent="." unique_id=1639975920 instance=ExtResource("2_nqdth")]
 position = Vector2(542, -1)
-
-[node name="countdown_label" type="Label" parent="Countdown" unique_id=1172257580]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -49.0
-offset_top = -58.0
-offset_right = 48.0
-offset_bottom = 57.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-text = "3"
-label_settings = SubResource("LabelSettings_0rdsr")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="camera" type="Camera2D" parent="." unique_id=1810722814]
 position = Vector2(541, -10)
@@ -70,8 +44,8 @@ position = Vector2(33, 115)
 position = Vector2(0, 342)
 
 [node name="player" parent="." unique_id=798696560 instance=ExtResource("4_0rdsr")]
-position = Vector2(-397, 257)
-scale = Vector2(0.86, 0.86)
+position = Vector2(-417, 199)
+scale = Vector2(1.555, 1.555)
 
 [node name="ball" parent="." unique_id=971852414 instance=ExtResource("3_d2op2")]
 position = Vector2(3094, -219)
