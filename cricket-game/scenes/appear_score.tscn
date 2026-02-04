@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://da5gcmirgtwm"]
+
+[ext_resource type="Script" uid="uid://bbseq6eobdfp1" path="res://scenes/appear_score.gd" id="1_h2hv3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u7hed"]
+radius = 40.012497
+
+[node name="appearScore" type="Area2D" unique_id=1395098796]
+script = ExtResource("1_h2hv3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1771453774]
+shape = SubResource("CircleShape2D_u7hed")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

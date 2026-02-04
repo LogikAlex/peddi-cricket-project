@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cpdaqe6616d4o" path="res://scenes/score_indicators.tscn" id="3_nqdth"]
 [ext_resource type="PackedScene" uid="uid://drap3eqhh60jc" path="res://scenes/player.tscn" id="4_0rdsr"]
 [ext_resource type="PackedScene" uid="uid://bkftshvsasw0d" path="res://scenes/ground.tscn" id="4_5cypo"]
+[ext_resource type="PackedScene" uid="uid://da5gcmirgtwm" path="res://scenes/appear_score.tscn" id="11_5cypo"]
 [ext_resource type="PackedScene" uid="uid://cajqxbn0nwjco" path="res://scenes/hud.tscn" id="12_o6v7o"]
 [ext_resource type="Texture2D" uid="uid://bsisfjc4kaat1" path="res://assets/sprites/pitch_edited.png" id="18_ikqpi"]
 [ext_resource type="Texture2D" uid="uid://jbt0c4kg738a" path="res://assets/sprites/ball.png" id="20_yu8cv"]
@@ -44,6 +45,7 @@ position = Vector2(33, 115)
 position = Vector2(0, 342)
 
 [node name="player" parent="." unique_id=798696560 instance=ExtResource("4_0rdsr")]
+z_index = 1
 position = Vector2(-417, 199)
 scale = Vector2(1.555, 1.555)
 
@@ -83,6 +85,36 @@ scale = Vector2(0.10867971, 0.03857143)
 texture = ExtResource("20_yu8cv")
 
 [node name="HUD" parent="." unique_id=75069684 instance=ExtResource("12_o6v7o")]
+
+[node name="appearScore4" parent="." unique_id=1395098796 node_paths=PackedStringArray("score_indicators", "player") instance=ExtResource("11_5cypo")]
+position = Vector2(655, -213)
+wantedFrame = 4
+score_indicators = NodePath("../score_indicators")
+player = NodePath("../player")
+
+[node name="appearScore3" parent="." unique_id=907180667 node_paths=PackedStringArray("score_indicators", "player") instance=ExtResource("11_5cypo")]
+position = Vector2(752, -78)
+wantedFrame = 3
+score_indicators = NodePath("../score_indicators")
+player = NodePath("../player")
+
+[node name="appearScore2" parent="." unique_id=2000685267 node_paths=PackedStringArray("score_indicators", "player") instance=ExtResource("11_5cypo")]
+position = Vector2(809, 70)
+wantedFrame = 2
+score_indicators = NodePath("../score_indicators")
+player = NodePath("../player")
+
+[node name="appearScore1" parent="." unique_id=1283690543 node_paths=PackedStringArray("score_indicators", "player") instance=ExtResource("11_5cypo")]
+position = Vector2(825, 225)
+wantedFrame = 1
+score_indicators = NodePath("../score_indicators")
+player = NodePath("../player")
+
+[node name="appearScore6" parent="." unique_id=1742052733 node_paths=PackedStringArray("score_indicators", "player") instance=ExtResource("11_5cypo")]
+position = Vector2(548, -315)
+wantedFrame = 5
+score_indicators = NodePath("../score_indicators")
+player = NodePath("../player")
 
 [connection signal="timeout" from="start_timer" to="." method="_throw_ball"]
 [connection signal="timeout" from="reset_timer" to="." method="_on_reset_timer_timeout"]

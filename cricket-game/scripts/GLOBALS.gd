@@ -11,6 +11,4 @@ var perfect = false
 var early = false
 var late = false
 
-var perfect_min = 0.25
-var perfect_max = 0.4
-var hit_time = 0.5
+var canUpdateScores = false

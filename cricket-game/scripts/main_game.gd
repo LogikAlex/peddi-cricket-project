@@ -10,6 +10,7 @@ extends Node2D
 @onready var player: CharacterBody2D = $player
 @onready var camera: Camera2D = $camera
 
+@onready var HUD: CanvasLayer = $HUD
 @onready var ballCount: Label = $HUD.get_node("ball_count")
 @onready var score: Label = $HUD.get_node("score")
 @onready var runs: Label = $HUD.get_node("runs")
@@ -18,29 +19,11 @@ extends Node2D
 var can_hit = true
 var missed = false
 
-var perfect_min = Globals.perfect_min + Globals.pressure / 2
-var perfect_max = Globals.perfect_max - Globals.pressure / 2
-
-#score ball positions
-var six_ball_pos = Vector2(3910.0, 30.0)
-var four_ball_pos = Vector2(3480.0, 40.0)
-var three_ball_pos = Vector2(2780.0 , 44.0)
-var two_ball_pos = Vector2(2270.0, 70.0)
-var one_ball_pos = Vector2(1815.0, 70.0)
-
-#camera positions
-var six_cam = Vector2(3880.0, 0.0)
-var four_cam = Vector2(3800.0, 0.0)
-var three_cam = Vector2(2960.0, 0.0)
-var two_cam = Vector2(2060.0, 0.0)
-var one_cam = Vector2(2060.0, 0.0)
-
 #quick time event variables
 @onready var qte_circle: Node2D = $ball/qte_circle
 @onready var qte_area: Area2D = $qte_area
 
 func _ready() -> void:
-	countdown()
 	score_indicators.modulate.a = 0
 	Globals.miss_chance = randi_range(0, 1)
 	ball.freeze = true
@@ -53,6 +36,10 @@ func _process(_delta: float) -> void:
 	ball_shadow.position.x = ball.position.x
 	pressureBar.value = Globals.pressure
 	
+	if HUD.pressed == true:
+		HUD.pressed = false
+		countdown()
+	
 	if Input.is_action_just_released("ui_accept"):
 		reset_level()
 
@@ -62,6 +49,7 @@ func countdown():
 	start_timer.start()
 	var countdown_tween = create_tween()
 	countdown_tween.set_parallel()
+	countdown_tween.tween_property(countdown_label, "modulate:a", 1, 0)
 	countdown_tween.tween_property(countdown_label, "text", "3", 0)
 	countdown_tween.tween_property(countdown_label, "modulate:a", 0, 0.5).set_delay(0.5)
 	countdown_tween.tween_property(countdown_label, "modulate:a", 1, 0).set_delay(1)
@@ -84,14 +72,18 @@ func hit_ball():
 		qte_area.free()
 		can_hit = false
 		Engine.time_scale = 1.0
-		reset_timer.start()
+		Globals.canUpdateScores = true
 		if qte_circle.perfect_shot:
 			hit_perfect()
+			reset_timer.start()
 		if qte_circle.early_shot:
 			hit_early()
+			reset_timer.start()
 		if qte_circle.late_shot:
 			hit_late()
+			reset_timer.start()
 		if qte_circle.missed:
+			HUD.showMissedOverlay()
 			pass
 
 func change_current_runs(run_count: int):
