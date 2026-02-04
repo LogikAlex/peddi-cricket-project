@@ -163,5 +163,37 @@ label_settings = SubResource("LabelSettings_5pdws")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="EndScreen" type="Node2D" parent="." unique_id=999259461]
+modulate = Color(1, 1, 1, 0)
+
+[node name="DimScreen" type="Sprite2D" parent="EndScreen" unique_id=840731263]
+modulate = Color(1, 1, 1, 0.654902)
+z_index = 1
+position = Vector2(640, 360.5)
+scale = Vector2(81, 46.0625)
+texture = ExtResource("5_uo2fv")
+
+[node name="MissedLabel" type="Label" parent="EndScreen" unique_id=555455241]
+z_index = 1
+offset_left = 301.0
+offset_top = 293.0
+offset_right = 1003.0
+offset_bottom = 383.0
+text = "Round Over!"
+label_settings = SubResource("LabelSettings_047uy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="EndScreen" unique_id=744322439]
+z_index = 1
+offset_left = 522.0
+offset_top = 365.0
+offset_right = 782.0
+offset_bottom = 419.0
+text = "SCORE:"
+label_settings = SubResource("LabelSettings_5pdws")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="play_button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="play_button2" to="." method="_on_play_button_pressed"]

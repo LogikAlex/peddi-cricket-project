@@ -73,15 +73,28 @@ func hit_ball():
 		can_hit = false
 		Engine.time_scale = 1.0
 		Globals.canUpdateScores = true
-		if qte_circle.perfect_shot:
+		
+		if qte_circle.perfect_shot and Globals.ball_num < 12:
 			hit_perfect()
 			reset_timer.start()
-		if qte_circle.early_shot:
+		elif qte_circle.perfect_shot and Globals.ball_num == 12:
+			hit_perfect()
+			HUD.showEndOverlay()
+		
+		if qte_circle.early_shot and Globals.ball_num < 12:
 			hit_early()
 			reset_timer.start()
-		if qte_circle.late_shot:
+		elif qte_circle.early_shot and Globals.ball_num == 12:
+			hit_early()
+			HUD.showEndOverlay()
+		
+		if qte_circle.late_shot and Globals.ball_num < 12:
 			hit_late()
 			reset_timer.start()
+		elif qte_circle.late_shot and Globals.ball_num == 12:
+			hit_late()
+			HUD.showEndOverlay()
+		
 		if qte_circle.missed:
 			HUD.showMissedOverlay()
 			pass
@@ -121,7 +134,9 @@ func _ball_entered_qte_range(body: Node2D) -> void:
 	if body.is_in_group("ball"):
 		Engine.time_scale = 0.3
 		qte_circle._start_qte()
-		qte_circle.can_click = true
+		var delay = create_tween()
+		delay.tween_property(qte_circle, "can_click", true, 0).set_delay(0.1)
+		#qte_circle.can_click = true
 
 func _throw_ball() -> void:
 	launch_ball()
