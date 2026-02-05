@@ -26,7 +26,13 @@ shape = SubResource("CircleShape2D_s3esy")
 [node name="qte_circle" type="Node2D" parent="." unique_id=1930259183]
 script = ExtResource("2_f7cbr")
 
-[node name="QteIndicator" type="Sprite2D" parent="qte_circle" unique_id=658404059]
+[node name="perfectIndicator" type="Sprite2D" parent="qte_circle" unique_id=1523950601]
+modulate = Color(1, 1, 0, 1)
 rotation = 3.1415927
-scale = Vector2(0.07, 0.07)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("3_4dx81")
+
+[node name="QteIndicator" type="Sprite2D" parent="qte_circle" unique_id=658404059]
+rotation = -3.1415925
+scale = Vector2(0.029, 0.029)
 texture = ExtResource("3_4dx81")

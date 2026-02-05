@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bgo0tmww4gpq7" path="res://scripts/main_game.gd" id="1_d2op2"]
 [ext_resource type="PackedScene" uid="uid://cc5nh6yjywhu0" path="res://scenes/countdown.tscn" id="2_nqdth"]
-[ext_resource type="Texture2D" uid="uid://d04p5yhq5l0e3" path="res://assets/sprites/black.png" id="3_5luka"]
 [ext_resource type="PackedScene" uid="uid://bsrs6j8q7pbcd" path="res://scenes/ball.tscn" id="3_d2op2"]
 [ext_resource type="PackedScene" uid="uid://cpdaqe6616d4o" path="res://scenes/score_indicators.tscn" id="3_nqdth"]
 [ext_resource type="PackedScene" uid="uid://drap3eqhh60jc" path="res://scenes/player.tscn" id="4_0rdsr"]
@@ -71,11 +70,6 @@ z_index = -1
 position = Vector2(433.62518, -4.500073)
 scale = Vector2(0.76738286, 0.912037)
 texture = ExtResource("18_ikqpi")
-
-[node name="Black2" type="Sprite2D" parent="." unique_id=233705155]
-position = Vector2(410.50003, -496)
-scale = Vector2(189.9375, 11.749999)
-texture = ExtResource("3_5luka")
 
 [node name="ball_shadow" type="Sprite2D" parent="." unique_id=647849054]
 modulate = Color(0, 0, 0, 0.21568628)
