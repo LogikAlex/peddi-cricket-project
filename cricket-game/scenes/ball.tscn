@@ -9,7 +9,7 @@ rough = true
 bounce = 0.6
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s3esy"]
-radius = 12.0
+radius = 17.0
 
 [node name="ball" type="RigidBody2D" unique_id=971852414 groups=["ball"]]
 mass = 0.16
@@ -17,7 +17,7 @@ physics_material_override = SubResource("PhysicsMaterial_72e8q")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=62300844]
 position = Vector2(4.7683716e-07, 4.7683716e-07)
-scale = Vector2(0.165, 0.165)
+scale = Vector2(0.275, 0.275)
 texture = ExtResource("1_7s4qf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1437192518]
@@ -29,10 +29,10 @@ script = ExtResource("2_f7cbr")
 [node name="perfectIndicator" type="Sprite2D" parent="qte_circle" unique_id=1523950601]
 modulate = Color(1, 1, 0, 1)
 rotation = 3.1415927
-scale = Vector2(0.035, 0.035)
+scale = Vector2(0.045, 0.045)
 texture = ExtResource("3_4dx81")
 
 [node name="QteIndicator" type="Sprite2D" parent="qte_circle" unique_id=658404059]
 rotation = -3.1415925
-scale = Vector2(0.029, 0.029)
+scale = Vector2(0.079, 0.079)
 texture = ExtResource("3_4dx81")

@@ -60,11 +60,13 @@ scale = Vector2(0.66696185, 0.7231481)
 texture = ExtResource("1_5ysmq")
 
 [node name="hud_normal" type="Sprite2D" parent="." unique_id=903886841]
+visible = false
 position = Vector2(640.28345, 329.49997)
 scale = Vector2(0.66696185, 0.7231481)
 texture = ExtResource("2_6fi6k")
 
 [node name="ball_count" type="Label" parent="." unique_id=154437804]
+visible = false
 z_index = 1
 offset_left = 748.0
 offset_top = 635.0
@@ -75,6 +77,7 @@ label_settings = SubResource("LabelSettings_ipu61")
 vertical_alignment = 1
 
 [node name="runs" type="Label" parent="." unique_id=961177653]
+visible = false
 z_index = 1
 offset_left = 411.0
 offset_top = 650.0
@@ -84,6 +87,7 @@ text = "RUNS: 0"
 label_settings = SubResource("LabelSettings_ipu61")
 
 [node name="score" type="Label" parent="." unique_id=1560553821]
+visible = false
 z_index = 1
 offset_left = 39.0
 offset_top = 650.0
@@ -93,14 +97,15 @@ text = "SCORE: 00"
 label_settings = SubResource("LabelSettings_ipu61")
 
 [node name="pressureBar" type="ProgressBar" parent="." unique_id=1270568908]
+visible = false
 z_index = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -192.0
-offset_top = 65.0
+offset_top = 44.0
 offset_right = 193.17456
-offset_bottom = 81.0
+offset_bottom = 60.0
 grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_5ysmq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6fi6k")
@@ -119,11 +124,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="play_button" type="TouchScreenButton" parent="." unique_id=1472720454]
+visible = false
 position = Vector2(1147, 659.99994)
 rotation = -0.08481056
 shape = SubResource("RectangleShape2D_uo2fv")
 
 [node name="play_button2" type="Button" parent="." unique_id=1559270670]
+visible = false
 modulate = Color(1, 1, 1, 0)
 offset_left = 1002.9484
 offset_top = 595.3646
@@ -196,7 +203,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Black2" type="Sprite2D" parent="." unique_id=13746705]
-position = Vector2(636.99994, 50.999992)
+visible = false
+position = Vector2(636.99994, 12)
 scale = Vector2(81.62501, 8)
 texture = ExtResource("5_uo2fv")
 

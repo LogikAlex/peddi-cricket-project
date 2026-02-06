@@ -21,7 +21,7 @@ func swing():
 func check_impact():
 	if playerSprite.animation == "swing_new":
 		if playerSprite.frame == impact_frame and !impacted:
-			impacted = true
+			#impacted = true
 			print("IMPACT !!!")
 		#else:
 			#impacted = false

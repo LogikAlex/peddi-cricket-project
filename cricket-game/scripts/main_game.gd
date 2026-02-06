@@ -3,9 +3,11 @@ extends Node2D
 @onready var ball: RigidBody2D = $ball
 @onready var start_timer: Timer = $start_timer
 @onready var reset_timer: Timer = $reset_timer
-@onready var countdown_label: Label = $Countdown.get_node("countdown_label")
+@onready var countdown_label: Label = $camera/Countdown.get_node("countdown_label")
 @onready var score_indicators: Node2D = $score_indicators
 @onready var ball_shadow: Sprite2D = $ball_shadow
+
+@onready var playerVideo: VideoStreamPlayer = $PlayerVideo
 
 @onready var player: CharacterBody2D = $player
 @onready var camera: Camera2D = $camera
@@ -24,6 +26,7 @@ var missed = false
 @onready var qte_area: Area2D = $qte_area
 
 func _ready() -> void:
+	countdown()
 	score_indicators.modulate.a = 0
 	Globals.miss_chance = randi_range(0, 1)
 	ball.freeze = true
@@ -35,10 +38,6 @@ func _process(_delta: float) -> void:
 	
 	ball_shadow.position.x = ball.position.x
 	pressureBar.value = Globals.pressure
-	
-	if HUD.pressed == true:
-		HUD.pressed = false
-		countdown()
 	
 	if Input.is_action_just_released("ui_accept"):
 		reset_level()
@@ -61,6 +60,9 @@ func countdown():
 	countdown_tween.tween_property(countdown_label, "visible", false, 0).set_delay(3)
 	countdown_tween.tween_property(camera, "position", Vector2(-15.0, 0.0), 3).set_delay(3).set_trans(Tween.TRANS_CUBIC)
 	countdown_tween.tween_property(score_indicators, "modulate:a", 1, 0.25).set_delay(5)
+	
+	countdown_tween.tween_property(playerVideo, "paused", true, 0).set_delay(0.1)
+	countdown_tween.tween_property(playerVideo, "paused", false, 0).set_delay(3)
 
 func launch_ball():
 	ball.freeze = false
@@ -116,7 +118,7 @@ func hit_perfect():
 func hit_early():
 	camera_shake()
 	if Globals.miss_chance == 1:
-		ball.apply_impulse(Vector2(345.0, -100.0), Vector2.ZERO)
+		ball.apply_impulse(Vector2(545.0, -200.0), Vector2.ZERO)
 		Globals.runs += 1
 		change_current_runs(1)
 	else:
@@ -140,6 +142,7 @@ func _ball_entered_qte_range(body: Node2D) -> void:
 
 func _throw_ball() -> void:
 	launch_ball()
+	$impact_timer.start()
 	player.can_swing = true
 
 func reset_level():
@@ -161,3 +164,6 @@ func camera_shake_perfect():
 
 func _on_reset_timer_timeout() -> void:
 	reset_level()
+
+func _on_impact_timer_timeout() -> void:
+	player.impacted = true

@@ -14,7 +14,7 @@ var end_size: Vector2 = Vector2(0.01, 0.01)
 var in_tween: Tween
 var out_tween: Tween
 
-var qte_time = 0.4 - Globals.pressure
+var qte_time = 0.5 - Globals.pressure
 var perfect_window = 0.11 - Globals.pressure/1.1
 var can_click = false
 
@@ -40,7 +40,7 @@ func _process(_delta: float) -> void:
 func fade_out_pf():
 	var tween = create_tween()
 	tween.tween_property(qte_perfect_circle, "modulate:a", 0, 0.1)
-	tween.tween_property(camera, "zoom", Vector2(0.65, 0.65), 0.1)
+	tween.tween_property(camera, "zoom", Vector2(0.75, 0.75), 0.1)
 
 func _qte_hit():
 	can_click = false
@@ -50,7 +50,7 @@ func _qte_hit():
 	out_tween.tween_property(qte_outer_circle, "modulate:a", 0, 0.12)
 	out_tween.tween_property(qte_outer_circle, "scale", start_size, 0.13)
 	out_tween.tween_property(qte_perfect_circle, "modulate:a", 0, 0.2)
-	out_tween.tween_property(camera, "zoom", Vector2(0.65, 0.65), 0.1)
+	out_tween.tween_property(camera, "zoom", Vector2(0.75, 0.75), 0.25)
 	if perfect_shot:
 		print("PERFECT")
 		perfect_shot = true
@@ -88,7 +88,7 @@ func _start_qte():
 	in_tween.tween_property(Engine, "time_scale", 1.0, 0).set_delay(qte_time + perfect_window + 0.3)
 	in_tween.tween_property($".", "late_shot", false, 0).set_delay(qte_time + perfect_window + 0.10)
 	in_tween.tween_property($".", "missed", true, 0).set_delay(qte_time + perfect_window + 0.10)
-	in_tween.tween_property(camera, "zoom", Vector2(0.9, 0.9), qte_time + perfect_window + 0.10).set_trans(Tween.TRANS_CUBIC)
+	in_tween.tween_property(camera, "zoom", Vector2(0.85, 0.85), qte_time + perfect_window + 0.10).set_trans(Tween.TRANS_CUBIC)
 	
 	in_tween.tween_callback(
 	func swing_anim():

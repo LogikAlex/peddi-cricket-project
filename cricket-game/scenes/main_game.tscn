@@ -6,13 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://cpdaqe6616d4o" path="res://scenes/score_indicators.tscn" id="3_nqdth"]
 [ext_resource type="PackedScene" uid="uid://drap3eqhh60jc" path="res://scenes/player.tscn" id="4_0rdsr"]
 [ext_resource type="PackedScene" uid="uid://bkftshvsasw0d" path="res://scenes/ground.tscn" id="4_5cypo"]
+[ext_resource type="VideoStream" uid="uid://dfi8gfj44lt0h" path="res://assets/0001-0095.ogv" id="9_5cypo"]
 [ext_resource type="PackedScene" uid="uid://da5gcmirgtwm" path="res://scenes/appear_score.tscn" id="11_5cypo"]
 [ext_resource type="PackedScene" uid="uid://cajqxbn0nwjco" path="res://scenes/hud.tscn" id="12_o6v7o"]
 [ext_resource type="Texture2D" uid="uid://bsisfjc4kaat1" path="res://assets/sprites/pitch_edited.png" id="18_ikqpi"]
 [ext_resource type="Texture2D" uid="uid://jbt0c4kg738a" path="res://assets/sprites/ball.png" id="20_yu8cv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l77h"]
-size = Vector2(11, 670)
+size = Vector2(11, 909)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nqdth"]
 
@@ -21,16 +22,19 @@ size = Vector2(11, 670)
 [node name="MainGame" type="Node2D" unique_id=556775433]
 script = ExtResource("1_d2op2")
 
-[node name="Countdown" parent="." unique_id=1639975920 instance=ExtResource("2_nqdth")]
-position = Vector2(542, -1)
-
 [node name="camera" type="Camera2D" parent="." unique_id=1810722814]
-position = Vector2(541, -10)
-zoom = Vector2(0.65, 0.65)
-limit_left = -1080
+position = Vector2(18, 0)
+zoom = Vector2(0.75, 0.75)
+
+[node name="Countdown" parent="camera" unique_id=1639975920 instance=ExtResource("2_nqdth")]
+z_index = 2
+
+[node name="impact_timer" type="Timer" parent="." unique_id=1089560088]
+wait_time = 2.6999999999999997
+one_shot = true
 
 [node name="start_timer" type="Timer" parent="." unique_id=989620325]
-wait_time = 3.0
+wait_time = 4.0
 one_shot = true
 
 [node name="reset_timer" type="Timer" parent="." unique_id=4473954]
@@ -40,22 +44,50 @@ one_shot = true
 [node name="score_indicators" parent="." unique_id=4930559 instance=ExtResource("3_nqdth")]
 position = Vector2(33, 115)
 
+[node name="appearScore4" parent="score_indicators" unique_id=1395098796 node_paths=PackedStringArray("score_indicators", "player") instance=ExtResource("11_5cypo")]
+position = Vector2(622, -328)
+wantedFrame = 4
+score_indicators = NodePath("..")
+player = NodePath("../../player")
+
+[node name="appearScore3" parent="score_indicators" unique_id=907180667 node_paths=PackedStringArray("score_indicators", "player") instance=ExtResource("11_5cypo")]
+position = Vector2(719, -193)
+wantedFrame = 3
+score_indicators = NodePath("..")
+player = NodePath("../../player")
+
+[node name="appearScore2" parent="score_indicators" unique_id=2000685267 node_paths=PackedStringArray("score_indicators", "player") instance=ExtResource("11_5cypo")]
+position = Vector2(776, -45)
+wantedFrame = 2
+score_indicators = NodePath("..")
+player = NodePath("../../player")
+
+[node name="appearScore1" parent="score_indicators" unique_id=1283690543 node_paths=PackedStringArray("score_indicators", "player") instance=ExtResource("11_5cypo")]
+position = Vector2(792, 110)
+wantedFrame = 1
+score_indicators = NodePath("..")
+player = NodePath("../../player")
+
+[node name="appearScore6" parent="score_indicators" unique_id=1742052733 node_paths=PackedStringArray("score_indicators", "player") instance=ExtResource("11_5cypo")]
+position = Vector2(515, -430)
+wantedFrame = 5
+score_indicators = NodePath("..")
+player = NodePath("../../player")
+
 [node name="ground" parent="." unique_id=2006588882 instance=ExtResource("4_5cypo")]
 position = Vector2(0, 342)
 
 [node name="player" parent="." unique_id=798696560 instance=ExtResource("4_0rdsr")]
+visible = false
 z_index = 1
 position = Vector2(-417, 199)
 scale = Vector2(1.555, 1.555)
 
-[node name="ball" parent="." unique_id=971852414 instance=ExtResource("3_d2op2")]
-position = Vector2(3094, -219)
-
 [node name="qte_area" type="Area2D" parent="." unique_id=283305163]
-position = Vector2(631, 237)
+position = Vector2(463, 237)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="qte_area" unique_id=1302851530]
-position = Vector2(6.5, -181)
+position = Vector2(6.5, -300.5)
 shape = SubResource("RectangleShape2D_2l77h")
 
 [node name="Sprite2D" type="Sprite2D" parent="qte_area" unique_id=314891137]
@@ -66,10 +98,29 @@ scale = Vector2(0.0049999985, 0.11458334)
 texture = SubResource("CompressedTexture2D_nqdth")
 
 [node name="Pitch" type="Sprite2D" parent="." unique_id=389153996]
+visible = false
 z_index = -1
 position = Vector2(433.62518, -4.500073)
 scale = Vector2(0.76738286, 0.912037)
 texture = ExtResource("18_ikqpi")
+
+[node name="HUD" parent="." unique_id=75069684 instance=ExtResource("12_o6v7o")]
+
+[node name="PlayerVideo" type="VideoStreamPlayer" parent="." unique_id=751672970]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("9_5cypo")
+volume_db = -80.0
+autoplay = true
 
 [node name="ball_shadow" type="Sprite2D" parent="." unique_id=647849054]
 modulate = Color(0, 0, 0, 0.21568628)
@@ -78,38 +129,10 @@ position = Vector2(-44, 308)
 scale = Vector2(0.10867971, 0.03857143)
 texture = ExtResource("20_yu8cv")
 
-[node name="HUD" parent="." unique_id=75069684 instance=ExtResource("12_o6v7o")]
+[node name="ball" parent="." unique_id=971852414 instance=ExtResource("3_d2op2")]
+position = Vector2(3600, -577)
 
-[node name="appearScore4" parent="." unique_id=1395098796 node_paths=PackedStringArray("score_indicators", "player") instance=ExtResource("11_5cypo")]
-position = Vector2(655, -213)
-wantedFrame = 4
-score_indicators = NodePath("../score_indicators")
-player = NodePath("../player")
-
-[node name="appearScore3" parent="." unique_id=907180667 node_paths=PackedStringArray("score_indicators", "player") instance=ExtResource("11_5cypo")]
-position = Vector2(752, -78)
-wantedFrame = 3
-score_indicators = NodePath("../score_indicators")
-player = NodePath("../player")
-
-[node name="appearScore2" parent="." unique_id=2000685267 node_paths=PackedStringArray("score_indicators", "player") instance=ExtResource("11_5cypo")]
-position = Vector2(809, 70)
-wantedFrame = 2
-score_indicators = NodePath("../score_indicators")
-player = NodePath("../player")
-
-[node name="appearScore1" parent="." unique_id=1283690543 node_paths=PackedStringArray("score_indicators", "player") instance=ExtResource("11_5cypo")]
-position = Vector2(825, 225)
-wantedFrame = 1
-score_indicators = NodePath("../score_indicators")
-player = NodePath("../player")
-
-[node name="appearScore6" parent="." unique_id=1742052733 node_paths=PackedStringArray("score_indicators", "player") instance=ExtResource("11_5cypo")]
-position = Vector2(548, -315)
-wantedFrame = 5
-score_indicators = NodePath("../score_indicators")
-player = NodePath("../player")
-
+[connection signal="timeout" from="impact_timer" to="." method="_on_impact_timer_timeout"]
 [connection signal="timeout" from="start_timer" to="." method="_throw_ball"]
 [connection signal="timeout" from="reset_timer" to="." method="_on_reset_timer_timeout"]
 [connection signal="body_entered" from="qte_area" to="." method="_ball_entered_qte_range"]
