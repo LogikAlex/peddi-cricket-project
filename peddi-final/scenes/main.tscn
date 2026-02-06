@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dhn7kaoy532to"]
+
+[ext_resource type="Script" uid="uid://b27luhxxl6bxg" path="res://scripts/main.gd" id="1_0wfyh"]
+[ext_resource type="VideoStream" uid="uid://qsj4lqjg8wv" path="res://assets/videos/player_swing.ogv" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bd462g818nfsu" path="res://scenes/hud.tscn" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://c1dku1tttn0va" path="res://scenes/ball.tscn" id="3_sugp2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sugp2"]
+rough = true
+bounce = 0.4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
+size = Vector2(20, 880)
+
+[node name="Main" type="Node2D" unique_id=899306341]
+script = ExtResource("1_0wfyh")
+
+[node name="Player" type="VideoStreamPlayer" parent="." unique_id=52331485]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_0wfyh")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1664830659]
+position = Vector2(-75, 0)
+zoom = Vector2(0.73, 0.73)
+
+[node name="HUD" parent="." unique_id=1881508306 instance=ExtResource("3_jyhfs")]
+
+[node name="Ball" parent="." unique_id=442528928 instance=ExtResource("3_sugp2")]
+position = Vector2(2732, -744)
+mass = 0.16
+physics_material_override = SubResource("PhysicsMaterial_sugp2")
+freeze = true
+
+[node name="Boundaries" type="StaticBody2D" parent="." unique_id=1762209954]
+position = Vector2(0, -195)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boundaries" unique_id=895300041]
+polygon = PackedVector2Array(-1367, 491, -1434, -366, -1392, -366, -1321, 491, 1191, 491, 1191, 538, -1362, 538)
+
+[node name="QTEStartArea" type="Area2D" parent="." unique_id=770496423]
+position = Vector2(584, 11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QTEStartArea" unique_id=224987933]
+position = Vector2(0, -134)
+shape = SubResource("RectangleShape2D_jyhfs")
+
+[node name="ImpactTimer" type="Timer" parent="." unique_id=810321093]
+wait_time = 3.785
+one_shot = true
+
+[connection signal="body_entered" from="QTEStartArea" to="." method="_ball_entered"]
+[connection signal="timeout" from="ImpactTimer" to="." method="_impact"]

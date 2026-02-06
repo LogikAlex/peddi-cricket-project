@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c1dku1tttn0va"]
+
+[ext_resource type="Texture2D" uid="uid://cjdns7ogegrum" path="res://assets/sprites/ball-sprite.png" id="1_7s4qf"]
+[ext_resource type="Script" uid="uid://6wgjtxfuhiki" path="res://scripts/quickTimeEvent.gd" id="1_f7cbr"]
+[ext_resource type="Texture2D" uid="uid://b6w523qnt2eji" path="res://assets/sprites/qte_indicator.png" id="2_cxlvu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cxlvu"]
+radius = 12.0
+
+[node name="Ball" type="RigidBody2D" unique_id=442528928 groups=["Ball"]]
+script = ExtResource("1_f7cbr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=683862482]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_7s4qf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1854609600]
+shape = SubResource("CircleShape2D_cxlvu")
+
+[node name="QTE" type="Node2D" parent="." unique_id=302041007]
+
+[node name="perfect" type="Sprite2D" parent="QTE" unique_id=931771721]
+modulate = Color(1, 1, 0, 1)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("2_cxlvu")
+
+[node name="current" type="Sprite2D" parent="QTE" unique_id=888983399]
+scale = Vector2(-0.085, -0.085)
+texture = ExtResource("2_cxlvu")
