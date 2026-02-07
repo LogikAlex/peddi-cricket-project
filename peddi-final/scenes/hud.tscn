@@ -4,10 +4,21 @@
 [ext_resource type="Script" uid="uid://bkpml3d0kq8wl" path="res://scripts/hud.gd" id="1_oo0fn"]
 [ext_resource type="Texture2D" uid="uid://b0gv20cwm61ih" path="res://assets/sprites/black.png" id="3_5ysmq"]
 [ext_resource type="Texture2D" uid="uid://btymqn28gb7bp" path="res://assets/sprites/scores_sheet.png" id="4_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://c7q3gy8s6hc51" path="res://assets/sprites/Untitled264_20260207184634.png" id="4_047uy"]
+[ext_resource type="Texture2D" uid="uid://bckwg86ps6vpw" path="res://assets/sprites/white.png" id="4_uo2fv"]
+[ext_resource type="FontFile" uid="uid://bboyct0k3yax6" path="res://assets/fonts/mont/Mont-HeavyDEMO.otf" id="7_5pdws"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oo0fn"]
 font = ExtResource("1_ahhtf")
 font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_hd3ao"]
+font = ExtResource("7_5pdws")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_5pdws"]
+font = ExtResource("7_5pdws")
+font_size = 52
 
 [node name="HUD" type="CanvasLayer" unique_id=1881508306]
 script = ExtResource("1_oo0fn")
@@ -29,13 +40,101 @@ label_settings = SubResource("LabelSettings_oo0fn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BlackBar" type="Sprite2D" parent="." unique_id=344397300]
-position = Vector2(511.99997, 51.000008)
-scale = Vector2(64.12499, 6.5000005)
+[node name="downHUD" type="Node2D" parent="." unique_id=1073630499]
+position = Vector2(0, 7)
+
+[node name="Untitled26420260207184634" type="Sprite2D" parent="downHUD" unique_id=655684406]
+modulate = Color(0.606085, 0.60608506, 0.606085, 1)
+position = Vector2(641.5, 658)
+scale = Vector2(1.4483334, 0.7130435)
+texture = ExtResource("4_047uy")
+
+[node name="White2" type="Sprite2D" parent="downHUD" unique_id=1055125799]
+position = Vector2(644, 618.5)
+scale = Vector2(895.99994, 3.000012)
+texture = ExtResource("4_uo2fv")
+
+[node name="White3" type="Sprite2D" parent="downHUD" unique_id=1498898924]
+position = Vector2(640, 680.5)
+scale = Vector2(3.9999812, 126.999954)
+texture = ExtResource("4_uo2fv")
+
+[node name="White5" type="Sprite2D" parent="downHUD" unique_id=34545079]
+position = Vector2(853.00006, 680.5)
+scale = Vector2(3.9999812, 126.999954)
+texture = ExtResource("4_uo2fv")
+
+[node name="White4" type="Sprite2D" parent="downHUD" unique_id=1944245574]
+position = Vector2(427.00006, 680.5)
+scale = Vector2(3.9999812, 126.999954)
+texture = ExtResource("4_uo2fv")
+
+[node name="BlackBars" type="Node2D" parent="." unique_id=842744923]
+
+[node name="BlackBar" type="Sprite2D" parent="BlackBars" unique_id=344397300]
+position = Vector2(640, 39.5)
+scale = Vector2(80.125, 5.0624995)
+texture = ExtResource("3_5ysmq")
+
+[node name="BlackBar4" type="Sprite2D" parent="BlackBars" unique_id=233605904]
+visible = false
+position = Vector2(640, 681)
+scale = Vector2(80.125, 5.0624995)
+texture = ExtResource("3_5ysmq")
+
+[node name="BlackBar2" type="Sprite2D" parent="BlackBars" unique_id=100469335]
+position = Vector2(85.500015, 360)
+scale = Vector2(16, 45.125)
+texture = ExtResource("3_5ysmq")
+
+[node name="BlackBar3" type="Sprite2D" parent="BlackBars" unique_id=2049991706]
+position = Vector2(1194, 359.99997)
+scale = Vector2(16, 45.125)
 texture = ExtResource("3_5ysmq")
 
 [node name="Scores" type="Sprite2D" parent="." unique_id=2005825335]
-position = Vector2(590, 361.28128)
-scale = Vector2(0.48466438, 0.48466438)
+position = Vector2(658, 345.00003)
+rotation = -0.081946194
+scale = Vector2(0.4572772, 0.4572772)
 texture = ExtResource("4_6fi6k")
 vframes = 6
+
+[node name="Runs" type="Label" parent="." unique_id=1195033595]
+offset_left = 254.0
+offset_top = 646.0
+offset_right = 387.0
+offset_bottom = 709.0
+text = "RUNS:
+0"
+label_settings = SubResource("LabelSettings_hd3ao")
+horizontal_alignment = 1
+
+[node name="Balls" type="Label" parent="." unique_id=1698694877]
+offset_left = 647.0
+offset_top = 646.0
+offset_right = 846.0
+offset_bottom = 709.0
+text = "BALLS LEFT:
+6"
+label_settings = SubResource("LabelSettings_hd3ao")
+horizontal_alignment = 1
+
+[node name="Swing" type="Label" parent="." unique_id=1670408449]
+offset_left = 862.0
+offset_top = 647.0
+offset_right = 1061.0
+offset_bottom = 710.0
+text = "SWING"
+label_settings = SubResource("LabelSettings_5pdws")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="." unique_id=923594675]
+offset_left = 434.0
+offset_top = 646.0
+offset_right = 633.0
+offset_bottom = 709.0
+text = "SCORE: 
+0"
+label_settings = SubResource("LabelSettings_hd3ao")
+horizontal_alignment = 1

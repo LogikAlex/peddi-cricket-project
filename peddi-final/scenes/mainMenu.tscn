@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://bhodabd7sp28a"]
+
+[ext_resource type="Texture2D" uid="uid://b0gv20cwm61ih" path="res://assets/sprites/black.png" id="1_3d1i7"]
+[ext_resource type="Script" uid="uid://bxo4sseirb5o8" path="res://scenes/mainMenu.gd" id="1_l7wge"]
+[ext_resource type="Texture2D" uid="uid://k17si5cahu3n" path="res://assets/sprites/peddi-logo.jpg" id="1_qkhwq"]
+[ext_resource type="FontFile" uid="uid://cjrb1neid7al0" path="res://assets/fonts/coolvetica/Coolvetica Rg Cond.otf" id="3_48ign"]
+
+[node name="MainMenu" type="Node2D" unique_id=1444312577]
+script = ExtResource("1_l7wge")
+
+[node name="blackBG" type="Sprite2D" parent="." unique_id=640403037]
+scale = Vector2(80.12501, 45.125)
+texture = ExtResource("1_3d1i7")
+
+[node name="PeddiLogo" type="Sprite2D" parent="." unique_id=464338197]
+position = Vector2(0, -120.00001)
+scale = Vector2(0.325, 0.325)
+texture = ExtResource("1_qkhwq")
+
+[node name="PlayButton" type="Button" parent="." unique_id=380341610]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = 36.0
+offset_right = 138.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_48ign")
+theme_override_font_sizes/font_size = 40
+text = "PLAY"
+
+[node name="CreditsButton" type="Button" parent="." unique_id=601101252]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = 132.0
+offset_right = 138.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_48ign")
+theme_override_font_sizes/font_size = 40
+text = "CREDITS"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1543040928]
+
+[node name="blackScreen" type="Sprite2D" parent="." unique_id=1756326788]
+scale = Vector2(80.12501, 45.125)
+texture = ExtResource("1_3d1i7")
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

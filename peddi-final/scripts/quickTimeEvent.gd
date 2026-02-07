@@ -59,7 +59,7 @@ func clickSwing():
 	outTween.tween_property(qte_current_circle, "modulate:a", 0, 0.1)
 	outTween.tween_property(qte_current_circle, "scale", start_size, 0.1)
 	
-	outTween.tween_property(camera, "zoom", Vector2(0.73, 0.73), 0.1).set_trans(Tween.TRANS_CUBIC)
+	outTween.tween_property(camera, "zoom", Vector2(0.7, 0.7), 0.1).set_trans(Tween.TRANS_CUBIC)
 
 func checkMiss():
 	if missed and qteEnded:
@@ -92,5 +92,5 @@ func startQTE():
 	qteTween.tween_property($".", "qteEnded", true, 0).set_delay(qte_time)
 	
 	qteTween.tween_property(camera, "zoom", Vector2(0.85, 0.85), qte_time)
-	qteTween.tween_property(camera, "position", Vector2(-250, 0.0), qte_time)
+	qteTween.tween_property(camera, "position", Vector2(-250, 0.0), qte_time/1.7).set_trans(Tween.TRANS_QUAD)
 	

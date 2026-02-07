@@ -7,7 +7,7 @@ extends Node2D
 @onready var scores: Sprite2D = $HUD.get_node("Scores")
 @onready var qteArea: Area2D = $QTEStartArea
 
-var camera_far_right_pos: Vector2 = Vector2(246.0, 0.0)
+var camera_far_right_pos: Vector2 = Vector2(400.0, 63.0)
 
 var launched_ball = false
 var impact = false
@@ -49,7 +49,7 @@ func handleHittingBall():
 func cameraShake(isPerfect: bool):
 	var camShakeTween = create_tween()
 	var camMoveTween = create_tween()
-	camMoveTween.tween_property(camera, "position", Vector2(0.0, 0.0), 0.4).set_trans(Tween.TRANS_CUBIC)
+	camMoveTween.tween_property(camera, "position", Vector2(240.0, 0.0), 0.4).set_trans(Tween.TRANS_CUBIC)
 	if isPerfect:
 		camShakeTween.tween_property(camera, "offset", Vector2(-40, 20.0), 0.05)
 		camShakeTween.tween_property(camera, "offset", Vector2(40, 0.0), 0.1)
@@ -67,12 +67,11 @@ func startSequence():
 	
 	var startTween = create_tween()
 	startTween.set_parallel()
-	startTween.tween_property(camera, "position", Vector2(-75.0, 0.0), 1.0).set_trans(Tween.TRANS_CUBIC)
 	startTween.tween_property(scores, "modulate:a", 1, 1.0).set_trans(Tween.TRANS_CUBIC).set_delay(4.5)
 	startTween.tween_callback(
 	func end():
 		launchBall(Vector2(-320, 50))
-	).set_delay(2)
+	).set_delay(2.0)
 
 func launchBall(impulse: Vector2):
 	if !launched_ball:

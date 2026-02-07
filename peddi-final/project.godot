@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="peddi-final"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="uid://bhodabd7sp28a"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
@@ -21,8 +21,9 @@ Globals="*uid://cuktslfkup2hs"
 
 [display]
 
-window/size/viewport_width=1024
-window/size/viewport_height=768
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [global_group]

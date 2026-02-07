@@ -31,8 +31,8 @@ stream = ExtResource("2_0wfyh")
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1664830659]
-position = Vector2(-75, 0)
-zoom = Vector2(0.73, 0.73)
+position = Vector2(400, 93)
+zoom = Vector2(0.84, 0.84)
 
 [node name="HUD" parent="." unique_id=1881508306 instance=ExtResource("3_jyhfs")]
 
