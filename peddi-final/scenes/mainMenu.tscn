@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bhodabd7sp28a"]
 
 [ext_resource type="Texture2D" uid="uid://b0gv20cwm61ih" path="res://assets/sprites/black.png" id="1_3d1i7"]
-[ext_resource type="Script" uid="uid://bxo4sseirb5o8" path="res://scenes/mainMenu.gd" id="1_l7wge"]
+[ext_resource type="Script" uid="uid://bxo4sseirb5o8" path="res://scripts/mainMenu.gd" id="1_l7wge"]
 [ext_resource type="Texture2D" uid="uid://k17si5cahu3n" path="res://assets/sprites/peddi-logo.jpg" id="1_qkhwq"]
 [ext_resource type="FontFile" uid="uid://cjrb1neid7al0" path="res://assets/fonts/coolvetica/Coolvetica Rg Cond.otf" id="3_48ign"]
 
@@ -59,6 +59,7 @@ text = "CREDITS"
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1543040928]
 
 [node name="blackScreen" type="Sprite2D" parent="." unique_id=1756326788]
+visible = false
 scale = Vector2(80.12501, 45.125)
 texture = ExtResource("1_3d1i7")
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dxt8x8nqspv1n"]
 
 [ext_resource type="VideoStream" uid="uid://bhdb12ahohaji" path="res://assets/videos/Intro scene peddi game.ogv" id="1_ioskq"]
-[ext_resource type="Script" uid="uid://lpu8ovkecgss" path="res://scenes/intro.gd" id="1_yjqpq"]
+[ext_resource type="Script" uid="uid://lpu8ovkecgss" path="res://scripts/intro.gd" id="1_yjqpq"]
 
 [node name="Intro" type="Node2D" unique_id=1858654564]
 script = ExtResource("1_yjqpq")

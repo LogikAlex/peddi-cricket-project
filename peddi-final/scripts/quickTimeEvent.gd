@@ -2,7 +2,7 @@ extends RigidBody2D
 
 @onready var qte_current_circle: Sprite2D = $QTE/current
 @onready var qte_perfect_circle: Sprite2D = $QTE/perfect
-
+@onready var swingLabel: Node2D = $Node2D
 @onready var camera: Camera2D = $"../Camera2D"
 
 var start_size: Vector2 = Vector2(0.085, 0.085)
@@ -28,10 +28,13 @@ var qteEnded = false
 
 func _ready() -> void:
 	qte_current_circle.scale = start_size
+	swingLabel.modulate.a = 0
 	qte_current_circle.modulate.a = 0
 	qte_perfect_circle.modulate.a = 0
 
 func _process(_delta: float) -> void:
+	swingLabel.global_rotation = 0
+	
 	if qte_current_circle.scale <= perfect_max_size\
 	and qte_current_circle.scale >= perfect_min_size:
 		perfect = true
@@ -51,15 +54,18 @@ func _process(_delta: float) -> void:
 func clickSwing():
 	checkIfHit()
 	
+	Engine.time_scale = 1.0
 	qteTween.kill()
 	
 	outTween = create_tween()
 	outTween.set_parallel()
 	outTween.tween_property(qte_perfect_circle, "modulate:a", 0, 0.1)
 	outTween.tween_property(qte_current_circle, "modulate:a", 0, 0.1)
-	outTween.tween_property(qte_current_circle, "scale", start_size, 0.1)
+	outTween.tween_property(swingLabel, "modulate:a", 0, 0.1)
+	outTween.tween_property(qte_current_circle, "scale", start_size, 0.15)
 	
-	outTween.tween_property(camera, "zoom", Vector2(0.7, 0.7), 0.1).set_trans(Tween.TRANS_CUBIC)
+	outTween.tween_property(camera, "zoom", Vector2(0.84, 0.84), 0.2).set_trans(Tween.TRANS_QUAD)
+	outTween.tween_property(camera, "position", Vector2(-127, 40.0), 0.2)
 
 func checkMiss():
 	if missed and qteEnded:
@@ -74,23 +80,31 @@ func checkIfHit():
 		Globals.lateHit = true
 
 func startQTE():
-	Engine.time_scale = 0.3
+	Engine.time_scale = 0.2
 	
 	qteTween = create_tween()
 	qteTween.set_parallel()
 	
-	qteTween.tween_property($".", "canClick", true, 0).set_delay(0.05)
+	qteTween.tween_property($".", "canClick", true, 0).set_delay(0.1)
 	
+	qteTween.tween_property(swingLabel, "modulate:a", 1, 0.1)
 	qteTween.tween_property(qte_perfect_circle, "modulate:a", 1, 0.1)
 	qteTween.tween_property(qte_current_circle, "modulate:a", 1, 0.1)
 	
 	qteTween.tween_property(qte_current_circle, "scale", end_size, qte_time)
+	qteTween.tween_property(swingLabel, "modulate:a", 0, 0.1).set_delay(qte_time)
 	qteTween.tween_property(qte_current_circle, "modulate:a", 0, 0.1).set_delay(qte_time)
 	qteTween.tween_property(qte_perfect_circle, "modulate:a", 0, 0.1).set_delay(qte_time)
 	qteTween.tween_property($".", "canClick", false, 0).set_delay(qte_time)
-	qteTween.tween_property(camera, "zoom", Vector2(0.73, 0.73), 0.4).set_delay(qte_time).set_ease(Tween.EASE_OUT)
+	qteTween.tween_property(camera, "zoom", Vector2(0.84, 0.84), 0.4).set_delay(qte_time).set_ease(Tween.EASE_OUT)
 	qteTween.tween_property($".", "qteEnded", true, 0).set_delay(qte_time)
 	
-	qteTween.tween_property(camera, "zoom", Vector2(0.85, 0.85), qte_time)
-	qteTween.tween_property(camera, "position", Vector2(-250, 0.0), qte_time/1.7).set_trans(Tween.TRANS_QUAD)
+	qteTween.tween_property(camera, "zoom", Vector2(1.5, 1.5), qte_time)
+	#qteTween.tween_property(camera, "position", Vector2(70.0, 0.0), qte_time)
+	qteTween.tween_property(camera, "zoom", Vector2(0.84, 0.84), 0.4).set_delay(qte_time + 0.8).set_trans(Tween.TRANS_CUBIC)
+	qteTween.tween_property(camera, "position", Vector2(165, 0.0), 0.4).set_delay(qte_time + 0.8).set_trans(Tween.TRANS_CUBIC)
+	qteTween.tween_callback(
+	func missed():
+		Engine.time_scale = 1
+	).set_delay(qte_time)
 	

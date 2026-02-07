@@ -1,8 +1,9 @@
 extends Node
 
 var pressure = 0.0
-var ballNum = 0
+var ballsLeft = 12
 var runs = 0
+var score = 0
 
 var perfectHit = false
 var earlyHit = false

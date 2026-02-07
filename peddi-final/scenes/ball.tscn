@@ -3,14 +3,20 @@
 [ext_resource type="Texture2D" uid="uid://cjdns7ogegrum" path="res://assets/sprites/ball-sprite.png" id="1_7s4qf"]
 [ext_resource type="Script" uid="uid://6wgjtxfuhiki" path="res://scripts/quickTimeEvent.gd" id="1_f7cbr"]
 [ext_resource type="Texture2D" uid="uid://b6w523qnt2eji" path="res://assets/sprites/qte_indicator.png" id="2_cxlvu"]
+[ext_resource type="FontFile" uid="uid://d3ksgegvl0obf" path="res://assets/fonts/bebas_neue/BebasNeue-Regular.otf" id="4_4dx81"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cxlvu"]
 radius = 12.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_eew57"]
+font = ExtResource("4_4dx81")
+font_size = 55
 
 [node name="Ball" type="RigidBody2D" unique_id=442528928 groups=["Ball"]]
 script = ExtResource("1_f7cbr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=683862482]
+modulate = Color(0.93945575, 0.7956027, 0.68194187, 1)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_7s4qf")
 
@@ -27,3 +33,15 @@ texture = ExtResource("2_cxlvu")
 [node name="current" type="Sprite2D" parent="QTE" unique_id=888983399]
 scale = Vector2(-0.085, -0.085)
 texture = ExtResource("2_cxlvu")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=701661518]
+
+[node name="swingLabel" type="Label" parent="Node2D" unique_id=206540411]
+offset_left = -60.0
+offset_top = -141.0
+offset_right = 60.0
+offset_bottom = -73.0
+text = "SWING!"
+label_settings = SubResource("LabelSettings_eew57")
+horizontal_alignment = 1
+vertical_alignment = 1
