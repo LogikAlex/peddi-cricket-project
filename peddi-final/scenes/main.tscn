@@ -56,7 +56,7 @@ position = Vector2(0, -134)
 shape = SubResource("RectangleShape2D_jyhfs")
 
 [node name="ImpactTimer" type="Timer" parent="." unique_id=810321093]
-wait_time = 3.7399999999999998
+wait_time = 3.74
 one_shot = true
 
 [connection signal="body_entered" from="QTEStartArea" to="." method="_ball_entered"]

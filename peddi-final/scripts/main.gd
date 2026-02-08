@@ -76,7 +76,7 @@ func handleHittingBall():
 
 func showScores():
 	var tween = create_tween()
-	tween.tween_property(scores, "modulate:a", 1, 1.0).set_trans(Tween.TRANS_CUBIC).set_delay(1.5)
+	tween.tween_property(scores, "modulate:a", 1.0, 0.2).set_trans(Tween.TRANS_QUAD)
 	tween.tween_callback(
 	func end():
 		resetLevel()

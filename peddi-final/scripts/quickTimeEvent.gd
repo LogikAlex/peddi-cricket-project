@@ -54,7 +54,6 @@ func _process(_delta: float) -> void:
 func clickSwing():
 	checkIfHit()
 	
-	Engine.time_scale = 1.0
 	qteTween.kill()
 	
 	outTween = create_tween()
@@ -64,8 +63,13 @@ func clickSwing():
 	outTween.tween_property(swingLabel, "modulate:a", 0, 0.1)
 	outTween.tween_property(qte_current_circle, "scale", start_size, 0.15)
 	
-	outTween.tween_property(camera, "zoom", Vector2(0.84, 0.84), 0.2).set_trans(Tween.TRANS_QUAD)
-	outTween.tween_property(camera, "position", Vector2(-127, 40.0), 0.2)
+	outTween.tween_property(camera, "zoom", Vector2(0.84, 0.84), 0.1).set_trans(Tween.TRANS_QUAD)
+	outTween.tween_property(camera, "position", Vector2(-127, 40.0), 0.5).set_delay(0.1).set_trans(Tween.TRANS_QUAD)
+	
+	outTween.tween_callback(
+	func end():
+		Engine.time_scale = 1.0
+	).set_delay(0.1)
 
 func checkMiss():
 	if missed and qteEnded:
@@ -85,7 +89,7 @@ func startQTE():
 	qteTween = create_tween()
 	qteTween.set_parallel()
 	
-	qteTween.tween_property($".", "canClick", true, 0).set_delay(0.1)
+	qteTween.tween_property($".", "canClick", true, 0).set_delay(0.05)
 	
 	qteTween.tween_property(swingLabel, "modulate:a", 1, 0.1)
 	qteTween.tween_property(qte_perfect_circle, "modulate:a", 1, 0.1)
