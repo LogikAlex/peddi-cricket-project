@@ -13,8 +13,7 @@ var end_size: Vector2 = Vector2(0.01, 0.01)
 var qteTween: Tween
 var outTween: Tween
 
-var qte_time = 0.6
-var perfect_window = 0.15
+var qte_time = 0.6 - Globals.pressure
 
 var canClick = false
 

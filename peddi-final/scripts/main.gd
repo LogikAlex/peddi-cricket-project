@@ -16,6 +16,8 @@ var impact = false
 var chance: int
 
 func _ready() -> void:
+	Globals.pressure += 0.03
+	
 	chance = randi_range(0, 1)
 	
 	Globals.runs = 0
@@ -47,32 +49,31 @@ func handleHittingBall():
 	if Globals.perfectHit:
 		cameraShake(true)
 		showScores()
-		if chance == 0:
-			Globals.runs = 6
-			Globals.score += 6
-			ball.apply_impulse(Vector2(600, -250))
-		if chance == 1:
-			Globals.runs = 4
-			Globals.score += 4
-			ball.apply_impulse(Vector2(550, -150))
-		
+		Globals.runs = 6
+		Globals.score += 6
+		ball.apply_impulse(Vector2(650, -225))
 	if Globals.earlyHit:
 		cameraShake(false)
 		showScores()
 		if chance == 0:
 			Globals.runs = 2
 			Globals.score += 2
-			ball.apply_impulse(Vector2(500, -100))
+			ball.apply_impulse(Vector2(600, -65))
 		if chance == 1:
 			Globals.runs = 1
 			Globals.score += 1
-			ball.apply_impulse(Vector2(500, -50))
+			ball.apply_impulse(Vector2(650, -20))
 	if Globals.lateHit:
 		cameraShake(false)
 		showScores()
-		Globals.runs = 3
-		Globals.score += 3
-		ball.apply_impulse(Vector2(550, -100))
+		if chance == 1:
+			Globals.runs = 4
+			Globals.score += 4
+			ball.apply_impulse(Vector2(650, -160))
+		if chance == 0:
+			Globals.runs = 3
+			Globals.score += 3
+			ball.apply_impulse(Vector2(550, -100))
 
 func showScores():
 	var tween = create_tween()
