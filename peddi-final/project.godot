@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="peddi-final"
-run/main_scene="uid://dhn7kaoy532to"
+run/main_scene="uid://bhodabd7sp28a"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 

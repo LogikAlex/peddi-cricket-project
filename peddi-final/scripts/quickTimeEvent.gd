@@ -62,7 +62,7 @@ func clickSwing():
 	outTween.tween_property(swingLabel, "modulate:a", 0, 0.1)
 	outTween.tween_property(qte_current_circle, "scale", start_size, 0.15)
 	
-	outTween.tween_property(camera, "zoom", Vector2(0.84, 0.84), 0.1).set_trans(Tween.TRANS_QUAD)
+	outTween.tween_property(camera, "zoom", Vector2(0.83, 0.83), 0.1).set_trans(Tween.TRANS_QUAD)
 	outTween.tween_property(camera, "position", Vector2(-127, 40.0), 0.5).set_delay(0.1).set_trans(Tween.TRANS_QUAD)
 	
 	outTween.tween_callback(

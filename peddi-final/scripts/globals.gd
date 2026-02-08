@@ -1,5 +1,7 @@
 extends Node
 
+var canUpdateScoreArc = false
+
 var pressure = 0.0
 var ballsLeft = 12
 var runs = 0

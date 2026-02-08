@@ -4,60 +4,36 @@
 [ext_resource type="VideoStream" uid="uid://qsj4lqjg8wv" path="res://assets/videos/player_swing.ogv" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://bd462g818nfsu" path="res://scenes/hud.tscn" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://c1dku1tttn0va" path="res://scenes/ball.tscn" id="3_sugp2"]
-[ext_resource type="Resource" uid="uid://cslvcweyejh3c" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_movement_component.tres" id="5_muem4"]
-[ext_resource type="Resource" uid="uid://iru8ynu04i00" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_rotation_component.tres" id="6_dp3eg"]
-[ext_resource type="Resource" uid="uid://rp3mpjmisoyh" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_object_movement_component.tres" id="7_0ld40"]
-[ext_resource type="Resource" uid="uid://c8ulad7utgrg7" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/pre_blur_processing_stage.tres" id="8_gqmmt"]
-[ext_resource type="Script" uid="uid://c55clkhnqpv6c" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/pre_blur_processor.gd" id="9_yc10j"]
-[ext_resource type="Resource" uid="uid://ca45noqewsyvp" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_experimental_blur_stage.tres" id="10_jscy8"]
-[ext_resource type="Resource" uid="uid://cvb65hfs2lrxo" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_neighbor_max_stage.tres" id="11_pm3ni"]
-[ext_resource type="Resource" uid="uid://bidsfymvdyhek" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_overlay_stage.tres" id="12_y6deb"]
-[ext_resource type="Script" uid="uid://dtsd2cwe7kmqm" path="res://addons/SphynxMotionBlurToolkit/Guertin/new_guertin_motion_blur.gd" id="13_og1vs"]
-[ext_resource type="Resource" uid="uid://dipvwksvqb3dm" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_tile_max_x_stage.tres" id="14_2wyq8"]
-[ext_resource type="Resource" uid="uid://bxfg45ubc2pv7" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_tile_max_y_stage.tres" id="15_vxglm"]
-[ext_resource type="Resource" uid="uid://bqehecsdgt70s" path="res://addons/SphynxMotionBlurToolkit/Guertin/guertin_tile_variance_stage.tres" id="16_2f3dj"]
-[ext_resource type="Script" uid="uid://2nxv1ak3gl1i" path="res://addons/SphynxMotionBlurToolkit/BaseClasses/mb_compositor.gd" id="17_yq6so"]
+[ext_resource type="Script" uid="uid://dld1calg86ikj" path="res://scenes/hit_area_1.gd" id="5_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://c1fkujh81uytv" path="res://assets/sprites/hitMarker.png" id="6_tipki"]
+[ext_resource type="Texture2D" uid="uid://c8ycvanyt80ek" path="res://assets/sprites/Scores.png" id="7_85g3d"]
+[ext_resource type="Texture2D" uid="uid://cjdns7ogegrum" path="res://assets/sprites/ball-sprite.png" id="8_85g3d"]
 
 [sub_resource type="Environment" id="Environment_muem4"]
+background_mode = 3
 
-[sub_resource type="CompositorEffect" id="CompositorEffect_muem4"]
-resource_local_to_scene = false
-resource_name = ""
-enabled = true
-effect_callback_type = 4
-needs_motion_vectors = false
-needs_normal_roughness = false
-script = ExtResource("9_yc10j")
-metadata/_custom_type_script = "uid://c55clkhnqpv6c"
-
-[sub_resource type="CompositorEffect" id="CompositorEffect_dp3eg"]
-resource_local_to_scene = false
-resource_name = ""
-enabled = true
-effect_callback_type = 4
-needs_motion_vectors = false
-needs_normal_roughness = false
-script = ExtResource("13_og1vs")
-metadata/_custom_type_script = "uid://dtsd2cwe7kmqm"
-
-[sub_resource type="Compositor" id="Compositor_0ld40"]
-compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_muem4"), SubResource("CompositorEffect_dp3eg")])
-script = ExtResource("17_yq6so")
-metadata/_custom_type_script = "uid://2nxv1ak3gl1i"
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_jyhfs"]
+dof_blur_near_enabled = true
+dof_blur_near_distance = 0.01
+dof_blur_near_transition = -1.0
+dof_blur_amount = 1.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sugp2"]
 rough = true
-bounce = 0.42
+bounce = 0.53
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
 size = Vector2(20, 880)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_choun"]
+radius = 42.0
 
 [node name="Main" type="Node2D" unique_id=899306341]
 script = ExtResource("1_0wfyh")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1921685860]
 environment = SubResource("Environment_muem4")
-compositor = SubResource("Compositor_0ld40")
+camera_attributes = SubResource("CameraAttributesPractical_jyhfs")
 
 [node name="Player" type="VideoStreamPlayer" parent="." unique_id=52331485]
 anchors_preset = 8
@@ -87,7 +63,7 @@ physics_material_override = SubResource("PhysicsMaterial_sugp2")
 freeze = true
 
 [node name="Boundaries" type="StaticBody2D" parent="." unique_id=1762209954]
-position = Vector2(0, -208)
+position = Vector2(-3, -173)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boundaries" unique_id=895300041]
 polygon = PackedVector2Array(-1367, 491, -1434, -366, -1392, -366, -1321, 491, 2547, 491, 2547, 538, -1362, 538)
@@ -100,8 +76,95 @@ position = Vector2(0, -134)
 shape = SubResource("RectangleShape2D_jyhfs")
 
 [node name="ImpactTimer" type="Timer" parent="." unique_id=810321093]
-wait_time = 3.7449999999999997
+wait_time = 3.745
 one_shot = true
+
+[node name="Scores" type="Sprite2D" parent="." unique_id=1988077705]
+z_index = 2
+position = Vector2(348, 34)
+scale = Vector2(0.89531267, 0.8953125)
+texture = ExtResource("7_85g3d")
+
+[node name="HitArea1" type="Area2D" parent="." unique_id=918610828]
+z_index = 2
+position = Vector2(797, 261)
+script = ExtResource("5_o6xl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea1" unique_id=1838270180]
+shape = SubResource("CircleShape2D_choun")
+
+[node name="HitMarker" type="Sprite2D" parent="HitArea1" unique_id=106491644]
+modulate = Color(0.92156863, 0.92156863, 0.92156863, 0.7529412)
+position = Vector2(-0.3999878, -0.40000916)
+scale = Vector2(0.176, 0.176)
+texture = ExtResource("6_tipki")
+
+[node name="HitArea2" type="Area2D" parent="." unique_id=1947053452]
+z_index = 2
+position = Vector2(822, 152)
+script = ExtResource("5_o6xl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2" unique_id=108290436]
+shape = SubResource("CircleShape2D_choun")
+
+[node name="HitMarker" type="Sprite2D" parent="HitArea2" unique_id=1820583641]
+modulate = Color(0.92156863, 0.92156863, 0.92156863, 0.7529412)
+position = Vector2(-0.3999878, -0.40000916)
+scale = Vector2(0.176, 0.176)
+texture = ExtResource("6_tipki")
+
+[node name="HitArea3" type="Area2D" parent="." unique_id=1517576890]
+z_index = 2
+position = Vector2(829, 36)
+script = ExtResource("5_o6xl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea3" unique_id=1361403352]
+shape = SubResource("CircleShape2D_choun")
+
+[node name="HitMarker" type="Sprite2D" parent="HitArea3" unique_id=1865271628]
+modulate = Color(0.92156863, 0.92156863, 0.92156863, 0.7529412)
+position = Vector2(-0.3999878, -0.40000916)
+scale = Vector2(0.176, 0.176)
+texture = ExtResource("6_tipki")
+
+[node name="HitArea4" type="Area2D" parent="." unique_id=62651791]
+z_index = 2
+position = Vector2(814, -83)
+script = ExtResource("5_o6xl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea4" unique_id=1164899446]
+shape = SubResource("CircleShape2D_choun")
+
+[node name="HitMarker" type="Sprite2D" parent="HitArea4" unique_id=126389688]
+modulate = Color(0.92156863, 0.92156863, 0.92156863, 0.7529412)
+position = Vector2(-0.3999878, -0.40000916)
+scale = Vector2(0.176, 0.176)
+texture = ExtResource("6_tipki")
+
+[node name="HitArea5" type="Area2D" parent="." unique_id=1970052592]
+z_index = 2
+position = Vector2(777, -196)
+script = ExtResource("5_o6xl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea5" unique_id=1468444115]
+shape = SubResource("CircleShape2D_choun")
+
+[node name="HitMarker" type="Sprite2D" parent="HitArea5" unique_id=1433303877]
+modulate = Color(0.92156863, 0.92156863, 0.92156863, 0.7529412)
+position = Vector2(-0.3999878, -0.40000916)
+scale = Vector2(0.176, 0.176)
+texture = ExtResource("6_tipki")
+
+[node name="ballShadow" type="Sprite2D" parent="." unique_id=567646751]
+modulate = Color(0, 0, 0, 0.42745098)
+position = Vector2(442, 319)
+scale = Vector2(0.1, 0.034285724)
+texture = ExtResource("8_85g3d")
 
 [connection signal="body_entered" from="QTEStartArea" to="." method="_ball_entered"]
 [connection signal="timeout" from="ImpactTimer" to="." method="_impact"]
+[connection signal="body_entered" from="HitArea1" to="HitArea1" method="_on_body_entered"]
+[connection signal="body_entered" from="HitArea2" to="HitArea2" method="_on_body_entered"]
+[connection signal="body_entered" from="HitArea3" to="HitArea3" method="_on_body_entered"]
+[connection signal="body_entered" from="HitArea4" to="HitArea4" method="_on_body_entered"]
+[connection signal="body_entered" from="HitArea5" to="HitArea5" method="_on_body_entered"]

@@ -3,9 +3,12 @@ extends Node2D
 @onready var player: VideoStreamPlayer = $Player
 @onready var camera: Camera2D = $Camera2D
 @onready var ball: RigidBody2D = $Ball
+@onready var ballShadow: Sprite2D = $ballShadow
 @onready var impactTimer: Timer = $ImpactTimer
-@onready var scores: Sprite2D = $HUD.get_node("Scores")
+@onready var scores: Sprite2D = $Scores
 @onready var qteArea: Area2D = $QTEStartArea
+
+@onready var blurEffect: ColorRect = $Ball.get_node("Blur")
 
 var camera_far_right_pos: Vector2 = Vector2(180.0, 50.0)
 var camera_far_left_pos: Vector2 = Vector2(-105.0, 50.0)
@@ -20,6 +23,7 @@ func _ready() -> void:
 	
 	chance = randi_range(0, 1)
 	
+	Globals.canUpdateScoreArc = false
 	Globals.runs = 0
 	Globals.missed = false
 	Globals.perfectHit = false
@@ -31,6 +35,8 @@ func _ready() -> void:
 	camera.position = camera_far_left_pos
 
 func _process(_delta: float) -> void:
+	ballShadow.position.x = ball.position.x
+	
 	if Globals.missed:
 		missed()
 	
@@ -38,6 +44,8 @@ func _process(_delta: float) -> void:
 		impact = false
 		
 		qteArea.free()
+		
+		Globals.canUpdateScoreArc = true
 		
 		handleHittingBall()
 		
@@ -58,22 +66,22 @@ func handleHittingBall():
 		if chance == 0:
 			Globals.runs = 2
 			Globals.score += 2
-			ball.apply_impulse(Vector2(600, -65))
+			ball.apply_impulse(Vector2(600, -100))
 		if chance == 1:
 			Globals.runs = 1
 			Globals.score += 1
-			ball.apply_impulse(Vector2(650, -20))
+			ball.apply_impulse(Vector2(650, -35))
 	if Globals.lateHit:
 		cameraShake(false)
 		showScores()
 		if chance == 1:
 			Globals.runs = 4
 			Globals.score += 4
-			ball.apply_impulse(Vector2(650, -160))
+			ball.apply_impulse(Vector2(650, -185))
 		if chance == 0:
 			Globals.runs = 3
 			Globals.score += 3
-			ball.apply_impulse(Vector2(550, -100))
+			ball.apply_impulse(Vector2(550, -140))
 
 func showScores():
 	var tween = create_tween()
@@ -81,7 +89,7 @@ func showScores():
 	tween.tween_callback(
 	func end():
 		resetLevel()
-	).set_delay(1.5)
+	).set_delay(2.5)
 
 func missed():
 	var tween = create_tween()
@@ -96,7 +104,10 @@ func resetLevel():
 func cameraShake(isPerfect: bool):
 	var camShakeTween = create_tween()
 	var camMoveTween = create_tween()
+	camMoveTween.set_parallel()
 	camMoveTween.tween_property(camera, "position", Vector2(170.0, 50.0), 0.4).set_trans(Tween.TRANS_CUBIC)
+	camMoveTween.tween_property(blurEffect.material, "shader_parameter/blur_amount", 2.5, 0.4).set_trans(Tween.TRANS_CUBIC)
+	camMoveTween.tween_property(blurEffect.material, "shader_parameter/blur_amount", 0.0, 0.4).set_trans(Tween.TRANS_CUBIC).set_delay(0.4)
 	if isPerfect:
 		camShakeTween.tween_property(camera, "offset", Vector2(-40, 20.0), 0.05)
 		camShakeTween.tween_property(camera, "offset", Vector2(40, 0.0), 0.1)

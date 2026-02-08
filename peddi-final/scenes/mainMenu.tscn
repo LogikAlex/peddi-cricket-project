@@ -59,7 +59,6 @@ text = "CREDITS"
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1543040928]
 
 [node name="blackScreen" type="Sprite2D" parent="." unique_id=1756326788]
-visible = false
 scale = Vector2(80.12501, 45.125)
 texture = ExtResource("1_3d1i7")
 
