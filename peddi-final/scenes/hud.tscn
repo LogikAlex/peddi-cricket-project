@@ -16,6 +16,10 @@ font_size = 91
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 0.4862745)
 
+[sub_resource type="LabelSettings" id="LabelSettings_0i1j5"]
+font = ExtResource("1_ahhtf")
+font_size = 51
+
 [sub_resource type="LabelSettings" id="LabelSettings_hd3ao"]
 font = ExtResource("7_5pdws")
 font_size = 25
@@ -31,6 +35,67 @@ shadow_color = Color(0, 0, 0, 0.44313726)
 
 [node name="HUD" type="CanvasLayer" unique_id=1881508306]
 script = ExtResource("1_oo0fn")
+
+[node name="EndScreen" type="Node2D" parent="." unique_id=2133961827]
+
+[node name="black" type="Sprite2D" parent="EndScreen" unique_id=719977530]
+modulate = Color(1, 1, 1, 0.34901962)
+position = Vector2(640, 360)
+scale = Vector2(80.125, 45.125)
+texture = ExtResource("3_5ysmq")
+
+[node name="Missed" type="Label" parent="EndScreen" unique_id=1432202762]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 537.5
+offset_top = 267.0
+offset_right = 742.5
+offset_bottom = 377.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Missed!"
+label_settings = SubResource("LabelSettings_oo0fn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Over" type="Label" parent="EndScreen" unique_id=1033999587]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 537.5
+offset_top = 267.0
+offset_right = 742.5
+offset_bottom = 377.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Round Over"
+label_settings = SubResource("LabelSettings_oo0fn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="EndScreen" unique_id=199794880]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 516.0
+offset_top = 337.0
+offset_right = 764.0
+offset_bottom = 447.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Score: 00"
+label_settings = SubResource("LabelSettings_0i1j5")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Countdown" type="Label" parent="." unique_id=2047067618]
 anchors_preset = 8
@@ -105,6 +170,7 @@ label_settings = SubResource("LabelSettings_hd3ao")
 horizontal_alignment = 1
 
 [node name="Swing" type="Label" parent="downHUD" unique_id=1670408449]
+visible = false
 offset_left = 1021.0
 offset_top = 605.0
 offset_right = 1220.0
@@ -155,3 +221,14 @@ texture = ExtResource("10_apjy4")
 position = Vector2(516, 411)
 scale = Vector2(0.79444444, 0.79444444)
 texture = ExtResource("11_5n1hp")
+
+[node name="SwingButton" type="Button" parent="." unique_id=1679432807]
+offset_left = 976.0
+offset_top = 632.0
+offset_right = 1273.0
+offset_bottom = 687.0
+theme_override_fonts/font = ExtResource("7_5pdws")
+theme_override_font_sizes/font_size = 41
+text = "SWING"
+
+[connection signal="pressed" from="SwingButton" to="." method="_on_swing_button_pressed"]

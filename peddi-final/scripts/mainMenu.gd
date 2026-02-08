@@ -4,6 +4,10 @@ extends Node2D
 
 func _ready() -> void:
 	fadeIn()
+	Globals.runs = 0
+	Globals.ballsLeft = 12
+	Globals.score = 0
+	Globals.pressure = 0
 
 func _on_play_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main.tscn")

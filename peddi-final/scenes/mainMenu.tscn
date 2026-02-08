@@ -13,7 +13,7 @@ scale = Vector2(80.12501, 45.125)
 texture = ExtResource("1_3d1i7")
 
 [node name="PeddiLogo" type="Sprite2D" parent="." unique_id=464338197]
-position = Vector2(0, -120.00001)
+position = Vector2(0, -46.000008)
 scale = Vector2(0.325, 0.325)
 texture = ExtResource("1_qkhwq")
 
@@ -23,20 +23,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -138.0
-offset_top = 36.0
-offset_right = 138.0
-offset_bottom = 104.0
+offset_left = -116.0
+offset_top = 85.5
+offset_right = 116.0
+offset_bottom = 142.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_48ign")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 36
 text = "PLAY"
 
 [node name="CreditsButton" type="Button" parent="." unique_id=601101252]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

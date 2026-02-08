@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="peddi-final"
-run/main_scene="uid://bhodabd7sp28a"
+run/main_scene="uid://dxt8x8nqspv1n"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
@@ -45,5 +45,4 @@ swing={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true

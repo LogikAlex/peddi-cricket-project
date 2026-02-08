@@ -1,5 +1,8 @@
 extends Node2D
 
+@onready var ballHitSound: AudioStreamPlayer2D = $BallHit
+@onready var floorImpactSound: AudioStreamPlayer2D = $FloorImpact
+
 @onready var player: VideoStreamPlayer = $Player
 @onready var camera: Camera2D = $Camera2D
 @onready var ball: RigidBody2D = $Ball
@@ -7,6 +10,7 @@ extends Node2D
 @onready var impactTimer: Timer = $ImpactTimer
 @onready var scores: Sprite2D = $Scores
 @onready var qteArea: Area2D = $QTEStartArea
+@onready var hud: CanvasLayer = $HUD
 
 @onready var blurEffect: ColorRect = $Ball.get_node("Blur")
 
@@ -41,6 +45,7 @@ func _process(_delta: float) -> void:
 		missed()
 	
 	if impact:
+		ballHitSound.play()
 		impact = false
 		
 		qteArea.free()
@@ -59,7 +64,7 @@ func handleHittingBall():
 		showScores()
 		Globals.runs = 6
 		Globals.score += 6
-		ball.apply_impulse(Vector2(650, -225))
+		ball.apply_impulse(Vector2(650, -235))
 	if Globals.earlyHit:
 		cameraShake(false)
 		showScores()
@@ -81,22 +86,23 @@ func handleHittingBall():
 		if chance == 0:
 			Globals.runs = 3
 			Globals.score += 3
-			ball.apply_impulse(Vector2(550, -140))
+			ball.apply_impulse(Vector2(580, -140))
 
 func showScores():
-	var tween = create_tween()
-	tween.tween_property(scores, "modulate:a", 1.0, 0.2).set_trans(Tween.TRANS_QUAD)
-	tween.tween_callback(
-	func end():
-		resetLevel()
-	).set_delay(2.5)
+	if Globals.ballsLeft > 0:
+		var tween = create_tween()
+		tween.tween_property(scores, "modulate:a", 1.0, 0.2).set_trans(Tween.TRANS_QUAD)
+		tween.tween_callback(
+		func end():
+			resetLevel()
+		).set_delay(2.5)
+	else:
+		var tween = create_tween()
+		tween.tween_property(scores, "modulate:a", 1.0, 0.2).set_trans(Tween.TRANS_QUAD)
+		hud.endScreen(false)
 
 func missed():
-	var tween = create_tween()
-	tween.tween_callback(
-	func end():
-		resetLevel()
-	).set_delay(3)
+	hud.endScreen(true)
 
 func resetLevel():
 	get_tree().reload_current_scene()
@@ -106,8 +112,8 @@ func cameraShake(isPerfect: bool):
 	var camMoveTween = create_tween()
 	camMoveTween.set_parallel()
 	camMoveTween.tween_property(camera, "position", Vector2(170.0, 50.0), 0.4).set_trans(Tween.TRANS_CUBIC)
-	camMoveTween.tween_property(blurEffect.material, "shader_parameter/blur_amount", 2.5, 0.4).set_trans(Tween.TRANS_CUBIC)
-	camMoveTween.tween_property(blurEffect.material, "shader_parameter/blur_amount", 0.0, 0.4).set_trans(Tween.TRANS_CUBIC).set_delay(0.4)
+	camMoveTween.tween_property(ball.get_node("blurred_ball"), "modulate:a", 1.0, 0.4).set_trans(Tween.TRANS_CUBIC)
+	camMoveTween.tween_property(ball.get_node("blurred_ball"), "modulate:a", 0.0, 0.4).set_trans(Tween.TRANS_CUBIC).set_delay(0.4)
 	if isPerfect:
 		camShakeTween.tween_property(camera, "offset", Vector2(-40, 20.0), 0.05)
 		camShakeTween.tween_property(camera, "offset", Vector2(40, 0.0), 0.1)
@@ -145,3 +151,6 @@ func _ball_entered(body: Node2D) -> void:
 
 func _impact() -> void:
 	impact = true
+
+func _play_floor_sound() -> void:
+	floorImpactSound.play()

@@ -105,7 +105,7 @@ func startQTE():
 	qteTween.tween_property(camera, "zoom", Vector2(1.5, 1.5), qte_time)
 	#qteTween.tween_property(camera, "position", Vector2(70.0, 0.0), qte_time)
 	qteTween.tween_property(camera, "zoom", Vector2(0.84, 0.84), 0.4).set_delay(qte_time + 0.8).set_trans(Tween.TRANS_CUBIC)
-	qteTween.tween_property(camera, "position", Vector2(165, 0.0), 0.4).set_delay(qte_time + 0.8).set_trans(Tween.TRANS_CUBIC)
+	#qteTween.tween_property(camera, "position", Vector2(165, 0.0), 0.4).set_delay(qte_time + 0.8).set_trans(Tween.TRANS_CUBIC)
 	qteTween.tween_callback(
 	func missed():
 		Engine.time_scale = 1
