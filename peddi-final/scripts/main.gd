@@ -3,7 +3,7 @@ extends Node2D
 @onready var ballHitSound: AudioStreamPlayer2D = $BallHit
 @onready var floorImpactSound: AudioStreamPlayer2D = $FloorImpact
 
-@onready var player: VideoStreamPlayer = $Player
+@onready var player: VideoStreamPlayer = $Player2k
 @onready var camera: Camera2D = $Camera2D
 @onready var ball: RigidBody2D = $Ball
 @onready var ballShadow: Sprite2D = $ballShadow
@@ -45,7 +45,6 @@ func _process(_delta: float) -> void:
 		missed()
 	
 	if impact:
-		ballHitSound.play()
 		impact = false
 		
 		qteArea.free()
@@ -60,12 +59,14 @@ func _process(_delta: float) -> void:
 
 func handleHittingBall():
 	if Globals.perfectHit:
+		ballHitSound.play()
 		cameraShake(true)
 		showScores()
 		Globals.runs = 6
 		Globals.score += 6
 		ball.apply_impulse(Vector2(650, -235))
 	if Globals.earlyHit:
+		ballHitSound.play()
 		cameraShake(false)
 		showScores()
 		if chance == 0:
@@ -77,6 +78,7 @@ func handleHittingBall():
 			Globals.score += 1
 			ball.apply_impulse(Vector2(650, -35))
 	if Globals.lateHit:
+		ballHitSound.play()
 		cameraShake(false)
 		showScores()
 		if chance == 1:

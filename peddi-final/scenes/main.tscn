@@ -4,6 +4,7 @@
 [ext_resource type="VideoStream" uid="uid://qsj4lqjg8wv" path="res://assets/videos/player_swing.ogv" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://bd462g818nfsu" path="res://scenes/hud.tscn" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://c1dku1tttn0va" path="res://scenes/ball.tscn" id="3_sugp2"]
+[ext_resource type="VideoStream" uid="uid://d255ren118ie3" path="res://assets/videos/upscaled-video (1).ogv" id="3_ya4ey"]
 [ext_resource type="Script" uid="uid://dld1calg86ikj" path="res://scenes/hit_area_1.gd" id="5_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://c1fkujh81uytv" path="res://assets/sprites/hitMarker.png" id="6_tipki"]
 [ext_resource type="Texture2D" uid="uid://c8ycvanyt80ek" path="res://assets/sprites/Scores.png" id="7_85g3d"]
@@ -38,6 +39,21 @@ grow_horizontal = 2
 grow_vertical = 2
 stream = ExtResource("2_0wfyh")
 metadata/_edit_lock_ = true
+
+[node name="Player2k" type="VideoStreamPlayer" parent="." unique_id=1239776059]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 1770.0
+offset_bottom = 994.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.71, 0.71)
+stream = ExtResource("3_ya4ey")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1664830659]
 position = Vector2(170, 50)
