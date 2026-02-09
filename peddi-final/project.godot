@@ -13,6 +13,8 @@ config_version=5
 config/name="peddi-final"
 run/main_scene="uid://dxt8x8nqspv1n"
 config/features=PackedStringArray("4.6", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="uid://bkm5okt07mu4a"
 config/icon="res://icon.svg"
 
 [autoload]

@@ -90,76 +90,6 @@ position = Vector2(348, 34)
 scale = Vector2(0.89531267, 0.8953125)
 texture = ExtResource("7_85g3d")
 
-[node name="HitArea1" type="Area2D" parent="." unique_id=918610828]
-z_index = 2
-position = Vector2(797, 261)
-script = ExtResource("5_o6xl0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea1" unique_id=1838270180]
-shape = SubResource("CircleShape2D_choun")
-
-[node name="HitMarker" type="Sprite2D" parent="HitArea1" unique_id=106491644]
-modulate = Color(0.92156863, 0.92156863, 0.92156863, 0.7529412)
-position = Vector2(-0.3999878, -0.40000916)
-scale = Vector2(0.176, 0.176)
-texture = ExtResource("6_tipki")
-
-[node name="HitArea2" type="Area2D" parent="." unique_id=1947053452]
-z_index = 2
-position = Vector2(822, 152)
-script = ExtResource("5_o6xl0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2" unique_id=108290436]
-shape = SubResource("CircleShape2D_choun")
-
-[node name="HitMarker" type="Sprite2D" parent="HitArea2" unique_id=1820583641]
-modulate = Color(0.92156863, 0.92156863, 0.92156863, 0.7529412)
-position = Vector2(-0.3999878, -0.40000916)
-scale = Vector2(0.176, 0.176)
-texture = ExtResource("6_tipki")
-
-[node name="HitArea3" type="Area2D" parent="." unique_id=1517576890]
-z_index = 2
-position = Vector2(829, 36)
-script = ExtResource("5_o6xl0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea3" unique_id=1361403352]
-shape = SubResource("CircleShape2D_choun")
-
-[node name="HitMarker" type="Sprite2D" parent="HitArea3" unique_id=1865271628]
-modulate = Color(0.92156863, 0.92156863, 0.92156863, 0.7529412)
-position = Vector2(-0.3999878, -0.40000916)
-scale = Vector2(0.176, 0.176)
-texture = ExtResource("6_tipki")
-
-[node name="HitArea4" type="Area2D" parent="." unique_id=62651791]
-z_index = 2
-position = Vector2(814, -83)
-script = ExtResource("5_o6xl0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea4" unique_id=1164899446]
-shape = SubResource("CircleShape2D_choun")
-
-[node name="HitMarker" type="Sprite2D" parent="HitArea4" unique_id=126389688]
-modulate = Color(0.92156863, 0.92156863, 0.92156863, 0.7529412)
-position = Vector2(-0.3999878, -0.40000916)
-scale = Vector2(0.176, 0.176)
-texture = ExtResource("6_tipki")
-
-[node name="HitArea5" type="Area2D" parent="." unique_id=1970052592]
-z_index = 2
-position = Vector2(777, -196)
-script = ExtResource("5_o6xl0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea5" unique_id=1468444115]
-shape = SubResource("CircleShape2D_choun")
-
-[node name="HitMarker" type="Sprite2D" parent="HitArea5" unique_id=1433303877]
-modulate = Color(0.92156863, 0.92156863, 0.92156863, 0.7529412)
-position = Vector2(-0.3999878, -0.40000916)
-scale = Vector2(0.176, 0.176)
-texture = ExtResource("6_tipki")
-
 [node name="ballShadow" type="Sprite2D" parent="." unique_id=567646751]
 modulate = Color(0, 0, 0, 0.42745098)
 position = Vector2(442, 319)
@@ -185,11 +115,83 @@ wait_time = 4.2
 one_shot = true
 autostart = true
 
+[node name="HitAreas" type="Node2D" parent="." unique_id=476895728]
+
+[node name="HitArea1" type="Area2D" parent="HitAreas" unique_id=918610828]
+z_index = 2
+position = Vector2(797, 261)
+script = ExtResource("5_o6xl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitAreas/HitArea1" unique_id=1838270180]
+shape = SubResource("CircleShape2D_choun")
+
+[node name="HitMarker" type="Sprite2D" parent="HitAreas/HitArea1" unique_id=106491644]
+modulate = Color(0.92156863, 0.92156863, 0.92156863, 0.7529412)
+position = Vector2(-0.3999878, -0.40000916)
+scale = Vector2(0.176, 0.176)
+texture = ExtResource("6_tipki")
+
+[node name="HitArea2" type="Area2D" parent="HitAreas" unique_id=1947053452]
+z_index = 2
+position = Vector2(822, 152)
+script = ExtResource("5_o6xl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitAreas/HitArea2" unique_id=108290436]
+shape = SubResource("CircleShape2D_choun")
+
+[node name="HitMarker" type="Sprite2D" parent="HitAreas/HitArea2" unique_id=1820583641]
+modulate = Color(0.92156863, 0.92156863, 0.92156863, 0.7529412)
+position = Vector2(-0.3999878, -0.40000916)
+scale = Vector2(0.176, 0.176)
+texture = ExtResource("6_tipki")
+
+[node name="HitArea3" type="Area2D" parent="HitAreas" unique_id=1517576890]
+z_index = 2
+position = Vector2(829, 36)
+script = ExtResource("5_o6xl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitAreas/HitArea3" unique_id=1361403352]
+shape = SubResource("CircleShape2D_choun")
+
+[node name="HitMarker" type="Sprite2D" parent="HitAreas/HitArea3" unique_id=1865271628]
+modulate = Color(0.92156863, 0.92156863, 0.92156863, 0.7529412)
+position = Vector2(-0.3999878, -0.40000916)
+scale = Vector2(0.176, 0.176)
+texture = ExtResource("6_tipki")
+
+[node name="HitArea4" type="Area2D" parent="HitAreas" unique_id=62651791]
+z_index = 2
+position = Vector2(814, -83)
+script = ExtResource("5_o6xl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitAreas/HitArea4" unique_id=1164899446]
+shape = SubResource("CircleShape2D_choun")
+
+[node name="HitMarker" type="Sprite2D" parent="HitAreas/HitArea4" unique_id=126389688]
+modulate = Color(0.92156863, 0.92156863, 0.92156863, 0.7529412)
+position = Vector2(-0.3999878, -0.40000916)
+scale = Vector2(0.176, 0.176)
+texture = ExtResource("6_tipki")
+
+[node name="HitArea5" type="Area2D" parent="HitAreas" unique_id=1970052592]
+z_index = 2
+position = Vector2(777, -196)
+script = ExtResource("5_o6xl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitAreas/HitArea5" unique_id=1468444115]
+shape = SubResource("CircleShape2D_choun")
+
+[node name="HitMarker" type="Sprite2D" parent="HitAreas/HitArea5" unique_id=1433303877]
+modulate = Color(0.92156863, 0.92156863, 0.92156863, 0.7529412)
+position = Vector2(-0.3999878, -0.40000916)
+scale = Vector2(0.176, 0.176)
+texture = ExtResource("6_tipki")
+
 [connection signal="body_entered" from="QTEStartArea" to="." method="_ball_entered"]
 [connection signal="timeout" from="ImpactTimer" to="." method="_impact"]
-[connection signal="body_entered" from="HitArea1" to="HitArea1" method="_on_body_entered"]
-[connection signal="body_entered" from="HitArea2" to="HitArea2" method="_on_body_entered"]
-[connection signal="body_entered" from="HitArea3" to="HitArea3" method="_on_body_entered"]
-[connection signal="body_entered" from="HitArea4" to="HitArea4" method="_on_body_entered"]
-[connection signal="body_entered" from="HitArea5" to="HitArea5" method="_on_body_entered"]
 [connection signal="timeout" from="floorHitTimer" to="." method="_play_floor_sound"]
+[connection signal="body_entered" from="HitAreas/HitArea1" to="HitAreas/HitArea1" method="_on_body_entered"]
+[connection signal="body_entered" from="HitAreas/HitArea2" to="HitAreas/HitArea2" method="_on_body_entered"]
+[connection signal="body_entered" from="HitAreas/HitArea3" to="HitAreas/HitArea3" method="_on_body_entered"]
+[connection signal="body_entered" from="HitAreas/HitArea4" to="HitAreas/HitArea4" method="_on_body_entered"]
+[connection signal="body_entered" from="HitAreas/HitArea5" to="HitAreas/HitArea5" method="_on_body_entered"]
