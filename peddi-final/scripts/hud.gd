@@ -5,12 +5,18 @@ extends CanvasLayer
 @onready var rightBar: Sprite2D = $BlackBars/BlackBar3
 @onready var endScreenNode: Node2D = $EndScreen
 
+@onready var tryAgainButton: Button = $EndScreen/TryAgainButton
+@onready var mainMenuButton: Button = $EndScreen/MainMenuButton
+@onready var trailerButton: Button = $EndScreen/TrailerButton
+
 @onready var ballsLeft: Label = $downHUD/Balls
 @onready var score: Label = $downHUD/Score
 @onready var runs: Label = $downHUD/Runs
 
 var leftBarEndPos: Vector2 = Vector2(85.5, 360.0)
 var rightBarEndPos: Vector2 = Vector2(1194.5, 360.0)
+
+var saved = false
 
 func _process(_delta: float) -> void:
 	endScreenNode.get_node("Score").text = "Score: " + str(Globals.score)
@@ -19,6 +25,7 @@ func _process(_delta: float) -> void:
 	score.text = "SCORE: " + str(Globals.score)
 
 func _ready() -> void:
+	saved = false
 	countdown()
 	endScreenNode.modulate.a = 0
 	#blackBarsAppear()
@@ -43,16 +50,23 @@ func countdown():
 	).set_delay(3)
 
 func endScreen(missed: bool):
+	trailerButton.visible = true
+	tryAgainButton.visible = true
+	mainMenuButton.visible = true
+	
 	var tween = create_tween()
 	tween.tween_property(endScreenNode, "modulate:a", 1, 1).set_delay(1.5)
 	if missed:
+		if !saved:
+			saved = true
+			save_score()
 		endScreenNode.get_node("Missed").visible = true
 	else:
 		endScreenNode.get_node("Over").visible = true
-	tween.tween_callback(
-	func reset():
-		get_tree().change_scene_to_file("res://scenes/mainMenu.tscn")
-	).set_delay(4)
+	#tween.tween_callback(
+	#func reset():
+	#	get_tree().change_scene_to_file("res://scenes/mainMenu.tscn")
+	#).set_delay(4)
 
 func blackBarsAppear():
 	var tween = create_tween()
@@ -62,3 +76,19 @@ func blackBarsAppear():
 
 func _on_swing_button_pressed() -> void:
 	Input.action_press("swing")
+
+func _on_try_again_button_pressed() -> void:
+	get_tree().reload_current_scene()
+	Globals.runs = 0
+	Globals.ballsLeft = 12
+	Globals.score = 0
+	Globals.pressure = 0
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/mainMenu.tscn")
+
+func _on_trailer_button_pressed() -> void:
+	OS.shell_open("https://youtu.be/2y_DH5gIrCU?si=SMZFh-b9F_yokcd0")
+
+func save_score():
+	JavaScriptBridge.eval("reportScore(" + str(Globals.score) + ")")

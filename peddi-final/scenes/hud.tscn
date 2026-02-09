@@ -22,6 +22,30 @@ font_size = 51
 shadow_size = 3
 shadow_color = Color(0, 0, 0, 0.56078434)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0i1j5"]
+bg_color = Color(0.21230498, 0.2123048, 0.21230483, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0m4u7"]
+bg_color = Color(0.12955844, 0.1295585, 0.12955838, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mphia"]
+bg_color = Color(0.29954746, 0.29954746, 0.29954743, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_hd3ao"]
 font = ExtResource("7_5pdws")
 font_size = 25
@@ -54,9 +78,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 537.5
-offset_top = 267.0
+offset_top = 190.0
 offset_right = 742.5
-offset_bottom = 377.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Missed!"
@@ -71,10 +95,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 537.5
-offset_top = 267.0
-offset_right = 742.5
-offset_bottom = 377.0
+offset_left = 492.0
+offset_top = 190.0
+offset_right = 788.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Round Over"
@@ -89,15 +113,75 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 516.0
-offset_top = 337.0
+offset_top = 258.0
 offset_right = 764.0
-offset_bottom = 447.0
+offset_bottom = 368.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Score: 00"
 label_settings = SubResource("LabelSettings_0i1j5")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TryAgainButton" type="Button" parent="EndScreen" unique_id=1543146393]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 536.0
+offset_top = 373.0
+offset_right = 748.0
+offset_bottom = 416.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_5pdws")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_0i1j5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0m4u7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mphia")
+text = "Try Again"
+
+[node name="MainMenuButton" type="Button" parent="EndScreen" unique_id=132245185]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 536.0
+offset_top = 430.0
+offset_right = 748.0
+offset_bottom = 473.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_5pdws")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_0i1j5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0m4u7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mphia")
+text = "Main Menu"
+
+[node name="TrailerButton" type="Button" parent="EndScreen" unique_id=130841767]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 536.0
+offset_top = 487.0
+offset_right = 748.0
+offset_bottom = 530.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_5pdws")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_0i1j5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0m4u7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mphia")
+text = "Watch Trailer"
 
 [node name="Countdown" type="Label" parent="." unique_id=2047067618]
 anchors_preset = 8
@@ -233,4 +317,7 @@ theme_override_fonts/font = ExtResource("7_5pdws")
 theme_override_font_sizes/font_size = 41
 text = "SWING"
 
+[connection signal="pressed" from="EndScreen/TryAgainButton" to="." method="_on_try_again_button_pressed"]
+[connection signal="pressed" from="EndScreen/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="EndScreen/TrailerButton" to="." method="_on_trailer_button_pressed"]
 [connection signal="pressed" from="SwingButton" to="." method="_on_swing_button_pressed"]

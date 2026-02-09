@@ -22,7 +22,11 @@ var impact = false
 
 var chance: int
 
+var saved = false
+
 func _ready() -> void:
+	saved = false
+	
 	Globals.pressure += 0.03
 	
 	chance = randi_range(0, 1)
@@ -91,6 +95,10 @@ func handleHittingBall():
 			ball.apply_impulse(Vector2(580, -140))
 
 func showScores():
+	if !saved:
+		saved = true
+		save_score()
+	
 	if Globals.ballsLeft > 0:
 		var tween = create_tween()
 		tween.tween_property(scores, "modulate:a", 1.0, 0.2).set_trans(Tween.TRANS_QUAD)
@@ -156,3 +164,6 @@ func _impact() -> void:
 
 func _play_floor_sound() -> void:
 	floorImpactSound.play()
+
+func save_score():
+	JavaScriptBridge.eval("reportScore(" + str(Globals.score) + ")")

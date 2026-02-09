@@ -11,3 +11,5 @@ var perfectHit = false
 var earlyHit = false
 var lateHit = false
 var missed = false
+
+var highest_score = 0
