@@ -1,0 +1,212 @@
+[gd_scene format=3 uid="uid://cajqxbn0nwjco"]
+
+[ext_resource type="Texture2D" uid="uid://bd833s7ii75b4" path="res://assets/sprites/hud-pressed-play.png" id="1_5ysmq"]
+[ext_resource type="Script" uid="uid://dplirst7sr5qf" path="res://scenes/hud.gd" id="1_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://blpsia5lxakj" path="res://assets/sprites/hud_normal.png" id="2_6fi6k"]
+[ext_resource type="FontFile" uid="uid://bboyct0k3yax6" path="res://assets/fonts/mont/Mont-HeavyDEMO.otf" id="3_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://d04p5yhq5l0e3" path="res://assets/sprites/black.png" id="5_uo2fv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ipu61"]
+font = ExtResource("3_uo2fv")
+font_size = 42
+outline_color = Color(0, 0, 0, 0)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.3764706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ysmq"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+shadow_color = Color(1, 1, 1, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fi6k"]
+bg_color = Color(0.63529414, 0.45490196, 0.21568628, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uo2fv"]
+font = ExtResource("3_uo2fv")
+font_size = 23
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.3882353)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uo2fv"]
+size = Vector2(277.815, 149.42)
+
+[sub_resource type="LabelSettings" id="LabelSettings_047uy"]
+font = ExtResource("3_uo2fv")
+font_size = 46
+shadow_size = 9
+shadow_color = Color(0, 0, 0, 0.63529414)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5pdws"]
+font = ExtResource("3_uo2fv")
+font_size = 30
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.6627451)
+
+[node name="HUD" type="CanvasLayer" unique_id=75069684]
+script = ExtResource("1_6fi6k")
+
+[node name="hud_pressed_play" type="Sprite2D" parent="." unique_id=1514299677]
+visible = false
+position = Vector2(640.28345, 329.49997)
+scale = Vector2(0.66696185, 0.7231481)
+texture = ExtResource("1_5ysmq")
+
+[node name="hud_normal" type="Sprite2D" parent="." unique_id=903886841]
+visible = false
+position = Vector2(640.28345, 329.49997)
+scale = Vector2(0.66696185, 0.7231481)
+texture = ExtResource("2_6fi6k")
+
+[node name="ball_count" type="Label" parent="." unique_id=154437804]
+visible = false
+z_index = 1
+offset_left = 748.0
+offset_top = 635.0
+offset_right = 1137.0
+offset_bottom = 707.0
+text = "BALL: 00"
+label_settings = SubResource("LabelSettings_ipu61")
+vertical_alignment = 1
+
+[node name="runs" type="Label" parent="." unique_id=961177653]
+visible = false
+z_index = 1
+offset_left = 411.0
+offset_top = 650.0
+offset_right = 781.0
+offset_bottom = 722.0
+text = "RUNS: 0"
+label_settings = SubResource("LabelSettings_ipu61")
+
+[node name="score" type="Label" parent="." unique_id=1560553821]
+visible = false
+z_index = 1
+offset_left = 39.0
+offset_top = 650.0
+offset_right = 464.0
+offset_bottom = 722.0
+text = "SCORE: 00"
+label_settings = SubResource("LabelSettings_ipu61")
+
+[node name="pressureBar" type="ProgressBar" parent="." unique_id=1270568908]
+visible = false
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_top = 44.0
+offset_right = 193.17456
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_5ysmq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6fi6k")
+max_value = 0.12
+show_percentage = false
+
+[node name="pressure_label" type="Label" parent="pressureBar" unique_id=894671462]
+layout_mode = 0
+offset_left = 104.0
+offset_top = -56.0
+offset_right = 287.0
+offset_bottom = 16.0
+text = "PRESSURE"
+label_settings = SubResource("LabelSettings_uo2fv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="play_button" type="TouchScreenButton" parent="." unique_id=1472720454]
+visible = false
+position = Vector2(1147, 659.99994)
+rotation = -0.08481056
+shape = SubResource("RectangleShape2D_uo2fv")
+
+[node name="play_button2" type="Button" parent="." unique_id=1559270670]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = 1002.9484
+offset_top = 595.3646
+offset_right = 1274.6373
+offset_bottom = 746.2949
+rotation = -0.08481056
+
+[node name="MissedScreen" type="Node2D" parent="." unique_id=1339407452]
+modulate = Color(1, 1, 1, 0)
+
+[node name="DimScreen" type="Sprite2D" parent="MissedScreen" unique_id=1406667434]
+modulate = Color(1, 1, 1, 0.654902)
+z_index = 1
+position = Vector2(640, 360.5)
+scale = Vector2(81, 46.0625)
+texture = ExtResource("5_uo2fv")
+
+[node name="MissedLabel" type="Label" parent="MissedScreen" unique_id=260238859]
+z_index = 1
+offset_left = 301.0
+offset_top = 293.0
+offset_right = 1003.0
+offset_bottom = 383.0
+text = "OUT! Game over..."
+label_settings = SubResource("LabelSettings_047uy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="MissedScreen" unique_id=512418826]
+z_index = 1
+offset_left = 522.0
+offset_top = 365.0
+offset_right = 782.0
+offset_bottom = 419.0
+text = "SCORE:"
+label_settings = SubResource("LabelSettings_5pdws")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EndScreen" type="Node2D" parent="." unique_id=999259461]
+modulate = Color(1, 1, 1, 0)
+
+[node name="DimScreen" type="Sprite2D" parent="EndScreen" unique_id=840731263]
+modulate = Color(1, 1, 1, 0.654902)
+z_index = 1
+position = Vector2(640, 360.5)
+scale = Vector2(81, 46.0625)
+texture = ExtResource("5_uo2fv")
+
+[node name="MissedLabel" type="Label" parent="EndScreen" unique_id=555455241]
+z_index = 1
+offset_left = 301.0
+offset_top = 293.0
+offset_right = 1003.0
+offset_bottom = 383.0
+text = "Round Over!"
+label_settings = SubResource("LabelSettings_047uy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="EndScreen" unique_id=744322439]
+z_index = 1
+offset_left = 522.0
+offset_top = 365.0
+offset_right = 782.0
+offset_bottom = 419.0
+text = "SCORE:"
+label_settings = SubResource("LabelSettings_5pdws")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Black2" type="Sprite2D" parent="." unique_id=13746705]
+visible = false
+position = Vector2(636.99994, 12)
+scale = Vector2(81.62501, 8)
+texture = ExtResource("5_uo2fv")
+
+[connection signal="pressed" from="play_button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="play_button2" to="." method="_on_play_button_pressed"]

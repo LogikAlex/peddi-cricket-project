@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cpdaqe6616d4o"]
+
+[ext_resource type="Script" uid="uid://b7rlf8i1500c8" path="res://scripts/score_indicators.gd" id="1_16n5k"]
+[ext_resource type="Texture2D" uid="uid://d2inwmuoh05v1" path="res://assets/sprites/scores_sheet.png" id="2_l7kgf"]
+
+[node name="score_indicators" type="Node2D" unique_id=4930559]
+script = ExtResource("1_16n5k")
+
+[node name="Scores" type="Sprite2D" parent="." unique_id=583665354]
+position = Vector2(321.00003, -167)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("2_l7kgf")
+vframes = 6

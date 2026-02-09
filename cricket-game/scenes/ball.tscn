@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bsrs6j8q7pbcd"]
+
+[ext_resource type="Texture2D" uid="uid://jbt0c4kg738a" path="res://assets/sprites/ball.png" id="1_7s4qf"]
+[ext_resource type="Script" uid="uid://bbodawtb51pcr" path="res://scripts/quick_time_event.gd" id="2_f7cbr"]
+[ext_resource type="Texture2D" uid="uid://di27biqg540cg" path="res://assets/sprites/qte_indicator.png" id="3_4dx81"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_72e8q"]
+rough = true
+bounce = 0.6
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s3esy"]
+radius = 17.0
+
+[node name="ball" type="RigidBody2D" unique_id=971852414 groups=["ball"]]
+mass = 0.16
+physics_material_override = SubResource("PhysicsMaterial_72e8q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=62300844]
+position = Vector2(4.7683716e-07, 4.7683716e-07)
+scale = Vector2(0.275, 0.275)
+texture = ExtResource("1_7s4qf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1437192518]
+shape = SubResource("CircleShape2D_s3esy")
+
+[node name="qte_circle" type="Node2D" parent="." unique_id=1930259183]
+script = ExtResource("2_f7cbr")
+
+[node name="perfectIndicator" type="Sprite2D" parent="qte_circle" unique_id=1523950601]
+modulate = Color(1, 1, 0, 1)
+rotation = 3.1415927
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("3_4dx81")
+
+[node name="QteIndicator" type="Sprite2D" parent="qte_circle" unique_id=658404059]
+rotation = -3.1415925
+scale = Vector2(0.079, 0.079)
+texture = ExtResource("3_4dx81")

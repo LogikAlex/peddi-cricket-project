@@ -1,0 +1,287 @@
+[gd_scene format=3 uid="uid://cxwrtashubahe"]
+
+[ext_resource type="Script" uid="uid://bgo0tmww4gpq7" path="res://scripts/main_game.gd" id="1_d2op2"]
+[ext_resource type="Texture2D" uid="uid://nbclx4n1qq08" path="res://assets/sprites/placeholder_ground.png" id="2_72e8q"]
+[ext_resource type="PackedScene" uid="uid://bsrs6j8q7pbcd" path="res://scenes/ball.tscn" id="3_d2op2"]
+[ext_resource type="PackedScene" uid="uid://drap3eqhh60jc" path="res://scenes/player.tscn" id="4_0rdsr"]
+[ext_resource type="Texture2D" uid="uid://imi2rnhda0bn" path="res://assets/sprites/field_placeholder.png" id="5_ipu61"]
+[ext_resource type="Script" uid="uid://bjp0dr62cuisv" path="res://scenes/stumps.gd" id="6_ygxny"]
+[ext_resource type="Texture2D" uid="uid://5igdq7shbgrx" path="res://assets/sprites/qte_inner_circle.png" id="7_70vka"]
+[ext_resource type="Texture2D" uid="uid://di27biqg540cg" path="res://assets/sprites/qte_indicator.png" id="8_2l77h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0rdsr"]
+font_size = 84
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ipu61"]
+font_size = 52
+
+[sub_resource type="LabelSettings" id="LabelSettings_ygxny"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_s3esy"]
+font_size = 57
+font_color = Color(0, 0, 0, 1)
+outline_size = 18
+shadow_size = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72e8q"]
+size = Vector2(5820, 93)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygxny"]
+size = Vector2(1748, 95)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rdsr"]
+size = Vector2(11, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ipu61"]
+size = Vector2(62, 113)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wi4c7"]
+size = Vector2(56, 111)
+
+[node name="MainGame" type="Node2D" unique_id=556775433]
+script = ExtResource("1_d2op2")
+
+[node name="camera" type="Camera2D" parent="." unique_id=1810722814]
+limit_enabled = false
+limit_left = -963
+
+[node name="hit_timer" type="Timer" parent="." unique_id=682007490]
+wait_time = 0.5
+one_shot = true
+
+[node name="start_timer" type="Timer" parent="." unique_id=989620325]
+wait_time = 3.0
+one_shot = true
+
+[node name="reset_timer" type="Timer" parent="." unique_id=4473954]
+wait_time = 3.0
+one_shot = true
+
+[node name="pressureBar" type="ProgressBar" parent="." unique_id=108520598]
+offset_left = -857.0
+offset_top = -180.0
+offset_right = -830.0
+offset_bottom = 121.0
+max_value = 0.12
+fill_mode = 3
+show_percentage = false
+
+[node name="countdown" type="Label" parent="." unique_id=1172257580]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.5
+offset_top = -57.5
+offset_right = 48.5
+offset_bottom = 57.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "3"
+label_settings = SubResource("LabelSettings_0rdsr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hit_timer_value" type="Label" parent="." unique_id=222838766]
+offset_left = -944.0
+offset_top = -370.0
+offset_right = -904.0
+offset_bottom = -298.0
+text = "0"
+label_settings = SubResource("LabelSettings_ipu61")
+
+[node name="ball_count" type="Label" parent="." unique_id=678605050]
+offset_left = -946.0
+offset_top = -531.0
+offset_right = -612.0
+offset_bottom = -459.0
+text = "ball number: "
+label_settings = SubResource("LabelSettings_ipu61")
+
+[node name="runs" type="Label" parent="." unique_id=1390881207]
+offset_left = -946.0
+offset_top = -452.0
+offset_right = -612.0
+offset_bottom = -380.0
+text = "runs: "
+label_settings = SubResource("LabelSettings_ipu61")
+
+[node name="pressure_label" type="Label" parent="." unique_id=262291526]
+offset_left = -1010.0
+offset_top = -248.0
+offset_right = -676.0
+offset_bottom = -176.0
+text = "pressure"
+label_settings = SubResource("LabelSettings_ygxny")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="score_indicators" type="Node2D" parent="." unique_id=944244100]
+
+[node name="max_indicator" type="Label" parent="score_indicators" unique_id=1137497760]
+offset_left = 423.0
+offset_top = -484.0
+offset_right = 520.0
+offset_bottom = -371.0
+text = "6"
+label_settings = SubResource("LabelSettings_s3esy")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="boundary_indicator" type="Label" parent="score_indicators" unique_id=291985227]
+offset_left = 543.0
+offset_top = -398.0
+offset_right = 640.0
+offset_bottom = -285.0
+text = "4"
+label_settings = SubResource("LabelSettings_s3esy")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="deep_indicator" type="Label" parent="score_indicators" unique_id=2137589955]
+offset_left = 646.0
+offset_top = -264.0
+offset_right = 743.0
+offset_bottom = -151.0
+text = "3"
+label_settings = SubResource("LabelSettings_s3esy")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="medium_indicator" type="Label" parent="score_indicators" unique_id=1711985105]
+offset_left = 713.0
+offset_top = -114.0
+offset_right = 810.0
+offset_bottom = -1.0
+text = "2"
+label_settings = SubResource("LabelSettings_s3esy")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="short_indicator" type="Label" parent="score_indicators" unique_id=2098838781]
+offset_left = 763.0
+offset_top = 52.0
+offset_right = 860.0
+offset_bottom = 165.0
+text = "1"
+label_settings = SubResource("LabelSettings_s3esy")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ground" type="StaticBody2D" parent="." unique_id=1058606462]
+position = Vector2(0, 375)
+
+[node name="Sprite2D" type="Sprite2D" parent="ground" unique_id=610543855]
+visible = false
+position = Vector2(0, 107.000015)
+scale = Vector2(0.97583336, 0.14583333)
+texture = ExtResource("2_72e8q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground" unique_id=1823782044]
+position = Vector2(1911, 11.5)
+shape = SubResource("RectangleShape2D_72e8q")
+
+[node name="ground2" type="StaticBody2D" parent="." unique_id=1974425714]
+position = Vector2(-1006, 253)
+rotation = 1.5707964
+
+[node name="Sprite2D" type="Sprite2D" parent="ground2" unique_id=1334791472]
+visible = false
+position = Vector2(0, 11.500007)
+scale = Vector2(0.97583336, 0.052916672)
+texture = ExtResource("2_72e8q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground2" unique_id=492339321]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_ygxny")
+
+[node name="ground3" type="StaticBody2D" parent="." unique_id=575677971]
+position = Vector2(4871, 253)
+rotation = 1.5707964
+
+[node name="Sprite2D" type="Sprite2D" parent="ground3" unique_id=7517198]
+visible = false
+position = Vector2(0, 11.500007)
+scale = Vector2(0.97583336, 0.052916672)
+texture = ExtResource("2_72e8q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground3" unique_id=2117312571]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_ygxny")
+
+[node name="FieldPlaceholder" type="Sprite2D" parent="." unique_id=967962475]
+position = Vector2(1892, 328)
+texture = ExtResource("5_ipu61")
+
+[node name="ball" parent="." unique_id=971852414 instance=ExtResource("3_d2op2")]
+position = Vector2(1597, 92)
+
+[node name="score_ball" parent="." unique_id=1923779442 instance=ExtResource("3_d2op2")]
+position = Vector2(2781, 44)
+mass = 0.18
+freeze = true
+
+[node name="player" parent="." unique_id=798696560 instance=ExtResource("4_0rdsr")]
+position = Vector2(-566, 353.00003)
+scale = Vector2(7.86, 7.86)
+
+[node name="hit_area" type="Area2D" parent="." unique_id=237449188]
+position = Vector2(-417, 237)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_area" unique_id=1646473859]
+position = Vector2(6.5, 9)
+shape = SubResource("RectangleShape2D_0rdsr")
+
+[node name="Sprite2D" type="Sprite2D" parent="hit_area" unique_id=649841519]
+modulate = Color(1, 1, 1, 0.36078432)
+position = Vector2(5.9999847, 9.00001)
+scale = Vector2(0.0049999985, 0.06750001)
+texture = ExtResource("2_72e8q")
+
+[node name="stumps_area" type="Area2D" parent="." unique_id=669769607]
+position = Vector2(-842, 305)
+script = ExtResource("6_ygxny")
+
+[node name="Sprite2D" type="Sprite2D" parent="stumps_area" unique_id=2075673964]
+position = Vector2(0, -23.499994)
+scale = Vector2(0.032083333, 0.055416662)
+texture = ExtResource("2_72e8q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stumps_area" unique_id=455946596]
+position = Vector2(0, -22.5)
+shape = SubResource("RectangleShape2D_ipu61")
+
+[node name="stumps_collider" type="StaticBody2D" parent="." unique_id=1618736084]
+position = Vector2(-842, 305)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stumps_collider" unique_id=417811222]
+position = Vector2(0, -22.5)
+shape = SubResource("RectangleShape2D_wi4c7")
+
+[node name="qte_circle" type="Node2D" parent="." unique_id=857660714]
+position = Vector2(-424, 13)
+
+[node name="QteInnerCircle" type="Sprite2D" parent="qte_circle" unique_id=643164604]
+scale = Vector2(0.044067383, 0.044067383)
+texture = ExtResource("7_70vka")
+
+[node name="QteIndicator" type="Sprite2D" parent="qte_circle" unique_id=1974526032]
+rotation = 3.1415927
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("8_2l77h")
+
+[connection signal="timeout" from="hit_timer" to="." method="_missed"]
+[connection signal="timeout" from="start_timer" to="." method="_throw_ball"]
+[connection signal="timeout" from="reset_timer" to="." method="_on_reset_timer_timeout"]
+[connection signal="body_entered" from="hit_area" to="." method="_ball_entered_range"]
+[connection signal="body_entered" from="stumps_area" to="stumps_area" method="_on_body_entered"]

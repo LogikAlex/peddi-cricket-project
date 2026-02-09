@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dxt8x8nqspv1n"]
+
+[ext_resource type="VideoStream" uid="uid://bhdb12ahohaji" path="res://assets/videos/Intro scene peddi game.ogv" id="1_ioskq"]
+[ext_resource type="Script" uid="uid://lpu8ovkecgss" path="res://scripts/intro.gd" id="1_yjqpq"]
+
+[node name="Intro" type="Node2D" unique_id=1858654564]
+script = ExtResource("1_yjqpq")
+
+[node name="introVideo" type="VideoStreamPlayer" parent="." unique_id=1243999220]
+offset_right = 2698.358
+offset_bottom = 1517.99
+scale = Vector2(0.477, 0.477)
+stream = ExtResource("1_ioskq")
+autoplay = true
+
+[node name="IntroTimer" type="Timer" parent="." unique_id=1614398406]
+wait_time = 13.0
+one_shot = true
+
+[connection signal="timeout" from="IntroTimer" to="." method="_on_intro_timer_timeout"]

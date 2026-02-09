@@ -1,0 +1,236 @@
+[gd_scene format=3 uid="uid://bd462g818nfsu"]
+
+[ext_resource type="FontFile" uid="uid://cjrb1neid7al0" path="res://assets/fonts/coolvetica/Coolvetica Rg Cond.otf" id="1_ahhtf"]
+[ext_resource type="Script" uid="uid://bkpml3d0kq8wl" path="res://scripts/hud.gd" id="1_oo0fn"]
+[ext_resource type="Texture2D" uid="uid://b0gv20cwm61ih" path="res://assets/sprites/black.png" id="3_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://bckwg86ps6vpw" path="res://assets/sprites/white.png" id="4_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://v5k07ijt888c" path="res://assets/sprites/Untitled267_20260208154140.png" id="5_0m4u7"]
+[ext_resource type="FontFile" uid="uid://bboyct0k3yax6" path="res://assets/fonts/mont/Mont-HeavyDEMO.otf" id="7_5pdws"]
+[ext_resource type="Texture2D" uid="uid://dq0ht7eyq4gug" path="res://assets/sprites/PromotionText.png" id="8_hd3ao"]
+[ext_resource type="Texture2D" uid="uid://ckl4mw2xmfcbo" path="res://assets/sprites/Untitled267_20260208154152.png" id="10_apjy4"]
+[ext_resource type="Texture2D" uid="uid://bswcygsmlnfo4" path="res://assets/sprites/Untitled267_20260208154157.png" id="11_5n1hp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oo0fn"]
+font = ExtResource("1_ahhtf")
+font_size = 91
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.4862745)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0i1j5"]
+font = ExtResource("1_ahhtf")
+font_size = 51
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.56078434)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hd3ao"]
+font = ExtResource("7_5pdws")
+font_size = 25
+font_color = Color(1, 1, 0.4862745, 1)
+outline_color = Color(0, 0, 0, 0)
+shadow_color = Color(0, 0, 0, 0.41568628)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5pdws"]
+font = ExtResource("7_5pdws")
+font_size = 41
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.44313726)
+
+[node name="HUD" type="CanvasLayer" unique_id=1881508306]
+script = ExtResource("1_oo0fn")
+
+[node name="EndScreen" type="Node2D" parent="." unique_id=2133961827]
+
+[node name="black" type="Sprite2D" parent="EndScreen" unique_id=719977530]
+modulate = Color(1, 1, 1, 0.34901962)
+position = Vector2(640, 360)
+scale = Vector2(80.125, 45.125)
+texture = ExtResource("3_5ysmq")
+
+[node name="Missed" type="Label" parent="EndScreen" unique_id=1432202762]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 537.5
+offset_top = 267.0
+offset_right = 742.5
+offset_bottom = 377.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Missed!"
+label_settings = SubResource("LabelSettings_oo0fn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Over" type="Label" parent="EndScreen" unique_id=1033999587]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 537.5
+offset_top = 267.0
+offset_right = 742.5
+offset_bottom = 377.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Round Over"
+label_settings = SubResource("LabelSettings_oo0fn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="EndScreen" unique_id=199794880]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 516.0
+offset_top = 337.0
+offset_right = 764.0
+offset_bottom = 447.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Score: 00"
+label_settings = SubResource("LabelSettings_0i1j5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Countdown" type="Label" parent="." unique_id=2047067618]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -10.0
+offset_right = 3.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+label_settings = SubResource("LabelSettings_oo0fn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="downHUD" type="Node2D" parent="." unique_id=1073630499]
+position = Vector2(0, 27)
+
+[node name="BlackBar4" type="Sprite2D" parent="downHUD" unique_id=233605904]
+position = Vector2(640, 654)
+scale = Vector2(80.125, 5.0624995)
+texture = ExtResource("3_5ysmq")
+
+[node name="HudBottomBG" type="Sprite2D" parent="downHUD" unique_id=503885907]
+position = Vector2(639.99994, 414)
+scale = Vector2(1, 0.6951389)
+texture = ExtResource("5_0m4u7")
+
+[node name="White2" type="Sprite2D" parent="downHUD" unique_id=1055125799]
+visible = false
+position = Vector2(644, 601)
+scale = Vector2(1308, 3.000012)
+texture = ExtResource("4_uo2fv")
+
+[node name="White3" type="Sprite2D" parent="downHUD" unique_id=1498898924]
+modulate = Color(0.59294546, 0.4806329, 0.31626174, 1)
+position = Vector2(715, 632)
+scale = Vector2(3.9999812, 63.99998)
+texture = ExtResource("4_uo2fv")
+
+[node name="White5" type="Sprite2D" parent="downHUD" unique_id=34545079]
+modulate = Color(0.59294546, 0.4806329, 0.31626174, 1)
+position = Vector2(967.00006, 632)
+scale = Vector2(3.9999812, 64.00001)
+texture = ExtResource("4_uo2fv")
+
+[node name="White4" type="Sprite2D" parent="downHUD" unique_id=391170407]
+modulate = Color(0.59294546, 0.4806329, 0.31626174, 1)
+position = Vector2(463, 632)
+scale = Vector2(3.9999812, 63.99998)
+texture = ExtResource("4_uo2fv")
+
+[node name="Runs" type="Label" parent="downHUD" unique_id=1195033595]
+offset_left = 522.0
+offset_top = 621.0
+offset_right = 655.0
+offset_bottom = 684.0
+text = "RUNS: 0"
+label_settings = SubResource("LabelSettings_hd3ao")
+horizontal_alignment = 1
+
+[node name="Balls" type="Label" parent="downHUD" unique_id=1698694877]
+offset_left = 746.0
+offset_top = 621.0
+offset_right = 945.0
+offset_bottom = 684.0
+text = "BALLS LEFT: 6"
+label_settings = SubResource("LabelSettings_hd3ao")
+horizontal_alignment = 1
+
+[node name="Swing" type="Label" parent="downHUD" unique_id=1670408449]
+visible = false
+offset_left = 1021.0
+offset_top = 605.0
+offset_right = 1220.0
+offset_bottom = 668.0
+text = "SWING"
+label_settings = SubResource("LabelSettings_5pdws")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="downHUD" unique_id=923594675]
+offset_left = 262.0
+offset_top = 621.0
+offset_right = 461.0
+offset_bottom = 684.0
+text = "SCORE:  00"
+label_settings = SubResource("LabelSettings_hd3ao")
+horizontal_alignment = 1
+
+[node name="BlackBars" type="Node2D" parent="." unique_id=842744923]
+z_index = 2
+
+[node name="BlackBar" type="Sprite2D" parent="BlackBars" unique_id=344397300]
+position = Vector2(640, 25.750004)
+scale = Vector2(80.125, 7.28125)
+texture = ExtResource("3_5ysmq")
+
+[node name="BlackBar2" type="Sprite2D" parent="BlackBars" unique_id=100469335]
+position = Vector2(-137, 360)
+scale = Vector2(16, 45.125)
+texture = ExtResource("3_5ysmq")
+
+[node name="BlackBar3" type="Sprite2D" parent="BlackBars" unique_id=2049991706]
+position = Vector2(1417, 359.99997)
+scale = Vector2(16, 45.125)
+texture = ExtResource("3_5ysmq")
+
+[node name="PromotionText" type="Sprite2D" parent="." unique_id=2141003554]
+z_index = 2
+position = Vector2(236.00003, 47)
+scale = Vector2(0.352, 0.366)
+texture = ExtResource("8_hd3ao")
+
+[node name="Untitled26720260208154152" type="Sprite2D" parent="." unique_id=1196530857]
+position = Vector2(640, 330)
+texture = ExtResource("10_apjy4")
+
+[node name="Untitled26720260208154157" type="Sprite2D" parent="." unique_id=1080584272]
+position = Vector2(516, 411)
+scale = Vector2(0.79444444, 0.79444444)
+texture = ExtResource("11_5n1hp")
+
+[node name="SwingButton" type="Button" parent="." unique_id=1679432807]
+offset_left = 976.0
+offset_top = 632.0
+offset_right = 1273.0
+offset_bottom = 687.0
+theme_override_fonts/font = ExtResource("7_5pdws")
+theme_override_font_sizes/font_size = 41
+text = "SWING"
+
+[connection signal="pressed" from="SwingButton" to="." method="_on_swing_button_pressed"]

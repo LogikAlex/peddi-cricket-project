@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://cxwrtashubahe"]
+
+[ext_resource type="Script" uid="uid://bgo0tmww4gpq7" path="res://scripts/main_game.gd" id="1_d2op2"]
+[ext_resource type="Texture2D" uid="uid://nbclx4n1qq08" path="res://assets/sprites/placeholder_ground.png" id="2_72e8q"]
+[ext_resource type="Script" uid="uid://b7rlf8i1500c8" path="res://scenes/score_indicators.gd" id="2_ihbck"]
+[ext_resource type="FontFile" uid="uid://cjrb1neid7al0" path="res://assets/fonts/coolvetica/Coolvetica Rg Cond.otf" id="2_vnsdt"]
+[ext_resource type="Texture2D" uid="uid://d04p5yhq5l0e3" path="res://assets/sprites/black.png" id="3_5luka"]
+[ext_resource type="PackedScene" uid="uid://bsrs6j8q7pbcd" path="res://scenes/ball.tscn" id="3_d2op2"]
+[ext_resource type="FontFile" uid="uid://bboyct0k3yax6" path="res://assets/fonts/mont/Mont-HeavyDEMO.otf" id="3_ikqpi"]
+[ext_resource type="PackedScene" uid="uid://drap3eqhh60jc" path="res://scenes/player.tscn" id="4_0rdsr"]
+[ext_resource type="Texture2D" uid="uid://d2inwmuoh05v1" path="res://assets/sprites/scores_sheet.png" id="5_yu8cv"]
+[ext_resource type="PackedScene" uid="uid://cajqxbn0nwjco" path="res://scenes/hud.tscn" id="12_o6v7o"]
+[ext_resource type="Texture2D" uid="uid://bsisfjc4kaat1" path="res://assets/sprites/pitch_edited.png" id="18_ikqpi"]
+[ext_resource type="Texture2D" uid="uid://jbt0c4kg738a" path="res://assets/sprites/ball.png" id="20_yu8cv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0rdsr"]
+font = ExtResource("2_vnsdt")
+font_size = 84
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.36862746)
+shadow_offset = Vector2(2.365, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ipu61"]
+font = ExtResource("3_ikqpi")
+font_size = 64
+outline_color = Color(0, 0, 0, 0)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.3764706)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2l77h"]
+size = Vector2(11, 670)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yu8cv"]
+
+[node name="MainGame" type="Node2D" unique_id=556775433]
+script = ExtResource("1_d2op2")
+
+[node name="Countdown" type="Node2D" parent="." unique_id=437291145]
+position = Vector2(542, -1)
+
+[node name="countdown_label" type="Label" parent="Countdown" unique_id=1172257580]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -58.0
+offset_right = 48.0
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "3"
+label_settings = SubResource("LabelSettings_0rdsr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="camera" type="Camera2D" parent="." unique_id=1810722814]
+position = Vector2(541, -10)
+limit_left = -1080
+
+[node name="perfect" type="Label" parent="camera" unique_id=187738258]
+visible = false
+z_index = 1
+offset_left = -930.0
+offset_top = -514.0
+offset_right = -736.0
+offset_bottom = -442.0
+text = "perfect:"
+label_settings = SubResource("LabelSettings_ipu61")
+
+[node name="start_timer" type="Timer" parent="." unique_id=989620325]
+wait_time = 3.0
+one_shot = true
+
+[node name="reset_timer" type="Timer" parent="." unique_id=4473954]
+wait_time = 3.5
+one_shot = true
+
+[node name="score_indicators" type="Node2D" parent="." unique_id=944244100]
+position = Vector2(33, 115)
+script = ExtResource("2_ihbck")
+
+[node name="Scores" type="Sprite2D" parent="score_indicators" unique_id=241348504]
+position = Vector2(321.00003, -167)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("5_yu8cv")
+hframes = 6
+
+[node name="ground" type="StaticBody2D" parent="." unique_id=1058606462]
+position = Vector2(0, 342)
+
+[node name="CollisionShape2D2" type="CollisionPolygon2D" parent="ground" unique_id=1769115878]
+position = Vector2(423, 11.5)
+polygon = PackedVector2Array(-1522, -750.5, -1522, 46.5, 1522, 46.5, 1522, -46.5, -1320, -46.499985, -1290, -346.5, -1329, -350.5, -1373, -46.499985, -1456, -46.5, -1456, -750.5)
+
+[node name="player" parent="." unique_id=798696560 instance=ExtResource("4_0rdsr")]
+position = Vector2(-397, 257)
+scale = Vector2(0.86, 0.86)
+
+[node name="ball" parent="." unique_id=971852414 instance=ExtResource("3_d2op2")]
+position = Vector2(3094, -219)
+
+[node name="qte_area" type="Area2D" parent="." unique_id=283305163]
+position = Vector2(631, 237)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="qte_area" unique_id=1302851530]
+position = Vector2(6.5, -181)
+shape = SubResource("RectangleShape2D_2l77h")
+
+[node name="Sprite2D" type="Sprite2D" parent="qte_area" unique_id=314891137]
+visible = false
+modulate = Color(1, 1, 1, 0.36078432)
+position = Vector2(5.9999847, -15.499992)
+scale = Vector2(0.0049999985, 0.11458334)
+texture = ExtResource("2_72e8q")
+
+[node name="Pitch" type="Sprite2D" parent="." unique_id=389153996]
+z_index = -1
+position = Vector2(433.62518, -4.500073)
+scale = Vector2(0.76738286, 0.912037)
+texture = ExtResource("18_ikqpi")
+
+[node name="Black2" type="Sprite2D" parent="." unique_id=233705155]
+position = Vector2(410.50003, -496)
+scale = Vector2(189.9375, 11.749999)
+texture = ExtResource("3_5luka")
+
+[node name="ball_shadow" type="Sprite2D" parent="." unique_id=647849054]
+modulate = Color(0, 0, 0, 0.21568628)
+material = SubResource("CanvasItemMaterial_yu8cv")
+position = Vector2(-44, 308)
+scale = Vector2(0.10867971, 0.03857143)
+texture = ExtResource("20_yu8cv")
+
+[node name="HUD" parent="." unique_id=75069684 instance=ExtResource("12_o6v7o")]
+
+[connection signal="timeout" from="start_timer" to="." method="_throw_ball"]
+[connection signal="timeout" from="reset_timer" to="." method="_on_reset_timer_timeout"]
+[connection signal="body_entered" from="qte_area" to="." method="_ball_entered_qte_range"]
