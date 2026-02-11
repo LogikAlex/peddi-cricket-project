@@ -1,24 +1,26 @@
 [gd_scene format=3 uid="uid://bd462g818nfsu"]
 
-[ext_resource type="FontFile" uid="uid://cjrb1neid7al0" path="res://assets/fonts/coolvetica/Coolvetica Rg Cond.otf" id="1_ahhtf"]
 [ext_resource type="Script" uid="uid://bkpml3d0kq8wl" path="res://scripts/hud.gd" id="1_oo0fn"]
 [ext_resource type="Texture2D" uid="uid://b0gv20cwm61ih" path="res://assets/sprites/black.png" id="3_5ysmq"]
 [ext_resource type="Texture2D" uid="uid://bckwg86ps6vpw" path="res://assets/sprites/white.png" id="4_uo2fv"]
 [ext_resource type="Texture2D" uid="uid://v5k07ijt888c" path="res://assets/sprites/Untitled267_20260208154140.png" id="5_0m4u7"]
 [ext_resource type="FontFile" uid="uid://bboyct0k3yax6" path="res://assets/fonts/mont/Mont-HeavyDEMO.otf" id="7_5pdws"]
+[ext_resource type="FontFile" uid="uid://cixc4okmrpnow" path="res://assets/fonts/gunplay/gunplay rg.otf" id="7_mphia"]
 [ext_resource type="Texture2D" uid="uid://dq0ht7eyq4gug" path="res://assets/sprites/PromotionText.png" id="8_hd3ao"]
 [ext_resource type="Texture2D" uid="uid://ckl4mw2xmfcbo" path="res://assets/sprites/Untitled267_20260208154152.png" id="10_apjy4"]
+[ext_resource type="Texture2D" uid="uid://dyf0n4k5yveai" path="res://assets/sprites/shareScreen.png" id="10_mphia"]
+[ext_resource type="Texture2D" uid="uid://bblccp7v1jmab" path="res://assets/sprites/exit_icon.png" id="11_0m4u7"]
 [ext_resource type="Texture2D" uid="uid://bswcygsmlnfo4" path="res://assets/sprites/Untitled267_20260208154157.png" id="11_5n1hp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oo0fn"]
-font = ExtResource("1_ahhtf")
-font_size = 91
+font = ExtResource("7_mphia")
+font_size = 63
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 0.4862745)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0i1j5"]
-font = ExtResource("1_ahhtf")
-font_size = 51
+font = ExtResource("7_mphia")
+font_size = 49
 shadow_size = 3
 shadow_color = Color(0, 0, 0, 0.56078434)
 
@@ -47,9 +49,8 @@ border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hd3ao"]
-font = ExtResource("7_5pdws")
+font = ExtResource("7_mphia")
 font_size = 25
-font_color = Color(1, 1, 0.4862745, 1)
 outline_color = Color(0, 0, 0, 0)
 shadow_color = Color(0, 0, 0, 0.41568628)
 
@@ -58,6 +59,21 @@ font = ExtResource("7_5pdws")
 font_size = 41
 shadow_size = 3
 shadow_color = Color(0, 0, 0, 0.44313726)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mphia"]
+font = ExtResource("7_mphia")
+font_size = 34
+
+[sub_resource type="LabelSettings" id="LabelSettings_0m4u7"]
+font = ExtResource("7_mphia")
+font_size = 72
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apjy4"]
+bg_color = Color(0.11858138, 0.11858138, 0.11858138, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5n1hp"]
+font = ExtResource("7_mphia")
+font_size = 51
 
 [node name="HUD" type="CanvasLayer" unique_id=1881508306]
 script = ExtResource("1_oo0fn")
@@ -77,13 +93,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 537.5
-offset_top = 190.0
-offset_right = 742.5
-offset_bottom = 300.0
+offset_left = 480.0
+offset_top = 125.0
+offset_right = 801.0
+offset_bottom = 282.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Missed!"
+text = "Bowled!
+Game Over"
 label_settings = SubResource("LabelSettings_oo0fn")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -112,9 +129,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 516.0
+offset_left = 513.0
 offset_top = 258.0
-offset_right = 764.0
+offset_right = 767.0
 offset_bottom = 368.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -141,7 +158,7 @@ theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_0i1j5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0m4u7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_mphia")
-text = "Try Again"
+text = "Start Again"
 
 [node name="MainMenuButton" type="Button" parent="EndScreen" unique_id=132245185]
 visible = false
@@ -151,9 +168,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 536.0
-offset_top = 430.0
+offset_top = 543.0
 offset_right = 748.0
-offset_bottom = 473.0
+offset_bottom = 586.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("7_5pdws")
@@ -161,9 +178,9 @@ theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_0i1j5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0m4u7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_mphia")
-text = "Main Menu"
+text = "Exit"
 
-[node name="TrailerButton" type="Button" parent="EndScreen" unique_id=130841767]
+[node name="SaveImageButton" type="Button" parent="EndScreen" unique_id=128676445]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -181,7 +198,27 @@ theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_0i1j5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0m4u7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_mphia")
-text = "Watch Trailer"
+text = "Share score?"
+
+[node name="TrailerButton" type="Button" parent="EndScreen" unique_id=130841767]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 536.0
+offset_top = 430.0
+offset_right = 748.0
+offset_bottom = 473.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_5pdws")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_0i1j5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0m4u7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mphia")
+text = "AD to replay"
 
 [node name="Countdown" type="Label" parent="." unique_id=2047067618]
 anchors_preset = 8
@@ -239,18 +276,18 @@ texture = ExtResource("4_uo2fv")
 
 [node name="Runs" type="Label" parent="downHUD" unique_id=1195033595]
 offset_left = 522.0
-offset_top = 621.0
+offset_top = 617.0
 offset_right = 655.0
-offset_bottom = 684.0
+offset_bottom = 680.0
 text = "RUNS: 0"
 label_settings = SubResource("LabelSettings_hd3ao")
 horizontal_alignment = 1
 
 [node name="Balls" type="Label" parent="downHUD" unique_id=1698694877]
 offset_left = 746.0
-offset_top = 621.0
+offset_top = 617.0
 offset_right = 945.0
-offset_bottom = 684.0
+offset_bottom = 680.0
 text = "BALLS LEFT: 6"
 label_settings = SubResource("LabelSettings_hd3ao")
 horizontal_alignment = 1
@@ -268,9 +305,9 @@ vertical_alignment = 1
 
 [node name="Score" type="Label" parent="downHUD" unique_id=923594675]
 offset_left = 262.0
-offset_top = 621.0
+offset_top = 617.0
 offset_right = 461.0
-offset_bottom = 684.0
+offset_bottom = 680.0
 text = "SCORE:  00"
 label_settings = SubResource("LabelSettings_hd3ao")
 horizontal_alignment = 1
@@ -309,15 +346,159 @@ scale = Vector2(0.79444444, 0.79444444)
 texture = ExtResource("11_5n1hp")
 
 [node name="SwingButton" type="Button" parent="." unique_id=1679432807]
-offset_left = 976.0
-offset_top = 632.0
-offset_right = 1273.0
-offset_bottom = 687.0
-theme_override_fonts/font = ExtResource("7_5pdws")
+offset_left = 969.0
+offset_top = 627.0
+offset_right = 1280.0
+offset_bottom = 691.0
+theme_override_fonts/font = ExtResource("7_mphia")
 theme_override_font_sizes/font_size = 41
 text = "SWING"
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=158485205]
+clip_contents = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 980.0
+offset_top = -361.0
+offset_right = 1387.0
+offset_bottom = 361.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=864948964]
+handle_input_locally = false
+size = Vector2i(407, 722)
+render_target_update_mode = 4
+
+[node name="ShareScreen" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=4737090]
+z_index = 2
+position = Vector2(202.49998, 359)
+scale = Vector2(0.5680555, 0.56805557)
+texture = ExtResource("10_mphia")
+
+[node name="ScoreShare" type="Label" parent="SubViewportContainer/SubViewport" unique_id=1302733486]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.000015
+offset_top = -99.0
+offset_right = 93.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Score:"
+label_settings = SubResource("LabelSettings_mphia")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="User" type="Label" parent="SubViewportContainer/SubViewport" unique_id=1077088390]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.000015
+offset_top = -210.0
+offset_right = 49.999985
+offset_bottom = -156.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "User ID:"
+label_settings = SubResource("LabelSettings_mphia")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UserValue" type="Label" parent="SubViewportContainer/SubViewport" unique_id=1143813595]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.50001
+offset_top = -162.0
+offset_right = 92.5
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "#"
+label_settings = SubResource("LabelSettings_mphia")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreValue" type="Label" parent="SubViewportContainer/SubViewport" unique_id=1399277678]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.500015
+offset_top = -58.0
+offset_right = 126.5
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "00"
+label_settings = SubResource("LabelSettings_0m4u7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" type="TextureButton" parent="." unique_id=405865548]
+z_index = 2
+offset_left = 1205.0001
+offset_top = 11.000002
+offset_right = 1717.0001
+offset_bottom = 523.0
+scale = Vector2(0.118569106, 0.118569106)
+texture_normal = ExtResource("11_0m4u7")
+
+[node name="ExitPanel" type="Panel" parent="." unique_id=1119805046]
+visible = false
+top_level = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -650.0
+offset_top = -365.0
+offset_right = 650.0
+offset_bottom = 365.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_apjy4")
+
+[node name="Label" type="Label" parent="ExitPanel" unique_id=592827735]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -355.5
+offset_top = -63.5
+offset_right = 355.5
+offset_bottom = 63.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You exited the game.
+Reload the page to play again."
+label_settings = SubResource("LabelSettings_5n1hp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="EndScreen/TryAgainButton" to="." method="_on_try_again_button_pressed"]
 [connection signal="pressed" from="EndScreen/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="EndScreen/SaveImageButton" to="." method="_on_save_image_button_pressed"]
 [connection signal="pressed" from="EndScreen/TrailerButton" to="." method="_on_trailer_button_pressed"]
 [connection signal="pressed" from="SwingButton" to="." method="_on_swing_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

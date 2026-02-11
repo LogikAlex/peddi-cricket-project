@@ -12,6 +12,8 @@ config_version=5
 
 config/name="peddi-final"
 run/main_scene="uid://dxt8x8nqspv1n"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="peddi"
 config/features=PackedStringArray("4.6", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://bkm5okt07mu4a"
@@ -20,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*uid://cuktslfkup2hs"
+MenuMusic="*uid://ddidns6n8qpu4"
 
 [display]
 

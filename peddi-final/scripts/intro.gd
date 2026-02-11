@@ -7,3 +7,6 @@ func _ready() -> void:
 
 func _on_intro_timer_timeout() -> void:
 	get_tree().change_scene_to_file("res://scenes/mainMenu.tscn")
+
+func _on_sfx_timer_timeout() -> void:
+	MenuMusic.play()

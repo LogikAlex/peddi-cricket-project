@@ -17,4 +17,10 @@ autoplay = true
 wait_time = 13.0
 one_shot = true
 
+[node name="SFXTimer" type="Timer" parent="." unique_id=161180669]
+wait_time = 10.5
+one_shot = true
+autostart = true
+
 [connection signal="timeout" from="IntroTimer" to="." method="_on_intro_timer_timeout"]
+[connection signal="timeout" from="SFXTimer" to="." method="_on_sfx_timer_timeout"]

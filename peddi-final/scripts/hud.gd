@@ -8,17 +8,29 @@ extends CanvasLayer
 @onready var tryAgainButton: Button = $EndScreen/TryAgainButton
 @onready var mainMenuButton: Button = $EndScreen/MainMenuButton
 @onready var trailerButton: Button = $EndScreen/TrailerButton
+@onready var imageButton: Button = $EndScreen/SaveImageButton
 
 @onready var ballsLeft: Label = $downHUD/Balls
 @onready var score: Label = $downHUD/Score
 @onready var runs: Label = $downHUD/Runs
 
+@onready var userIDLabel: Label = $SubViewportContainer/SubViewport/UserValue
+@onready var endScoreLabel: Label = $SubViewportContainer/SubViewport/ScoreValue
+@onready var exitPanel: Panel = $ExitPanel
+
+@onready var subViewport: SubViewport = $SubViewportContainer/SubViewport
+
 var leftBarEndPos: Vector2 = Vector2(85.5, 360.0)
 var rightBarEndPos: Vector2 = Vector2(1194.5, 360.0)
+
+var ssCount = 1
 
 var saved = false
 
 func _process(_delta: float) -> void:
+	userIDLabel.text = "#" + Globals.userID
+	endScoreLabel.text = str(Globals.score)
+	
 	endScreenNode.get_node("Score").text = "Score: " + str(Globals.score)
 	ballsLeft.text = "BALLS LEFT: " + str(Globals.ballsLeft)
 	runs.text = "RUNS: " + str(Globals.runs)
@@ -28,7 +40,13 @@ func _ready() -> void:
 	saved = false
 	countdown()
 	endScreenNode.modulate.a = 0
-	#blackBarsAppear()
+	
+	var dir = DirAccess.open("user://")
+	dir.make_dir("screenshots")
+	
+	dir = DirAccess.open("user://screenshots")
+	for n in dir.get_files():
+		ssCount += 1
 
 func countdown():
 	var countdown_tween = create_tween()
@@ -50,6 +68,7 @@ func countdown():
 	).set_delay(3)
 
 func endScreen(missed: bool):
+	imageButton.visible = true
 	trailerButton.visible = true
 	tryAgainButton.visible = true
 	mainMenuButton.visible = true
@@ -89,6 +108,30 @@ func _on_main_menu_button_pressed() -> void:
 
 func _on_trailer_button_pressed() -> void:
 	OS.shell_open("https://youtu.be/2y_DH5gIrCU?si=SMZFh-b9F_yokcd0")
+	get_tree().reload_current_scene()
+	Globals.runs = 0
+	Globals.ballsLeft = 12
+	Globals.score = 0
+	Globals.pressure = 0
 
 func save_score():
 	JavaScriptBridge.eval("reportScore(" + str(Globals.score) + ")")
+
+func screenshot():
+	await RenderingServer.frame_post_draw
+	
+	var viewport = subViewport
+	var img = viewport.get_texture().get_image()
+	img.save_png("user://screenshots/saveScore" + str(ssCount) + ".png")
+	
+	var buffer := img.save_png_to_buffer()
+	JavaScriptBridge.download_buffer(buffer, "%s.png" % "saved_score", "image/png")
+	
+	ssCount += 1
+
+func _on_save_image_button_pressed() -> void:
+	screenshot()
+
+func _on_exit_button_pressed() -> void:
+	exitPanel.visible = true
+	get_tree().quit()

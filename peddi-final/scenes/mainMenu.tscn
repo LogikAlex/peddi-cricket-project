@@ -3,7 +3,19 @@
 [ext_resource type="Texture2D" uid="uid://b0gv20cwm61ih" path="res://assets/sprites/black.png" id="1_3d1i7"]
 [ext_resource type="Script" uid="uid://bxo4sseirb5o8" path="res://scripts/mainMenu.gd" id="1_l7wge"]
 [ext_resource type="Texture2D" uid="uid://k17si5cahu3n" path="res://assets/sprites/peddi-logo.jpg" id="1_qkhwq"]
-[ext_resource type="FontFile" uid="uid://cjrb1neid7al0" path="res://assets/fonts/coolvetica/Coolvetica Rg Cond.otf" id="3_48ign"]
+[ext_resource type="FontFile" uid="uid://cixc4okmrpnow" path="res://assets/fonts/gunplay/gunplay rg.otf" id="4_7nrmo"]
+[ext_resource type="Texture2D" uid="uid://bblccp7v1jmab" path="res://assets/sprites/exit_icon.png" id="5_7nrmo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7wge"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7nrmo"]
+font = ExtResource("4_7nrmo")
+font_size = 58
+
+[sub_resource type="LabelSettings" id="LabelSettings_l7wge"]
+font = ExtResource("4_7nrmo")
+font_size = 39
 
 [node name="MainMenu" type="Node2D" unique_id=1444312577]
 script = ExtResource("1_l7wge")
@@ -13,7 +25,7 @@ scale = Vector2(80.12501, 45.125)
 texture = ExtResource("1_3d1i7")
 
 [node name="PeddiLogo" type="Sprite2D" parent="." unique_id=464338197]
-position = Vector2(0, -46.000008)
+position = Vector2(0, -82)
 scale = Vector2(0.325, 0.325)
 texture = ExtResource("1_qkhwq")
 
@@ -24,37 +36,35 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -116.0
-offset_top = 85.5
+offset_top = 39.0
 offset_right = 116.0
-offset_bottom = 142.5
+offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
-theme_override_fonts/font = ExtResource("3_48ign")
-theme_override_font_sizes/font_size = 36
+theme_override_fonts/font = ExtResource("4_7nrmo")
+theme_override_font_sizes/font_size = 31
 text = "PLAY"
 
-[node name="CreditsButton" type="Button" parent="." unique_id=601101252]
-visible = false
+[node name="CreditsButton" type="Button" parent="." unique_id=1874846531]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -138.0
-offset_top = 132.0
-offset_right = 138.0
-offset_bottom = 200.0
+offset_left = -116.0
+offset_top = 116.5
+offset_right = 116.0
+offset_bottom = 173.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
-theme_override_fonts/font = ExtResource("3_48ign")
-theme_override_font_sizes/font_size = 40
+theme_override_fonts/font = ExtResource("4_7nrmo")
+theme_override_font_sizes/font_size = 31
 text = "CREDITS"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1543040928]
@@ -63,4 +73,86 @@ text = "CREDITS"
 scale = Vector2(80.12501, 45.125)
 texture = ExtResource("1_3d1i7")
 
+[node name="Credits" type="Panel" parent="." unique_id=389646158]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -606.0
+offset_top = -326.0
+offset_right = 606.0
+offset_bottom = 326.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l7wge")
+
+[node name="CreditsLabel" type="Label" parent="Credits" unique_id=1586213690]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.5
+offset_top = -180.0
+offset_right = 116.5
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CREDITS"
+label_settings = SubResource("LabelSettings_7nrmo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConceptLabel" type="Label" parent="Credits" unique_id=397443167]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -67.0
+offset_right = 107.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Concept by:
+[template]"
+label_settings = SubResource("LabelSettings_l7wge")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DevelopedLabel" type="Label" parent="Credits" unique_id=1161332757]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.0
+offset_top = 74.0
+offset_right = 284.0
+offset_bottom = 173.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Developed by:
+Aleksandar Zecevic - mentalex"
+label_settings = SubResource("LabelSettings_l7wge")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitCredits" type="TextureButton" parent="Credits" unique_id=375524149]
+layout_mode = 0
+offset_left = 1121.0001
+offset_top = 27.000011
+offset_right = 1633.0001
+offset_bottom = 539.0
+scale = Vector2(0.13408077, 0.13408077)
+texture_normal = ExtResource("5_7nrmo")
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Credits/ExitCredits" to="." method="_on_exit_credits_pressed"]
